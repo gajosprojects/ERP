@@ -1,5 +1,16 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
+  <ItemGroup>
+    <ProjectReference Include="..\ERP.Admin.Domain\ERP.Admin.Domain.csproj" />
+    <ProjectReference Include="..\ERP.Infra.Data\ERP.Infra.Data.csproj" />
+    <ProjectReference Include="..\ERP.Infra.CrossCutting.Bus\ERP.Infra.CrossCutting.Bus.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="8.1.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.2.0" />
+  </ItemGroup>
+
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
   </PropertyGroup>
