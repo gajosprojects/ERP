@@ -5,12 +5,11 @@ namespace ERP.Services.API.AutoMapper
 {
     public static class AutoMapperConfiguration
     {
-        public static void RegisterMappings(this IServiceCollection services)
+        public static MapperConfiguration RegisterMappings(this IServiceCollection services)
         {
-            Mapper.Initialize(autoMapperConfiguration =>
-            {
-                autoMapperConfiguration.AddProfile(new DomainToViewModelMappingProfile());
-                autoMapperConfiguration.AddProfile(new ViewModelToDomainMappingProfile());
+            return new MapperConfiguration(configuration => {
+                configuration.AddProfile(new DomainToViewModelMappingProfile());
+                configuration.AddProfile(new ViewModelToDomainMappingProfile());
             });
         }
     }
