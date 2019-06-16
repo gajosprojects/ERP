@@ -1,4 +1,3 @@
-using AutoMapper;
 using ERP.Admin.Domain.GruposEmpresariais.Commands;
 using ERP.Admin.Domain.GruposEmpresariais.Events;
 using ERP.Admin.Domain.GruposEmpresariais.Repositories;
@@ -21,10 +20,6 @@ namespace ERP.Infra.CrossCutting.IoC
     {
         public static void RegisterServices(IServiceCollection services) 
         {
-            // ASPNET
-            services.AddSingleton(Mapper.Configuration);
-            services.AddScoped<IMapper>(sp => new Mapper(sp.GetRequiredService<IConfigurationProvider>(), sp.GetService));
-
             // Domain Bus (Mediator)
             services.AddScoped<IMediatorHandler, InMemoryBus>();
 

@@ -25,7 +25,6 @@ namespace ERP.Services.API
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddApiVersioning("api/v{version}");
             services.AddSwaggerConfiguration();
-            services.AddAutoMapper(typeof(Startup));
             services.RegisterMappings();
             services.AddMediatR(typeof(Startup));
             services.AddDIConfiguration();
