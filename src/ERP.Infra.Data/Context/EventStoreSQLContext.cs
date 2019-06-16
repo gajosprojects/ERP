@@ -9,12 +9,11 @@ namespace ERP.Infra.Data.Context
     public class EventStoreSQLContext : DbContext
     {
         public DbSet<StoredEvent> StoredEvent { get; set; }
-        
-        private readonly IHostingEnvironment _hostingEnviroment;
+        private readonly IConfiguration _configuration;
 
-        public EventStoreSQLContext(IHostingEnvironment hostingEnviroment)
+        public EventStoreSQLContext(IConfiguration configuration)
         {
-            _hostingEnviroment = hostingEnviroment;
+            _configuration = configuration;
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -25,8 +24,7 @@ namespace ERP.Infra.Data.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var config = new ConfigurationBuilder().SetBasePath(_hostingEnviroment.ContentRootPath).AddJsonFile("appsettings.json", optional: false, reloadOnChange: true).AddJsonFile($"appsettings.{_hostingEnviroment.EnvironmentName}.json", optional: true).Build();
-            optionsBuilder.UseSqlServer(config.GetConnectionString("DefaultConnection"));
+            optionsBuilder.UseSqlServer(_configuration["ERP_CONNECTION_STRING"]);
         }
     }
 }
