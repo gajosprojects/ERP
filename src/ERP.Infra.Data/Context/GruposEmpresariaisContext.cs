@@ -1,6 +1,5 @@
 using ERP.Admin.Domain.GruposEmpresariais;
 using ERP.Infra.Data.Mappings.Admin;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 

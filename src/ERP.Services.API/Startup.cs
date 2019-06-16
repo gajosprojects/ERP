@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using ERP.Services.API.AutoMapper;
+﻿using ERP.Services.API.AutoMapper;
 using ERP.Services.API.Configurations;
 using MediatR;
 using Microsoft.AspNetCore.Builder;

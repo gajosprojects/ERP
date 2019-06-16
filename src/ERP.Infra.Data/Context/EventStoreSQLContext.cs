@@ -1,6 +1,5 @@
 using ERP.Domain.Core.Events;
 using ERP.Infra.Data.Mappings;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
