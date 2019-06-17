@@ -1,25 +1,17 @@
-using ERP.Domain.Core.Events;
-using ERP.Infra.Data.Mappings;
-using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
-namespace ERP.Infra.Data.Context
+namespace ERP.Infra.CrossCutting.Identity.Context
 {
-    public class EventStoreSQLContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext
     {
-        public DbSet<StoredEvent> StoredEvent { get; set; }
         private readonly IHostingEnvironment _hostingEnviroment;
 
-        public EventStoreSQLContext(IHostingEnvironment hostingEnviroment)
+        public ApplicationDbContext(IHostingEnvironment hostingEnviroment)
         {
             _hostingEnviroment = hostingEnviroment;
-        }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.ApplyConfiguration(new StoredEventsMapping());
-            base.OnModelCreating(modelBuilder);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

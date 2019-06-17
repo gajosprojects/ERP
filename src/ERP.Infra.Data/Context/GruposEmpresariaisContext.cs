@@ -1,5 +1,6 @@
 using ERP.Admin.Domain.GruposEmpresariais;
 using ERP.Infra.Data.Mappings.Admin;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
@@ -11,12 +12,11 @@ namespace ERP.Infra.Data.Context
         public DbSet<Empresa> Empresas { get; set; }
         public DbSet<Estabelecimento> Estabelecimentos { get; set; }
         public DbSet<Cnae> Cnaes { get; set; }
+        private readonly IHostingEnvironment _hostingEnviroment;
 
-        private readonly IConfiguration _configuration;
-
-        public GruposEmpresariaisContext(IConfiguration configuration)
+        public GruposEmpresariaisContext(IHostingEnvironment hostingEnviroment)
         {
-            _configuration = configuration;
+            _hostingEnviroment = hostingEnviroment;
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -30,7 +30,8 @@ namespace ERP.Infra.Data.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(_configuration["ERP_CONNECTION_STRING"]);
+            var config = new ConfigurationBuilder().SetBasePath(_hostingEnviroment.ContentRootPath).AddJsonFile("appsettings.json", optional: false, reloadOnChange: true).AddJsonFile($"appsettings.{_hostingEnviroment.EnvironmentName}.json", optional: true).Build();
+            optionsBuilder.UseSqlServer(config.GetConnectionString("ERP_CONNECTION_STRING"));
         }
     }
 }
