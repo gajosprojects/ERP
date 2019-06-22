@@ -19,6 +19,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ERP.Services.API", "src\ERP
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ERP.Infra.CrossCutting.Identity", "src\ERP.Infra.CrossCutting.Identity\ERP.Infra.CrossCutting.Identity.csproj", "{4DAFADB0-E156-4393-9DCE-0664BA0ECECB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ERP.Infra.CrossCutting.AspNetLogs", "src\ERP.Infra.CrossCutting.AspNetLogs\ERP.Infra.CrossCutting.AspNetLogs.csproj", "{874187F4-1FBA-4097-8C87-2DF218313830}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -113,6 +115,18 @@ Global
 		{4DAFADB0-E156-4393-9DCE-0664BA0ECECB}.Release|x64.Build.0 = Release|Any CPU
 		{4DAFADB0-E156-4393-9DCE-0664BA0ECECB}.Release|x86.ActiveCfg = Release|Any CPU
 		{4DAFADB0-E156-4393-9DCE-0664BA0ECECB}.Release|x86.Build.0 = Release|Any CPU
+		{874187F4-1FBA-4097-8C87-2DF218313830}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{874187F4-1FBA-4097-8C87-2DF218313830}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{874187F4-1FBA-4097-8C87-2DF218313830}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{874187F4-1FBA-4097-8C87-2DF218313830}.Debug|x64.Build.0 = Debug|Any CPU
+		{874187F4-1FBA-4097-8C87-2DF218313830}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{874187F4-1FBA-4097-8C87-2DF218313830}.Debug|x86.Build.0 = Debug|Any CPU
+		{874187F4-1FBA-4097-8C87-2DF218313830}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{874187F4-1FBA-4097-8C87-2DF218313830}.Release|Any CPU.Build.0 = Release|Any CPU
+		{874187F4-1FBA-4097-8C87-2DF218313830}.Release|x64.ActiveCfg = Release|Any CPU
+		{874187F4-1FBA-4097-8C87-2DF218313830}.Release|x64.Build.0 = Release|Any CPU
+		{874187F4-1FBA-4097-8C87-2DF218313830}.Release|x86.ActiveCfg = Release|Any CPU
+		{874187F4-1FBA-4097-8C87-2DF218313830}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -125,6 +139,7 @@ Global
 		{F87ED0C1-9691-435C-89A2-7459B39AF3D1} = {F5451065-DF80-4709-8CED-F28AC5CAC5B9}
 		{DB766839-751E-4E99-A0E3-E6E9116BAA21} = {F5451065-DF80-4709-8CED-F28AC5CAC5B9}
 		{4DAFADB0-E156-4393-9DCE-0664BA0ECECB} = {F5451065-DF80-4709-8CED-F28AC5CAC5B9}
+		{874187F4-1FBA-4097-8C87-2DF218313830} = {F5451065-DF80-4709-8CED-F28AC5CAC5B9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E00D0FFD-1A88-460D-9548-C5A4BBAF7BCA}
