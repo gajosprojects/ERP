@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ERP.Admin.Domain\ERP.Admin.Domain.csproj" />
+    <ProjectReference Include="..\ERP.Gerencial.Domain\ERP.Gerencial.Domain.csproj" />
     <ProjectReference Include="..\ERP.Domain.Core\ERP.Domain.Core.csproj" />
     <ProjectReference Include="..\ERP.Infra.CrossCutting.Identity\ERP.Infra.CrossCutting.Identity.csproj" />
     <ProjectReference Include="..\ERP.Infra.CrossCutting.IoC\ERP.Infra.CrossCutting.IoC.csproj" />

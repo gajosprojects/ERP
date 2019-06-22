@@ -1,14 +1,14 @@
 using System.Threading;
 using System.Threading.Tasks;
-using ERP.Admin.Domain.GruposEmpresariais.Events;
-using ERP.Admin.Domain.GruposEmpresariais.Repositories;
+using ERP.Gerencial.Domain.GruposEmpresariais.Events;
+using ERP.Gerencial.Domain.GruposEmpresariais.Repositories;
 using ERP.Domain.Core.Bus;
 using ERP.Domain.Core.Commands;
 using ERP.Domain.Core.Contracts;
 using ERP.Domain.Core.Notifications;
 using MediatR;
 
-namespace ERP.Admin.Domain.GruposEmpresariais.Commands
+namespace ERP.Gerencial.Domain.GruposEmpresariais.Commands
 {
     public class GrupoEmpresarialCommandHandler : CommandHandler, IRequestHandler<SaveGrupoEmpresarialCommand, bool>, IRequestHandler<UpdateGrupoEmpresarialCommand, bool>, IRequestHandler<DeleteGrupoEmpresarialCommand, bool>
     {

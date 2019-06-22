@@ -1,8 +1,8 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
+    <ProjectReference Include="..\ERP.Gerencial.Domain\ERP.Gerencial.Domain.csproj" />
     <ProjectReference Include="..\ERP.Domain.Core\ERP.Domain.Core.csproj" />
-    <ProjectReference Include="..\ERP.Admin.Domain\ERP.Admin.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>

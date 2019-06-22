@@ -1,23 +1,23 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26124.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29009.5
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F5451065-DF80-4709-8CED-F28AC5CAC5B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ERP.Domain.Core", "src\ERP.Domain.Core\ERP.Domain.Core.csproj", "{DA9E868F-DE64-4422-B541-E959B1408DD9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ERP.Domain.Core", "src\ERP.Domain.Core\ERP.Domain.Core.csproj", "{DA9E868F-DE64-4422-B541-E959B1408DD9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ERP.Admin.Domain", "src\ERP.Admin.Domain\ERP.Admin.Domain.csproj", "{8B712877-0FEB-422D-B374-22A7BC8B7D74}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ERP.Gerencial.Domain", "src\ERP.Gerencial.Domain\ERP.Gerencial.Domain.csproj", "{8B712877-0FEB-422D-B374-22A7BC8B7D74}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ERP.Infra.CrossCutting.Bus", "src\ERP.Infra.CrossCutting.Bus\ERP.Infra.CrossCutting.Bus.csproj", "{A9D79C95-C84E-4B53-BEC9-4F72827A08E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ERP.Infra.CrossCutting.Bus", "src\ERP.Infra.CrossCutting.Bus\ERP.Infra.CrossCutting.Bus.csproj", "{A9D79C95-C84E-4B53-BEC9-4F72827A08E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ERP.Infra.CrossCutting.IoC", "src\ERP.Infra.CrossCutting.IoC\ERP.Infra.CrossCutting.IoC.csproj", "{8185BE07-22F9-4577-96D0-3DE99F7A9309}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ERP.Infra.CrossCutting.IoC", "src\ERP.Infra.CrossCutting.IoC\ERP.Infra.CrossCutting.IoC.csproj", "{8185BE07-22F9-4577-96D0-3DE99F7A9309}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ERP.Infra.Data", "src\ERP.Infra.Data\ERP.Infra.Data.csproj", "{F87ED0C1-9691-435C-89A2-7459B39AF3D1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ERP.Infra.Data", "src\ERP.Infra.Data\ERP.Infra.Data.csproj", "{F87ED0C1-9691-435C-89A2-7459B39AF3D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ERP.Services.API", "src\ERP.Services.API\ERP.Services.API.csproj", "{DB766839-751E-4E99-A0E3-E6E9116BAA21}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ERP.Services.API", "src\ERP.Services.API\ERP.Services.API.csproj", "{DB766839-751E-4E99-A0E3-E6E9116BAA21}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ERP.Infra.CrossCutting.Identity", "src\ERP.Infra.CrossCutting.Identity\ERP.Infra.CrossCutting.Identity.csproj", "{4DAFADB0-E156-4393-9DCE-0664BA0ECECB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ERP.Infra.CrossCutting.Identity", "src\ERP.Infra.CrossCutting.Identity\ERP.Infra.CrossCutting.Identity.csproj", "{4DAFADB0-E156-4393-9DCE-0664BA0ECECB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,9 +27,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{DA9E868F-DE64-4422-B541-E959B1408DD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -117,6 +114,9 @@ Global
 		{4DAFADB0-E156-4393-9DCE-0664BA0ECECB}.Release|x86.ActiveCfg = Release|Any CPU
 		{4DAFADB0-E156-4393-9DCE-0664BA0ECECB}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{DA9E868F-DE64-4422-B541-E959B1408DD9} = {F5451065-DF80-4709-8CED-F28AC5CAC5B9}
 		{8B712877-0FEB-422D-B374-22A7BC8B7D74} = {F5451065-DF80-4709-8CED-F28AC5CAC5B9}
@@ -125,5 +125,8 @@ Global
 		{F87ED0C1-9691-435C-89A2-7459B39AF3D1} = {F5451065-DF80-4709-8CED-F28AC5CAC5B9}
 		{DB766839-751E-4E99-A0E3-E6E9116BAA21} = {F5451065-DF80-4709-8CED-F28AC5CAC5B9}
 		{4DAFADB0-E156-4393-9DCE-0664BA0ECECB} = {F5451065-DF80-4709-8CED-F28AC5CAC5B9}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E00D0FFD-1A88-460D-9548-C5A4BBAF7BCA}
 	EndGlobalSection
 EndGlobal

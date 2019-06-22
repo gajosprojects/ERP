@@ -2,7 +2,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 
-namespace ERP.Admin.Domain.GruposEmpresariais.Events
+namespace ERP.Gerencial.Domain.GruposEmpresariais.Events
 {
     public class GrupoEmpresarialEventHandler : INotificationHandler<SavedGrupoEmpresarialEvent>, INotificationHandler<UpdatedGrupoEmpresarialEvent>, INotificationHandler<DeletedGrupoEmpresarialEvent>
     {

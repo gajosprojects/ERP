@@ -1,6 +1,6 @@
-using ERP.Admin.Domain.GruposEmpresariais.Commands;
-using ERP.Admin.Domain.GruposEmpresariais.Events;
-using ERP.Admin.Domain.GruposEmpresariais.Repositories;
+using ERP.Gerencial.Domain.GruposEmpresariais.Commands;
+using ERP.Gerencial.Domain.GruposEmpresariais.Events;
+using ERP.Gerencial.Domain.GruposEmpresariais.Repositories;
 using ERP.Domain.Core.Bus;
 using ERP.Domain.Core.Contracts;
 using ERP.Domain.Core.Events;
@@ -8,7 +8,7 @@ using ERP.Domain.Core.Notifications;
 using ERP.Infra.CrossCutting.Bus;
 using ERP.Infra.Data.Context;
 using ERP.Infra.Data.EventSourcing;
-using ERP.Infra.Data.Repositories.Admin;
+using ERP.Infra.Data.Repositories.Gerencial;
 using ERP.Infra.Data.Repositories.EventSourcing;
 using ERP.Infra.Data.UoW;
 using MediatR;

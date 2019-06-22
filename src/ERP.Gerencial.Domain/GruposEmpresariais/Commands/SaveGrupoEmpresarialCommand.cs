@@ -1,6 +1,6 @@
 using System;
 
-namespace ERP.Admin.Domain.GruposEmpresariais.Commands
+namespace ERP.Gerencial.Domain.GruposEmpresariais.Commands
 {
     public class SaveGrupoEmpresarialCommand : BaseGrupoEmpresarialCommand
     {

@@ -1,5 +1,5 @@
 using AutoMapper;
-using ERP.Admin.Domain.GruposEmpresariais;
+using ERP.Gerencial.Domain.GruposEmpresariais;
 using ERP.Services.API.ViewModels;
 
 namespace ERP.Services.API.AutoMapper

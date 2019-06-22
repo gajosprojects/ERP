@@ -1,6 +1,6 @@
 using System;
 
-namespace ERP.Admin.Domain.GruposEmpresariais.Events
+namespace ERP.Gerencial.Domain.GruposEmpresariais.Events
 {
     public class UpdatedGrupoEmpresarialEvent : BaseGrupoEmpresarialEvent
     {

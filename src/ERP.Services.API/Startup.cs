@@ -53,7 +53,7 @@ namespace ERP.Services.API
             app.UseSwagger();
             app.UseSwaggerUI(s =>
             {
-                s.SwaggerEndpoint("/swagger/v1/swagger.json", "AdminAPI v1");
+                s.SwaggerEndpoint("/swagger/v1/swagger.json", "ERP API v1");
             });
 
             app.UseHttpsRedirection();

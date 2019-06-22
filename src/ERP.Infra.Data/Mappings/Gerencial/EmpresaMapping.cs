@@ -1,8 +1,8 @@
-using ERP.Admin.Domain.GruposEmpresariais;
+using ERP.Gerencial.Domain.GruposEmpresariais;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace ERP.Infra.Data.Mappings.Admin
+namespace ERP.Infra.Data.Mappings.Gerencial
 {
     public class EmpresaMapping : IEntityTypeConfiguration<Empresa>
     {

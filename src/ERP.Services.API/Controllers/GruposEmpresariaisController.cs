@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using AutoMapper;
-using ERP.Admin.Domain.GruposEmpresariais.Commands;
-using ERP.Admin.Domain.GruposEmpresariais.Repositories;
+using ERP.Gerencial.Domain.GruposEmpresariais.Commands;
+using ERP.Gerencial.Domain.GruposEmpresariais.Repositories;
 using ERP.Domain.Core.Bus;
 using ERP.Domain.Core.Notifications;
 using ERP.Services.API.ViewModels;

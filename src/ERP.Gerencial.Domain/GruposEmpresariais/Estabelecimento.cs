@@ -2,7 +2,7 @@ using System;
 using ERP.Domain.Core.Models;
 using FluentValidation;
 
-namespace ERP.Admin.Domain.GruposEmpresariais
+namespace ERP.Gerencial.Domain.GruposEmpresariais
 {
     public class Estabelecimento : Entity<Estabelecimento>
     {

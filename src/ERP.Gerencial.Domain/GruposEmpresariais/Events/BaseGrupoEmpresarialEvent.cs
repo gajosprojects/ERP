@@ -1,7 +1,7 @@
 using System;
 using ERP.Domain.Core.Events;
 
-namespace ERP.Admin.Domain.GruposEmpresariais.Events
+namespace ERP.Gerencial.Domain.GruposEmpresariais.Events
 {
     public class BaseGrupoEmpresarialEvent : Event
     {
