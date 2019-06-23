@@ -1,18 +1,22 @@
-using ERP.Gerencial.Domain.GruposEmpresariais.Commands;
-using ERP.Gerencial.Domain.GruposEmpresariais.Events;
-using ERP.Gerencial.Domain.GruposEmpresariais.Repositories;
 using ERP.Domain.Core.Bus;
 using ERP.Domain.Core.Contracts;
 using ERP.Domain.Core.Events;
 using ERP.Domain.Core.Notifications;
+using ERP.Gerencial.Domain.GruposEmpresariais.Commands;
+using ERP.Gerencial.Domain.GruposEmpresariais.Events;
+using ERP.Gerencial.Domain.GruposEmpresariais.Repositories;
+using ERP.Infra.CrossCutting.AspNetLogs;
 using ERP.Infra.CrossCutting.Bus;
+using ERP.Infra.CrossCutting.Identity.Models;
 using ERP.Infra.Data.Context;
 using ERP.Infra.Data.EventSourcing;
-using ERP.Infra.Data.Repositories.Gerencial;
 using ERP.Infra.Data.Repositories.EventSourcing;
+using ERP.Infra.Data.Repositories.Gerencial;
 using ERP.Infra.Data.UoW;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace ERP.Infra.CrossCutting.IoC
 {
@@ -20,6 +24,9 @@ namespace ERP.Infra.CrossCutting.IoC
     {
         public static void RegisterServices(IServiceCollection services) 
         {
+            // ASPNET
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
             // Domain Bus (Mediator)
             services.AddScoped<IMediatorHandler, InMemoryBus>();
 
@@ -43,6 +50,15 @@ namespace ERP.Infra.CrossCutting.IoC
             services.AddScoped<IEventStoreRepository, EventStoreSQLRepository>();
             services.AddScoped<IEventStore, EventStore>();
             services.AddScoped<EventStoreSQLContext>();
+
+            // Infra - Identity
+            services.AddScoped<IUser, User>();
+
+            // Infra - Filtros
+            services.AddScoped<ILogger<GlobalExceptionHandlingFilter>, Logger<GlobalExceptionHandlingFilter>>();
+            services.AddScoped<ILogger<GlobalActionLogger>, Logger<GlobalActionLogger>>();
+            services.AddScoped<GlobalExceptionHandlingFilter>();
+            services.AddScoped<GlobalActionLogger>();
         }
     }
 }

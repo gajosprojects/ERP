@@ -1,7 +1,10 @@
+using System;
 using System.Linq;
 using ERP.Domain.Core.Bus;
+using ERP.Domain.Core.Contracts;
 using ERP.Domain.Core.Notifications;
 using MediatR;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ERP.Services.API.Controllers
@@ -11,11 +14,22 @@ namespace ERP.Services.API.Controllers
     {
         private readonly DomainNotificationHandler _notifications;
         private readonly IMediatorHandler _mediator;
+        private INotificationHandler<DomainNotification> notifications;
+        private IMediatorHandler mediator;
 
-        protected BaseController(INotificationHandler<DomainNotification> notifications, IMediatorHandler mediator)
+        protected Guid IdUsuario { get; set; }
+
+        protected BaseController(INotificationHandler<DomainNotification> notifications, IUser user, IMediatorHandler mediator)
         {
             _notifications = (DomainNotificationHandler)notifications;
             _mediator = mediator;
+            if (user.IsAuthenticated()) IdUsuario = user.GetUserId();
+        }
+
+        protected BaseController(INotificationHandler<DomainNotification> notifications, IMediatorHandler mediator)
+        {
+            this.notifications = notifications;
+            this.mediator = mediator;
         }
 
         protected new IActionResult Response(object result = null)
@@ -43,6 +57,14 @@ namespace ERP.Services.API.Controllers
         protected void NotificarErro(string codigo, string mensagem)
         {
             _mediator.RaiseEvent(new DomainNotification(codigo, mensagem));
+        }
+
+        protected void AdicionarErrosIdentity(IdentityResult result)
+        {
+            foreach (var error in result.Errors)
+            {
+                NotificarErro(result.ToString(), error.Description);
+            }
         }
 
         protected bool IsModelStateValid()

@@ -1,4 +1,5 @@
 using ERP.Gerencial.Domain.GruposEmpresariais;
+using ERP.Gerencial.Domain.Usuarios;
 using ERP.Infra.Data.Mappings.Gerencial;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -12,6 +13,7 @@ namespace ERP.Infra.Data.Context
         public DbSet<Empresa> Empresas { get; set; }
         public DbSet<Estabelecimento> Estabelecimentos { get; set; }
         public DbSet<Cnae> Cnaes { get; set; }
+        public DbSet<Usuario> Usuarios { get; set; }
         private readonly IHostingEnvironment _hostingEnviroment;
 
         public GruposEmpresariaisContext(IHostingEnvironment hostingEnviroment)
@@ -25,6 +27,7 @@ namespace ERP.Infra.Data.Context
             modelBuilder.ApplyConfiguration(new EmpresaMapping());
             modelBuilder.ApplyConfiguration(new EstabelecimentoMapping());
             modelBuilder.ApplyConfiguration(new CnaeMapping());
+            modelBuilder.ApplyConfiguration(new UsuarioMapping());
             base.OnModelCreating(modelBuilder);
         }
 

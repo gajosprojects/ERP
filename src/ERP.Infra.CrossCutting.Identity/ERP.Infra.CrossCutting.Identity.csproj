@@ -13,4 +13,8 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.2.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ERP.Domain.Core\ERP.Domain.Core.csproj" />
+  </ItemGroup>
+
 </Project>

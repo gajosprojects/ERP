@@ -3,6 +3,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ERP.Gerencial.Domain\ERP.Gerencial.Domain.csproj" />
     <ProjectReference Include="..\ERP.Domain.Core\ERP.Domain.Core.csproj" />
+    <ProjectReference Include="..\ERP.Infra.CrossCutting.Identity\ERP.Infra.CrossCutting.Identity.csproj" />
   </ItemGroup>
 
   <ItemGroup>

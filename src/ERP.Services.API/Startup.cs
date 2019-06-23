@@ -1,10 +1,15 @@
-﻿using ERP.Infra.CrossCutting.Identity.Context;
+﻿using ERP.Infra.CrossCutting.AspNetLogs;
+using ERP.Infra.CrossCutting.Identity.Context;
 using ERP.Services.API.AutoMapper;
 using ERP.Services.API.Configurations;
 using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,6 +30,16 @@ namespace ERP.Services.API
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ERP_CONNECTION_STRING")));
+            services.AddMvcSecurity(Configuration);
+            services.AddOptions();
+
+            services.AddMvc(options =>
+            {
+                options.OutputFormatters.Remove(new XmlDataContractSerializerOutputFormatter());
+                options.Filters.Add(new ServiceFilterAttribute(typeof(GlobalActionLogger)));
+                options.Filters.Add(new AuthorizeFilter(new AuthorizationPolicyBuilder().AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme).RequireAuthenticatedUser().Build()));
+            });
+
             services.AddApiVersioning("api/v{version}");
             services.AddSwaggerConfiguration();
             services.RegisterMappings();
@@ -57,6 +72,7 @@ namespace ERP.Services.API
             });
 
             app.UseHttpsRedirection();
+            app.UseAuthentication();
             app.UseMvc();
         }
     }

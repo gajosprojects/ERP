@@ -9,7 +9,7 @@ namespace ERP.Infra.CrossCutting.Identity.Context
     {
         private readonly IHostingEnvironment _hostingEnviroment;
 
-        public ApplicationDbContext(IHostingEnvironment hostingEnviroment)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, IHostingEnvironment hostingEnviroment) : base(options)
         {
             _hostingEnviroment = hostingEnviroment;
         }

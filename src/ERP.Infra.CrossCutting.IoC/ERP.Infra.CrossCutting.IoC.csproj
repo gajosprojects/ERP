@@ -2,6 +2,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ERP.Gerencial.Domain\ERP.Gerencial.Domain.csproj" />
+    <ProjectReference Include="..\ERP.Infra.CrossCutting.AspNetLogs\ERP.Infra.CrossCutting.AspNetLogs.csproj" />
+    <ProjectReference Include="..\ERP.Infra.CrossCutting.Identity\ERP.Infra.CrossCutting.Identity.csproj" />
     <ProjectReference Include="..\ERP.Infra.Data\ERP.Infra.Data.csproj" />
     <ProjectReference Include="..\ERP.Infra.CrossCutting.Bus\ERP.Infra.CrossCutting.Bus.csproj" />
   </ItemGroup>
