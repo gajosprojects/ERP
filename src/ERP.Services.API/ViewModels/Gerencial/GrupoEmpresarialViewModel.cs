@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace ERP.Services.API.ViewModels
+namespace ERP.Services.API.ViewModels.Gerencial
 {
     public class GrupoEmpresarialViewModel
     {

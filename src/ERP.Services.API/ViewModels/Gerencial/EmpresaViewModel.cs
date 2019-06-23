@@ -2,7 +2,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using ERP.Services.API.Utils.Validation;
 
-namespace ERP.Services.API.ViewModels
+namespace ERP.Services.API.ViewModels.Gerencial
 {
     public class EmpresaViewModel
     {
@@ -36,6 +36,7 @@ namespace ERP.Services.API.ViewModels
         
         [Display(Name = "Email")]
         [MaxLength(150, ErrorMessage = "Tamanho máximo {1} caracteres")]
+        [EmailAddress(ErrorMessage = "E-mail em formato inválido")]
         public string Email { get; set; }
 
         [Display(Name = "Site")]
