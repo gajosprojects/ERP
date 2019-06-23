@@ -1,6 +1,7 @@
 using AutoMapper;
 using ERP.Gerencial.Domain.GruposEmpresariais.Commands;
-using ERP.Services.API.ViewModels;
+using ERP.Gerencial.Domain.Usuarios.Commands;
+using ERP.Services.API.ViewModels.Gerencial;
 
 namespace ERP.Services.API.AutoMapper
 {
@@ -16,6 +17,9 @@ namespace ERP.Services.API.AutoMapper
             
             CreateMap<GrupoEmpresarialViewModel, DeleteGrupoEmpresarialCommand>()
                 .ConstructUsing(ge => new DeleteGrupoEmpresarialCommand(ge.Id));
+
+            CreateMap<UsuarioViewModel, SaveUsuarioCommand>()
+                .ConstructUsing(u => new SaveUsuarioCommand(u.Id, u.Nome, u.Sobrenome, u.Email));
         }
     }
 }

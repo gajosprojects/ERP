@@ -1,6 +1,7 @@
 using AutoMapper;
 using ERP.Gerencial.Domain.GruposEmpresariais;
-using ERP.Services.API.ViewModels;
+using ERP.Gerencial.Domain.Usuarios;
+using ERP.Services.API.ViewModels.Gerencial;
 
 namespace ERP.Services.API.AutoMapper
 {
@@ -12,6 +13,7 @@ namespace ERP.Services.API.AutoMapper
             CreateMap<Empresa, EmpresaViewModel>();
             CreateMap<Estabelecimento, EstabelecimentoViewModel>();
             CreateMap<Cnae, CnaeViewModel>();
+            CreateMap<Usuario, UsuarioViewModel>();
         }
     }
 }

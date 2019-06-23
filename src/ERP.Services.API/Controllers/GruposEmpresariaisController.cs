@@ -5,7 +5,7 @@ using ERP.Gerencial.Domain.GruposEmpresariais.Commands;
 using ERP.Gerencial.Domain.GruposEmpresariais.Repositories;
 using ERP.Domain.Core.Bus;
 using ERP.Domain.Core.Notifications;
-using ERP.Services.API.ViewModels;
+using ERP.Services.API.ViewModels.Gerencial;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

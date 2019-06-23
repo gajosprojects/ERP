@@ -14,11 +14,13 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais.Commands
     {
         private readonly IGruposEmpresariaisRepository _grupoEmpresarialRepository;
         private readonly IMediatorHandler _mediator;
+        private readonly IUser _user;
 
-        public GrupoEmpresarialCommandHandler(IUnitOfWork uow, IMediatorHandler mediator, INotificationHandler<DomainNotification> notifications, IGruposEmpresariaisRepository grupoEmpresarialRepository) : base(uow, mediator, notifications)
+        public GrupoEmpresarialCommandHandler(IUnitOfWork uow, IMediatorHandler mediator, INotificationHandler<DomainNotification> notifications, IGruposEmpresariaisRepository grupoEmpresarialRepository, IUser user) : base(uow, mediator, notifications)
         {
             _grupoEmpresarialRepository = grupoEmpresarialRepository;
             _mediator = mediator;
+            _user = user;
         }
 
         private bool IsValid(GrupoEmpresarial grupoEmpresarial)
