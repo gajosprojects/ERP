@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  erp.api:
+    image: erp.api
+    build:
+      context: .
+      dockerfile: src/ERP.Services.API/Dockerfile
+    ports:
+      - 44313:44313
