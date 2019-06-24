@@ -1,5 +1,6 @@
 ﻿using ERP.Infra.CrossCutting.AspNetLogs;
 using ERP.Infra.CrossCutting.Identity.Context;
+using ERP.Infra.Data.Context;
 using ERP.Services.API.AutoMapper;
 using ERP.Services.API.Configurations;
 using MediatR;
@@ -30,6 +31,8 @@ namespace ERP.Services.API
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ERP_CONNECTION_STRING")));
+            services.AddDbContext<GruposEmpresariaisContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ERP_CONNECTION_STRING")));
+            services.AddDbContext<EventStoreSQLContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ERP_CONNECTION_STRING")));
             services.AddMvcSecurity(Configuration);
             services.AddOptions();
 
