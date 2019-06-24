@@ -8,10 +8,28 @@ namespace ERP.Infra.Data.Mappings
     {
         public void Configure(EntityTypeBuilder<StoredEvent> builder)
         {
-            builder.Property(c => c.Timestamp)
+            builder.ToTable("stored_events");
+
+            builder.HasKey(storedEvent => storedEvent.Id)
+                .HasName("pk_stored_event_id");
+
+            builder.Property(storedEvent => storedEvent.Id)
+                .HasColumnName("id");
+
+            builder.Property(storedEvent => storedEvent.AggregateId)
+                .HasColumnName("aggregate_id");
+
+            builder.Property(storedEvent => storedEvent.Data)
+                .HasColumnName("data");
+
+            builder.Property(storedEvent => storedEvent.Timestamp)
                 .HasColumnName("data_cadastro");
 
-            builder.Property(c => c.MessageType)
+            builder.Property(storedEvent => storedEvent.User)
+                .HasColumnName("usuario")
+                .HasColumnType("varchar(100)");
+
+            builder.Property(storedEvent => storedEvent.MessageType)
                 .HasColumnName("acao")
                 .HasColumnType("varchar(100)");
         }

@@ -10,7 +10,9 @@ namespace ERP.Infra.Data.Mappings.Gerencial
         {
             builder.ToTable("grupos_empresariais");
 
-            builder.HasKey(grupoempresarial => grupoempresarial.Id);            
+            builder.HasKey(grupoempresarial => grupoempresarial.Id)
+                .HasName("pk_grupo_empresarial_id");
+            
             builder.Property(grupoempresarial => grupoempresarial.Id)
                 .HasColumnName("id");
 

@@ -10,7 +10,9 @@ namespace ERP.Infra.Data.Mappings.Gerencial
         {
             builder.ToTable("estabelecimentos");
 
-            builder.HasKey(estabelecimento => estabelecimento.Id);            
+            builder.HasKey(estabelecimento => estabelecimento.Id)
+                .HasName("pk_estabelecimento_id");
+
             builder.Property(estabelecimento => estabelecimento.Id)
                 .HasColumnName("id");
 
@@ -89,15 +91,21 @@ namespace ERP.Infra.Data.Mappings.Gerencial
                 .HasColumnName("tipo_identificacao")
                 .IsRequired();
 
+            builder.Property(estabelecimento => estabelecimento.EmpresaId)
+                .HasColumnName("empresa_id");
+
             builder.HasOne(estabelecimento => estabelecimento.Empresa)
                 .WithMany(empresa => empresa.Estabelecimentos)
                 .HasForeignKey(estabelecimento => estabelecimento.EmpresaId)
-                .HasConstraintName("empresa_id");
+                .HasConstraintName("fk_empresa_id");
+
+            builder.Property(estabelecimento => estabelecimento.CnaeId)
+                .HasColumnName("cnae_id");
 
             builder.HasOne(estabelecimento => estabelecimento.Cnae)
                 .WithMany(cnae => cnae.Estabelecimentos)
                 .HasForeignKey(estabelecimento => estabelecimento.CnaeId)
-                .HasConstraintName("cnae_id");
+                .HasConstraintName("fk_cnae_id");
 
             builder.Ignore(estabelecimento => estabelecimento.ValidationResult);
             builder.Ignore(estabelecimento => estabelecimento.CascadeMode);
