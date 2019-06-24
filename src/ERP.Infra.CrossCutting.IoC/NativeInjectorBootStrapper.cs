@@ -5,6 +5,8 @@ using ERP.Domain.Core.Notifications;
 using ERP.Gerencial.Domain.GruposEmpresariais.Commands;
 using ERP.Gerencial.Domain.GruposEmpresariais.Events;
 using ERP.Gerencial.Domain.GruposEmpresariais.Repositories;
+using ERP.Gerencial.Domain.Usuarios.Commands;
+using ERP.Gerencial.Domain.Usuarios.Repositories;
 using ERP.Infra.CrossCutting.AspNetLogs;
 using ERP.Infra.CrossCutting.Bus;
 using ERP.Infra.CrossCutting.Identity.Models;
@@ -34,6 +36,7 @@ namespace ERP.Infra.CrossCutting.IoC
             services.AddScoped<IRequestHandler<SaveGrupoEmpresarialCommand, bool>, GrupoEmpresarialCommandHandler>();
             services.AddScoped<IRequestHandler<UpdateGrupoEmpresarialCommand, bool>, GrupoEmpresarialCommandHandler>();
             services.AddScoped<IRequestHandler<DeleteGrupoEmpresarialCommand, bool>, GrupoEmpresarialCommandHandler>();
+            services.AddScoped<IRequestHandler<SaveUsuarioCommand, bool>, UsuarioCommandHandler>();
 
             // Domain - GruposEmpresariais
             services.AddScoped<INotificationHandler<DomainNotification>, DomainNotificationHandler>();
@@ -43,6 +46,7 @@ namespace ERP.Infra.CrossCutting.IoC
 
             // Infra - Data
             services.AddScoped<IGruposEmpresariaisRepository, GruposEmpresariaisRepository>();
+            services.AddScoped<IUsuariosRepository, UsuariosRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<GruposEmpresariaisContext>();
 
