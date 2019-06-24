@@ -14,11 +14,11 @@ namespace ERP.Infra.Data.Context
         public DbSet<Estabelecimento> Estabelecimentos { get; set; }
         public DbSet<Cnae> Cnaes { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
-        private readonly IHostingEnvironment _hostingEnviroment;
+        private readonly IHostingEnvironment _hostingEnvironment;
 
-        public GruposEmpresariaisContext(IHostingEnvironment hostingEnviroment)
+        public GruposEmpresariaisContext(IHostingEnvironment hostingEnvironment)
         {
-            _hostingEnviroment = hostingEnviroment;
+            _hostingEnvironment = hostingEnvironment;
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -33,7 +33,7 @@ namespace ERP.Infra.Data.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var config = new ConfigurationBuilder().SetBasePath(_hostingEnviroment.ContentRootPath).AddJsonFile("appsettings.json", optional: false, reloadOnChange: true).AddJsonFile($"appsettings.{_hostingEnviroment.EnvironmentName}.json", optional: true).Build();
+            var config = new ConfigurationBuilder().SetBasePath(_hostingEnvironment.ContentRootPath).AddJsonFile("appsettings.json", optional: false, reloadOnChange: true).AddJsonFile($"appsettings.{_hostingEnvironment.EnvironmentName}.json", optional: true).Build();
             optionsBuilder.UseSqlServer(config.GetConnectionString("ERP_CONNECTION_STRING"));
         }
     }

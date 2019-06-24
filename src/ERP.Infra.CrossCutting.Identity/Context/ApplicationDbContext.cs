@@ -7,16 +7,16 @@ namespace ERP.Infra.CrossCutting.Identity.Context
 {
     public class ApplicationDbContext : IdentityDbContext
     {
-        private readonly IHostingEnvironment _hostingEnviroment;
+        private readonly IHostingEnvironment _hostingEnvironment;
 
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, IHostingEnvironment hostingEnviroment) : base(options)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, IHostingEnvironment hostingEnvironment) : base(options)
         {
-            _hostingEnviroment = hostingEnviroment;
+            _hostingEnvironment = hostingEnvironment;
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var config = new ConfigurationBuilder().SetBasePath(_hostingEnviroment.ContentRootPath).AddJsonFile("appsettings.json", optional: false, reloadOnChange: true).AddJsonFile($"appsettings.{_hostingEnviroment.EnvironmentName}.json", optional: true).Build();
+            var config = new ConfigurationBuilder().SetBasePath(_hostingEnvironment.ContentRootPath).AddJsonFile("appsettings.json", optional: false, reloadOnChange: true).AddJsonFile($"appsettings.{_hostingEnvironment.EnvironmentName}.json", optional: true).Build();
             optionsBuilder.UseSqlServer(config.GetConnectionString("ERP_CONNECTION_STRING"));
         }
     }
