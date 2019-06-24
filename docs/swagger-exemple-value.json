@@ -1,0 +1,10 @@
+{
+    "usuarios": {
+        "registro": {
+            "item1": { "nome": "Lucas", "sobrenome": "Vasconcelos", "cpf": "12345678909", "email": "lucas@gmail.com", "senha": "P@ssw0rd", "confirmSenha": "P@ssw0rd", "dataNascimento": "1992-11-17" },
+            "item2": { "nome": "Flávio", "sobrenome": "Costa", "cpf": "12345678908", "email": "flavio@gmail.com", "senha": "P@ssw0rd", "confirmSenha": "P@ssw0rd", "dataNascimento": "1992-11-17" },
+            "item3": { "nome": "Raphael", "sobrenome": "Name", "cpf": "12345678907", "email": "raphael@gmail.com", "senha": "P@ssw0rd", "confirmSenha": "P@ssw0rd", "dataNascimento": "1992-11-17" },
+            "item4": { "nome": "Carlos", "sobrenome": "Junior", "cpf": "12345678906", "email": "carlos@gmail.com", "senha": "P@ssw0rd", "confirmSenha": "P@ssw0rd", "dataNascimento": "1992-11-17" }
+        }
+    }
+}
