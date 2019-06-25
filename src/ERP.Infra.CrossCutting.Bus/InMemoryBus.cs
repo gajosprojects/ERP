@@ -22,12 +22,12 @@ namespace ERP.Infra.CrossCutting.Bus
             await _mediator.Send<bool>(command);
         }
 
-        public async Task RaiseEvent<T>(T evento) where T : Event
+        public async Task RaiseEvent<T>(T @event) where T : Event
         {
-            if (!evento.MessageType.Equals("DomainNotification"))
-                _eventStore?.Save(evento);
+            if (!@event.MessageType.Equals("DomainNotification"))
+                _eventStore?.Save(@event);
 
-            await _mediator.Publish(evento);
+            await _mediator.Publish(@event);
         }
     }
 }
