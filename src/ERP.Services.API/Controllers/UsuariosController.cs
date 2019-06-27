@@ -58,8 +58,7 @@ namespace ERP.Services.API.Controllers
             if (result.Succeeded)
             {
                 _logger.LogInformation(1, $"Usuario {model.Email} logado com sucesso");
-                var response = GenerateUserToken(model);
-                return Response(response);
+                return Response(await GenerateUserToken(model));
             }
 
             NotificarErro(result.ToString(), "Falha ao realizar o login");
