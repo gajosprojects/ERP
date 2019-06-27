@@ -94,8 +94,7 @@ namespace ERP.Services.API.Controllers
                 }
 
                 _logger.LogInformation(1, $"Usuario {model.Nome} criado com sucesso!");
-                var response = GenerateUserToken(new LoginViewModel { Email = model.Email, Senha = model.Senha });
-                return Response(response);
+                return Response(await GenerateUserToken(new LoginViewModel { Email = model.Email, Senha = model.Senha }));
             }
 
             AdicionarErrosIdentity(result);
