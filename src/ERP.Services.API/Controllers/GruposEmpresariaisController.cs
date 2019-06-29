@@ -1,13 +1,15 @@
-using System;
-using System.Collections.Generic;
 using AutoMapper;
+using ERP.Domain.Core.Bus;
+using ERP.Domain.Core.Contracts;
+using ERP.Domain.Core.Notifications;
 using ERP.Gerencial.Domain.GruposEmpresariais.Commands;
 using ERP.Gerencial.Domain.GruposEmpresariais.Repositories;
-using ERP.Domain.Core.Bus;
-using ERP.Domain.Core.Notifications;
 using ERP.Services.API.ViewModels.Gerencial;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
 
 namespace ERP.Services.API.Controllers
 {
@@ -17,7 +19,7 @@ namespace ERP.Services.API.Controllers
         private readonly IMapper _mapper;
         private readonly IMediatorHandler _mediator;
 
-        public GruposEmpresariaisController(INotificationHandler<DomainNotification> notifications, IMediatorHandler mediator, IGruposEmpresariaisRepository gruposEmpresariaisRepository, IMapper mapper) : base(notifications, mediator)
+        public GruposEmpresariaisController(INotificationHandler<DomainNotification> notifications, IUser user, IMediatorHandler mediator, IGruposEmpresariaisRepository gruposEmpresariaisRepository, IMapper mapper) : base(notifications, user, mediator)
         {
             _gruposEmpresariaisRepository = gruposEmpresariaisRepository;
             _mapper = mapper;
@@ -25,6 +27,7 @@ namespace ERP.Services.API.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         [Route("gruposempresariais")]
         public IActionResult Post([FromBody]GrupoEmpresarialViewModel grupoEmpresarialViewModel)
         {
@@ -35,6 +38,7 @@ namespace ERP.Services.API.Controllers
         }
 
         [HttpPut]
+        [AllowAnonymous]
         [Route("gruposempresariais")]
         public IActionResult Put([FromBody]GrupoEmpresarialViewModel grupoEmpresarialViewModel)
         {
@@ -45,6 +49,7 @@ namespace ERP.Services.API.Controllers
         }
 
         [HttpDelete]
+        [AllowAnonymous]
         [Route("gruposempresariais/{id:guid}")]
         public IActionResult Delete(Guid id)
         {
@@ -55,6 +60,7 @@ namespace ERP.Services.API.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         [Route("gruposempresariais")]
         public IEnumerable<GrupoEmpresarialViewModel> Get()
         {
@@ -62,6 +68,7 @@ namespace ERP.Services.API.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         [Route("gruposempresariais/{id:guid}")]
         public GrupoEmpresarialViewModel Get(Guid id)
         {

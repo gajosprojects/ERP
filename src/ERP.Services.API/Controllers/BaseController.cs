@@ -14,9 +14,6 @@ namespace ERP.Services.API.Controllers
     {
         private readonly DomainNotificationHandler _notifications;
         private readonly IMediatorHandler _mediator;
-        private INotificationHandler<DomainNotification> notifications;
-        private IMediatorHandler mediator;
-
         protected Guid IdUsuario { get; set; }
 
         protected BaseController(INotificationHandler<DomainNotification> notifications, IUser user, IMediatorHandler mediator)
@@ -24,12 +21,6 @@ namespace ERP.Services.API.Controllers
             _notifications = (DomainNotificationHandler)notifications;
             _mediator = mediator;
             if (user.IsAuthenticated()) IdUsuario = user.GetUserId();
-        }
-
-        protected BaseController(INotificationHandler<DomainNotification> notifications, IMediatorHandler mediator)
-        {
-            this.notifications = notifications;
-            this.mediator = mediator;
         }
 
         protected new IActionResult Response(object result = null)

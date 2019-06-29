@@ -37,7 +37,7 @@ namespace ERP.Infra.Data.Repositories
 
         public virtual TEntity GetById(Guid id)
         {
-            return _dbSet.Find(id);
+            return _dbSet.AsNoTracking().FirstOrDefault(e => e.Id == id);
         }
 
         public virtual IEnumerable<TEntity> GetAll()
