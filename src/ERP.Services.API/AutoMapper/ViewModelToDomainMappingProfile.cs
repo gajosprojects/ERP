@@ -1,7 +1,8 @@
 using AutoMapper;
 using ERP.Gerencial.Domain.GruposEmpresariais.Commands;
 using ERP.Gerencial.Domain.Usuarios.Commands;
-using ERP.Services.API.ViewModels.Gerencial;
+using ERP.Services.API.ViewModels.Gerencial.GrupoEmpresarial;
+using ERP.Services.API.ViewModels.Gerencial.Usuario;
 
 namespace ERP.Services.API.AutoMapper
 {
@@ -9,13 +10,13 @@ namespace ERP.Services.API.AutoMapper
     {
         public ViewModelToDomainMappingProfile()
         {
-            CreateMap<GrupoEmpresarialViewModel, SaveGrupoEmpresarialCommand>()
+            CreateMap<SaveGrupoEmpresarialViewModel, SaveGrupoEmpresarialCommand>()
                 .ConstructUsing(ge => new SaveGrupoEmpresarialCommand(ge.Codigo, ge.Descricao));
             
-            CreateMap<GrupoEmpresarialViewModel, UpdateGrupoEmpresarialCommand>()
+            CreateMap<UpdateGrupoEmpresarialViewModel, UpdateGrupoEmpresarialCommand>()
                 .ConstructUsing(ge => new UpdateGrupoEmpresarialCommand(ge.Id, ge.Codigo, ge.Descricao));
             
-            CreateMap<GrupoEmpresarialViewModel, DeleteGrupoEmpresarialCommand>()
+            CreateMap<DeleteGrupoEmpresarialViewModel, DeleteGrupoEmpresarialCommand>()
                 .ConstructUsing(ge => new DeleteGrupoEmpresarialCommand(ge.Id));
 
             CreateMap<UsuarioViewModel, SaveUsuarioCommand>()

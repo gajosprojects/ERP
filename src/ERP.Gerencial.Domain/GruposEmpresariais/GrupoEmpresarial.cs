@@ -44,6 +44,19 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais
 
                 return grupoEmpresarial;
             }
+
+            public static GrupoEmpresarial UpdateGrupoEmpresarial(Guid id, string codigo, string descricao, DateTime dataUltimaAtualizacao)
+            {
+                var grupoEmpresarial = new GrupoEmpresarial()
+                {
+                    Id = id,
+                    Codigo = codigo,
+                    Descricao = descricao,
+                    DataUltimaAtualizacao = dataUltimaAtualizacao
+                };
+
+                return grupoEmpresarial;
+            }
         }
     }
 }

@@ -62,7 +62,7 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais.Commands
             }
             else 
             {
-                var grupoEmpresarial = GrupoEmpresarial.GrupoEmpresarialFactory.NewGrupoEmpresarial(request.Id, request.Codigo, request.Descricao, request.DataCadastro, request.DataUltimaAtualizacao);
+                var grupoEmpresarial = GrupoEmpresarial.GrupoEmpresarialFactory.UpdateGrupoEmpresarial(request.Id, request.Codigo, request.Descricao, request.DataUltimaAtualizacao);
                 
                 if (IsValid(grupoEmpresarial))
                 {
@@ -70,7 +70,7 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais.Commands
 
                     if (Commit())
                     {
-                        _mediator.RaiseEvent(new UpdatedGrupoEmpresarialEvent(grupoEmpresarial.Id, grupoEmpresarial.Codigo, grupoEmpresarial.Descricao, grupoEmpresarial.DataCadastro, grupoEmpresarial.DataUltimaAtualizacao));
+                        _mediator.RaiseEvent(new UpdatedGrupoEmpresarialEvent(grupoEmpresarial.Id, grupoEmpresarial.Codigo, grupoEmpresarial.Descricao, grupoEmpresarial.DataUltimaAtualizacao));
                     }
 
                     return Task.FromResult(true);

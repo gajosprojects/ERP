@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace ERP.Services.API.ViewModels.Gerencial
+namespace ERP.Services.API.ViewModels.Gerencial.Usuario
 {
     public class UsuarioViewModel
     {

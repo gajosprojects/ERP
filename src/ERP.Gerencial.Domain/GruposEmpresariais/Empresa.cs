@@ -95,6 +95,29 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais
 
                 return empresa;
             }
+
+            public static Empresa UpdateEmpresa(Guid id, string codigo, string descricao, string nomeFantasia, string email, string site, bool bloqueada, DateTime dataRegistro, byte[] logotipo, string observacao, DateTime dataUltimaAtualizacao, string documento, int tipoIdentificacao, Guid grupoEmpresarialId)
+            {
+                var empresa = new Empresa()
+                {
+                    Id = id,
+                    Codigo = codigo,
+                    Descricao = descricao,
+                    NomeFantasia = nomeFantasia,
+                    Email = email,
+                    Site = site,
+                    Bloqueada = bloqueada,
+                    DataRegistro = dataRegistro,
+                    Logotipo = logotipo,
+                    Observacao = observacao,
+                    DataUltimaAtualizacao = dataUltimaAtualizacao,
+                    Documento = documento,
+                    TipoIdentificacao = tipoIdentificacao,
+                    GrupoEmpresarialId = grupoEmpresarialId
+                };
+
+                return empresa;
+            }
         }
     }
 }

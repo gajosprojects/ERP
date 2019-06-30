@@ -46,6 +46,20 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais
 
                 return cnae;
             }
+
+            public static Cnae UpdateCnae(Guid id, string codigo, string descricao, Guid cnaePai, DateTime dataUltimaAtualizacao)
+            {
+                var cnae = new Cnae()
+                {
+                    Id = id,
+                    Codigo = codigo,
+                    Descricao = descricao,
+                    CnaePai = cnaePai,
+                    DataUltimaAtualizacao = dataUltimaAtualizacao
+                };
+
+                return cnae;
+            }
         }
     }
 }

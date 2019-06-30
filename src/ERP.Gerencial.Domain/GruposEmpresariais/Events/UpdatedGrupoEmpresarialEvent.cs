@@ -4,12 +4,11 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais.Events
 {
     public class UpdatedGrupoEmpresarialEvent : BaseGrupoEmpresarialEvent
     {
-        public UpdatedGrupoEmpresarialEvent(Guid id, string codigo, string descricao, DateTime dataCadastro, DateTime dataUltimaAtualizacao)
+        public UpdatedGrupoEmpresarialEvent(Guid id, string codigo, string descricao, DateTime dataUltimaAtualizacao)
         {
             Id = id;
             Codigo = codigo;
             Descricao = descricao;
-            DataCadastro = dataCadastro;
             DataUltimaAtualizacao = dataUltimaAtualizacao;
             AggregateId = Id;
         }

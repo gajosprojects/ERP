@@ -4,7 +4,7 @@ using ERP.Domain.Core.Contracts;
 using ERP.Domain.Core.Notifications;
 using ERP.Gerencial.Domain.GruposEmpresariais.Commands;
 using ERP.Gerencial.Domain.GruposEmpresariais.Repositories;
-using ERP.Services.API.ViewModels.Gerencial;
+using ERP.Services.API.ViewModels.Gerencial.GrupoEmpresarial;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -29,7 +29,7 @@ namespace ERP.Services.API.Controllers
         [HttpPost]
         [AllowAnonymous]
         [Route("gruposempresariais")]
-        public IActionResult Post([FromBody]GrupoEmpresarialViewModel grupoEmpresarialViewModel)
+        public IActionResult Post([FromBody]SaveGrupoEmpresarialViewModel grupoEmpresarialViewModel)
         {
             if (!IsModelStateValid()) return Response();
             var grupoEmpresarialCommand = _mapper.Map<SaveGrupoEmpresarialCommand>(grupoEmpresarialViewModel);
@@ -40,7 +40,7 @@ namespace ERP.Services.API.Controllers
         [HttpPut]
         [AllowAnonymous]
         [Route("gruposempresariais")]
-        public IActionResult Put([FromBody]GrupoEmpresarialViewModel grupoEmpresarialViewModel)
+        public IActionResult Put([FromBody]UpdateGrupoEmpresarialViewModel grupoEmpresarialViewModel)
         {
             if (!IsModelStateValid()) return Response();
             var grupoEmpresarialCommand = _mapper.Map<UpdateGrupoEmpresarialCommand>(grupoEmpresarialViewModel);
@@ -53,8 +53,7 @@ namespace ERP.Services.API.Controllers
         [Route("gruposempresariais/{id:guid}")]
         public IActionResult Delete(Guid id)
         {
-            var grupoEmpresarialViewModel = new GrupoEmpresarialViewModel { Id = id };
-            var grupoEmpresarialCommand = _mapper.Map<DeleteGrupoEmpresarialCommand>(grupoEmpresarialViewModel);
+            var grupoEmpresarialCommand = _mapper.Map<DeleteGrupoEmpresarialCommand>(new DeleteGrupoEmpresarialViewModel { Id = id });
             _mediator.SendCommand(grupoEmpresarialCommand);
             return Response(grupoEmpresarialCommand);
         }
