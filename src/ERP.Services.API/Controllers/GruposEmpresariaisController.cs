@@ -53,7 +53,7 @@ namespace ERP.Services.API.Controllers
         [Authorize(Policy = "DeleteGrupoEmpresarial")]
         public IActionResult Delete(Guid id)
         {
-            var grupoEmpresarialCommand = _mapper.Map<DeleteGrupoEmpresarialCommand>(new DeleteGrupoEmpresarialViewModel { Id = id });
+            var grupoEmpresarialCommand = _mapper.Map<DeleteGrupoEmpresarialCommand>(new DeleteGrupoEmpresarialViewModel { Id = id, UsuarioId = UsuarioId });
             _mediator.SendCommand(grupoEmpresarialCommand);
             return Response(grupoEmpresarialCommand);
         }

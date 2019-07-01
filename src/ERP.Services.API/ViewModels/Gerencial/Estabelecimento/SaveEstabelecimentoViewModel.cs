@@ -9,12 +9,6 @@ namespace ERP.Services.API.ViewModels.Gerencial.Estabelecimento
         [Key]
         public Guid Id { get; set; }
 
-        [Display(Name = "Data cadastro")]
-        public DateTime DataCadastro { get; set; }
-
-        [Display(Name = "Data última atualização")]
-        public DateTime DataUltimaAtualizacao { get; set; }
-
         [Display(Name = "Código")]
         [Required(ErrorMessage = "Campo obrigatório")]
         [MinLength(1, ErrorMessage = "Tamanho mínimo {1} caracteres")]

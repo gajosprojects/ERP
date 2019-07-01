@@ -14,13 +14,13 @@ namespace ERP.Services.API.Controllers
     {
         private readonly DomainNotificationHandler _notifications;
         private readonly IMediatorHandler _mediator;
-        protected Guid IdUsuario { get; set; }
+        protected Guid UsuarioId { get; set; }
 
         protected BaseController(INotificationHandler<DomainNotification> notifications, IUser user, IMediatorHandler mediator)
         {
             _notifications = (DomainNotificationHandler)notifications;
             _mediator = mediator;
-            if (user.IsAuthenticated()) IdUsuario = user.GetUserId();
+            if (user.IsAuthenticated()) UsuarioId = user.GetUserId();
         }
 
         protected new IActionResult Response(object result = null)

@@ -9,6 +9,7 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais.Commands
             Codigo = codigo;
             Descricao = descricao;
             DataCadastro = DateTime.Now;
+            DataUltimaAtualizacao = DateTime.Now;
             UsuarioId = usuarioId;
         }
     }
