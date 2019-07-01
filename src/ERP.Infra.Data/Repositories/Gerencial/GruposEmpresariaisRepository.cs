@@ -9,12 +9,5 @@ namespace ERP.Infra.Data.Repositories.Gerencial
         public GruposEmpresariaisRepository(GruposEmpresariaisContext db) : base(db)
         {
         }
-
-        public override void Delete(GrupoEmpresarial obj) 
-        {
-            var grupoEmpresarial = GetById(obj.Id);
-            grupoEmpresarial.Desativar();
-            Update(grupoEmpresarial);
-        }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using ERP.Domain.Core.Models;
+using ERP.Gerencial.Domain.GruposEmpresariais;
 using FluentValidation;
 using System;
+using System.Collections.Generic;
 
 namespace ERP.Gerencial.Domain.Usuarios
 {
@@ -9,6 +11,10 @@ namespace ERP.Gerencial.Domain.Usuarios
         public string Nome { get; private set; }
         public string Sobrenome { get; private set; }
         public string Email { get; private set; }
+        public virtual ICollection<GrupoEmpresarial> GruposEmpresariais { get; private set; }
+        public virtual ICollection<Estabelecimento> Estabelecimentos { get; private set; }
+        public virtual ICollection<Empresa> Empresas { get; private set; }
+        public virtual ICollection<Cnae> Cnaes { get; private set; }
 
         private Usuario() { }
 

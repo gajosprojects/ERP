@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ERP.Services.API.Utils.Validation;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace ERP.Services.API.ViewModels.Gerencial.GrupoEmpresarial
@@ -26,11 +27,12 @@ namespace ERP.Services.API.ViewModels.Gerencial.GrupoEmpresarial
         [MaxLength(150, ErrorMessage = "Tamanho máximo {1} caracteres")]
         public string Descricao { get; set; }
 
+        [NotEmptyGuid(ErrorMessage = "Campo obrigatório")]
+        public Guid UsuarioId { get; set; }
+
         public SaveGrupoEmpresarialViewModel()
         {
             Id = Guid.NewGuid();
-            DataCadastro = DateTime.Now;
-            DataUltimaAtualizacao = DateTime.Now;
         }
     }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using ERP.Domain.Core.Models;
+using ERP.Gerencial.Domain.Usuarios;
 using FluentValidation;
 
 namespace ERP.Gerencial.Domain.GruposEmpresariais
@@ -11,6 +12,7 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais
         public string Descricao { get; private set; }
         public Guid CnaePai { get; private set; }
         public virtual ICollection<Estabelecimento> Estabelecimentos { get; set; }
+        public virtual Usuario Usuario { get; private set; }
 
         private Cnae() { }
         
@@ -32,7 +34,7 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais
 
         public static class CnaeFactory
         {
-            public static Cnae NewCnae(Guid id, string codigo, string descricao, Guid cnaePai, DateTime dataCadastro, DateTime dataUltimaAtualizacao)
+            public static Cnae NewCnae(Guid id, string codigo, string descricao, Guid cnaePai, DateTime dataCadastro, DateTime dataUltimaAtualizacao, Guid usuarioId)
             {
                 var cnae = new Cnae()
                 {
@@ -41,21 +43,8 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais
                     Descricao = descricao,
                     CnaePai = cnaePai,
                     DataCadastro = dataCadastro,
-                    DataUltimaAtualizacao = dataUltimaAtualizacao
-                };
-
-                return cnae;
-            }
-
-            public static Cnae UpdateCnae(Guid id, string codigo, string descricao, Guid cnaePai, DateTime dataUltimaAtualizacao)
-            {
-                var cnae = new Cnae()
-                {
-                    Id = id,
-                    Codigo = codigo,
-                    Descricao = descricao,
-                    CnaePai = cnaePai,
-                    DataUltimaAtualizacao = dataUltimaAtualizacao
+                    DataUltimaAtualizacao = dataUltimaAtualizacao,
+                    UsuarioId = usuarioId
                 };
 
                 return cnae;

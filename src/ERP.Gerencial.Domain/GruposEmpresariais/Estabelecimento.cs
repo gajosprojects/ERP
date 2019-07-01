@@ -1,5 +1,6 @@
 using System;
 using ERP.Domain.Core.Models;
+using ERP.Gerencial.Domain.Usuarios;
 using FluentValidation;
 
 namespace ERP.Gerencial.Domain.GruposEmpresariais
@@ -24,6 +25,7 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais
         public Guid CnaeId { get; private set; }
         public virtual Empresa Empresa { get; private set; }
         public virtual Cnae Cnae { get; private set; }
+        public virtual Usuario Usuario { get; private set; }
 
         private Estabelecimento() {}
 
@@ -90,7 +92,7 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais
 
         public static class EstabelecimentoFactory
         {
-            public static Estabelecimento NewEstabelecimento(Guid id, string codigo, string descricao, string nomeFantasia, string inscricaoEstadual, string inscricaoMunicipal, string email, string site, bool bloqueado, DateTime dataRegistro, byte[] logotipo, bool matriz, string observacao, DateTime dataCadastro, DateTime dataUltimaAtualizacao, string documento, int tipoIdentificacao, Guid empresaId, Guid cnaeId)
+            public static Estabelecimento NewEstabelecimento(Guid id, string codigo, string descricao, string nomeFantasia, string inscricaoEstadual, string inscricaoMunicipal, string email, string site, bool bloqueado, DateTime dataRegistro, byte[] logotipo, bool matriz, string observacao, DateTime dataCadastro, DateTime dataUltimaAtualizacao, string documento, int tipoIdentificacao, Guid empresaId, Guid cnaeId, Guid usuarioId)
             {
                 var estabelecimento = new Estabelecimento()
                 {
@@ -112,34 +114,8 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais
                     Documento = documento,
                     TipoIdentificacao = tipoIdentificacao,
                     EmpresaId = empresaId,
-                    CnaeId = cnaeId
-                };
-
-                return estabelecimento;
-            }
-
-            public static Estabelecimento UpdateEstabelecimento(Guid id, string codigo, string descricao, string nomeFantasia, string inscricaoEstadual, string inscricaoMunicipal, string email, string site, bool bloqueado, DateTime dataRegistro, byte[] logotipo, bool matriz, string observacao, DateTime dataUltimaAtualizacao, string documento, int tipoIdentificacao, Guid empresaId, Guid cnaeId)
-            {
-                var estabelecimento = new Estabelecimento()
-                {
-                    Id = id,
-                    Codigo = codigo,
-                    Descricao = descricao,
-                    NomeFantasia = nomeFantasia,
-                    InscricaoEstadual = inscricaoEstadual,
-                    InscricaoMunicipal = inscricaoMunicipal,
-                    Email = email,
-                    Site = site,
-                    Bloqueado = bloqueado,
-                    DataRegistro = dataRegistro,
-                    Logotipo = logotipo,
-                    Matriz = matriz,
-                    DataUltimaAtualizacao = dataUltimaAtualizacao,
-                    Observacao = observacao,
-                    Documento = documento,
-                    TipoIdentificacao = tipoIdentificacao,
-                    EmpresaId = empresaId,
-                    CnaeId = cnaeId
+                    CnaeId = cnaeId,
+                    UsuarioId = usuarioId
                 };
 
                 return estabelecimento;

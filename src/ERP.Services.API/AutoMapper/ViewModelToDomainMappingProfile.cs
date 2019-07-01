@@ -11,13 +11,13 @@ namespace ERP.Services.API.AutoMapper
         public ViewModelToDomainMappingProfile()
         {
             CreateMap<SaveGrupoEmpresarialViewModel, SaveGrupoEmpresarialCommand>()
-                .ConstructUsing(ge => new SaveGrupoEmpresarialCommand(ge.Codigo, ge.Descricao));
+                .ConstructUsing(ge => new SaveGrupoEmpresarialCommand(ge.Codigo, ge.Descricao, ge.UsuarioId));
             
             CreateMap<UpdateGrupoEmpresarialViewModel, UpdateGrupoEmpresarialCommand>()
-                .ConstructUsing(ge => new UpdateGrupoEmpresarialCommand(ge.Id, ge.Codigo, ge.Descricao));
+                .ConstructUsing(ge => new UpdateGrupoEmpresarialCommand(ge.Id, ge.Codigo, ge.Descricao, ge.UsuarioId));
             
             CreateMap<DeleteGrupoEmpresarialViewModel, DeleteGrupoEmpresarialCommand>()
-                .ConstructUsing(ge => new DeleteGrupoEmpresarialCommand(ge.Id));
+                .ConstructUsing(ge => new DeleteGrupoEmpresarialCommand(ge.Id, ge.UsuarioId));
 
             CreateMap<UsuarioViewModel, SaveUsuarioCommand>()
                 .ConstructUsing(u => new SaveUsuarioCommand(u.Id, u.Nome, u.Sobrenome, u.Email));

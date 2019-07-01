@@ -11,6 +11,7 @@ namespace ERP.Domain.Core.Models
         public DateTime DataCadastro { get; protected set; }
         public DateTime DataUltimaAtualizacao { get; protected set; }
         public bool Desativado { get; protected set; }
+        public Guid UsuarioId { get; protected set; }
         public ValidationResult ValidationResult { get; protected set; }
 
         protected Entity()
@@ -18,9 +19,10 @@ namespace ERP.Domain.Core.Models
             ValidationResult = new ValidationResult();
         }
 
-        public void Desativar() 
+        public void Desativar(Guid usuarioId) 
         {
             Desativado = true;
+            UsuarioId = usuarioId;
         }
 
         public override bool Equals(object obj)

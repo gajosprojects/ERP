@@ -1,5 +1,6 @@
 ﻿using ERP.Services.API.ViewModels.Gerencial.Cnae;
 using ERP.Services.API.ViewModels.Gerencial.Empresa;
+using ERP.Services.API.ViewModels.Gerencial.Usuario;
 using System;
 
 namespace ERP.Services.API.ViewModels.Gerencial.Estabelecimento
@@ -24,9 +25,15 @@ namespace ERP.Services.API.ViewModels.Gerencial.Estabelecimento
         public string Observacao { get; set; }
         public string Documento { get; set; }
         public int TipoIdentificacao { get; set; }
-        public Guid EmpresaId { get; set; }
-        public Guid CnaeId { get; set; }
         public EmpresaViewModel Empresa { get; set; }
         public CnaeViewModel Cnae { get; set; }
+        public UsuarioViewModel Usuario { get; set; }
+
+        public EstabelecimentoViewModel()
+        {
+            Empresa = new EmpresaViewModel();
+            Cnae = new CnaeViewModel();
+            Usuario = new UsuarioViewModel();
+        }
     }
 }

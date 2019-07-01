@@ -27,8 +27,8 @@ namespace ERP.Services.API.Controllers
         }
 
         [HttpPost]
-        [AllowAnonymous]
         [Route("gruposempresariais")]
+        [Authorize(Policy = "SaveGrupoEmpresarial")]
         public IActionResult Post([FromBody]SaveGrupoEmpresarialViewModel grupoEmpresarialViewModel)
         {
             if (!IsModelStateValid()) return Response();
@@ -38,8 +38,8 @@ namespace ERP.Services.API.Controllers
         }
 
         [HttpPut]
-        [AllowAnonymous]
         [Route("gruposempresariais")]
+        [Authorize(Policy = "UpdateGrupoEmpresarial")]
         public IActionResult Put([FromBody]UpdateGrupoEmpresarialViewModel grupoEmpresarialViewModel)
         {
             if (!IsModelStateValid()) return Response();
@@ -49,8 +49,8 @@ namespace ERP.Services.API.Controllers
         }
 
         [HttpDelete]
-        [AllowAnonymous]
         [Route("gruposempresariais/{id:guid}")]
+        [Authorize(Policy = "DeleteGrupoEmpresarial")]
         public IActionResult Delete(Guid id)
         {
             var grupoEmpresarialCommand = _mapper.Map<DeleteGrupoEmpresarialCommand>(new DeleteGrupoEmpresarialViewModel { Id = id });
@@ -59,16 +59,16 @@ namespace ERP.Services.API.Controllers
         }
 
         [HttpGet]
-        [AllowAnonymous]
         [Route("gruposempresariais")]
+        [Authorize(Policy = "ViewGrupoEmpresarial")]
         public IEnumerable<GrupoEmpresarialViewModel> Get()
         {
             return _mapper.Map<IEnumerable<GrupoEmpresarialViewModel>>(_gruposEmpresariaisRepository.GetAll());
         }
 
         [HttpGet]
-        [AllowAnonymous]
         [Route("gruposempresariais/{id:guid}")]
+        [Authorize(Policy = "ViewGrupoEmpresarial")]
         public GrupoEmpresarialViewModel Get(Guid id)
         {
             return _mapper.Map<GrupoEmpresarialViewModel>(_gruposEmpresariaisRepository.GetById(id));

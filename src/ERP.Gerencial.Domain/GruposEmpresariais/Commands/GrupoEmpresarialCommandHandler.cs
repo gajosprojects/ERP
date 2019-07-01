@@ -32,7 +32,7 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais.Commands
 
         public Task<bool> Handle(SaveGrupoEmpresarialCommand request, CancellationToken cancellationToken)
         {
-            var grupoEmpresarial = GrupoEmpresarial.GrupoEmpresarialFactory.NewGrupoEmpresarial(request.Id, request.Codigo, request.Descricao, request.DataCadastro, request.DataUltimaAtualizacao);
+            var grupoEmpresarial = GrupoEmpresarial.GrupoEmpresarialFactory.NewGrupoEmpresarial(request.Id, request.Codigo, request.Descricao, request.DataCadastro, request.DataUltimaAtualizacao, request.UsuarioId);
 
             if (IsValid(grupoEmpresarial))
             {
@@ -62,7 +62,7 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais.Commands
             }
             else 
             {
-                var grupoEmpresarial = GrupoEmpresarial.GrupoEmpresarialFactory.UpdateGrupoEmpresarial(request.Id, request.Codigo, request.Descricao, request.DataUltimaAtualizacao);
+                var grupoEmpresarial = GrupoEmpresarial.GrupoEmpresarialFactory.NewGrupoEmpresarial(grupoEmpresarialExistente.Id, request.Codigo, request.Descricao, grupoEmpresarialExistente.DataCadastro, request.DataUltimaAtualizacao, request.UsuarioId);
                 
                 if (IsValid(grupoEmpresarial))
                 {
@@ -93,7 +93,7 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais.Commands
             }
             else 
             {
-                grupoEmpresarialExistente.Desativar();
+                grupoEmpresarialExistente.Desativar(request.UsuarioId);
                 _grupoEmpresarialRepository.Update(grupoEmpresarialExistente);
 
                 if (Commit())

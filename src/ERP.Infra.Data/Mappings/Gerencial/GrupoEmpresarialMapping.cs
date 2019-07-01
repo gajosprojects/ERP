@@ -42,6 +42,15 @@ namespace ERP.Infra.Data.Mappings.Gerencial
             builder.Property(grupoempresarial => grupoempresarial.DataUltimaAtualizacao)
                 .HasColumnName("data_ultima_atualizacao");
 
+            builder.Property(grupoempresarial => grupoempresarial.UsuarioId)
+                .HasColumnName("usuario_id");
+
+            builder.HasOne(grupoempresarial => grupoempresarial.Usuario)
+                .WithMany(usuario => usuario.GruposEmpresariais)
+                .HasForeignKey(grupoempresarial => grupoempresarial.UsuarioId)
+                .HasConstraintName("fk_usuario_id_grupo_empresarial")
+                .OnDelete(DeleteBehavior.Restrict);
+
             builder.Ignore(grupoempresarial => grupoempresarial.ValidationResult);
             builder.Ignore(grupoempresarial => grupoempresarial.CascadeMode);
         }

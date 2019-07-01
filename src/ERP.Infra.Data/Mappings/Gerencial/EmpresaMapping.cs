@@ -84,7 +84,16 @@ namespace ERP.Infra.Data.Mappings.Gerencial
             builder.HasOne(empresa => empresa.GrupoEmpresarial)
                 .WithMany(grupoEmpresarial => grupoEmpresarial.Empresas)
                 .HasForeignKey(empresa => empresa.GrupoEmpresarialId)
-                .HasConstraintName("fk_grupo_empresarial_id");
+                .HasConstraintName("fk_grupo_empresarial_id_empresa");
+
+            builder.Property(empresa => empresa.UsuarioId)
+                .HasColumnName("usuario_id");
+
+            builder.HasOne(empresa => empresa.Usuario)
+                .WithMany(usuario => usuario.Empresas)
+                .HasForeignKey(empresa => empresa.UsuarioId)
+                .HasConstraintName("fk_usuario_id_empresa")
+                .OnDelete(DeleteBehavior.Restrict);
 
             builder.Ignore(empresa => empresa.ValidationResult);
             builder.Ignore(empresa => empresa.CascadeMode);

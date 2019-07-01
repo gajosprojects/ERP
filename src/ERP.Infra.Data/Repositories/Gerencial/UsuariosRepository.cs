@@ -9,12 +9,5 @@ namespace ERP.Infra.Data.Repositories.Gerencial
         public UsuariosRepository(GruposEmpresariaisContext db) : base(db)
         {
         }
-
-        public override void Delete(Usuario obj)
-        {
-            var usuario = GetById(obj.Id);
-            usuario.Desativar();
-            Update(usuario);
-        }
     }
 }

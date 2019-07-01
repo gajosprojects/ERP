@@ -97,7 +97,7 @@ namespace ERP.Infra.Data.Mappings.Gerencial
             builder.HasOne(estabelecimento => estabelecimento.Empresa)
                 .WithMany(empresa => empresa.Estabelecimentos)
                 .HasForeignKey(estabelecimento => estabelecimento.EmpresaId)
-                .HasConstraintName("fk_empresa_id");
+                .HasConstraintName("fk_empresa_id_estabelecimento");
 
             builder.Property(estabelecimento => estabelecimento.CnaeId)
                 .HasColumnName("cnae_id");
@@ -105,7 +105,16 @@ namespace ERP.Infra.Data.Mappings.Gerencial
             builder.HasOne(estabelecimento => estabelecimento.Cnae)
                 .WithMany(cnae => cnae.Estabelecimentos)
                 .HasForeignKey(estabelecimento => estabelecimento.CnaeId)
-                .HasConstraintName("fk_cnae_id");
+                .HasConstraintName("fk_cnae_id_estabelecimento");
+
+            builder.Property(estabelecimento => estabelecimento.UsuarioId)
+                .HasColumnName("usuario_id");
+
+            builder.HasOne(estabelecimento => estabelecimento.Usuario)
+                .WithMany(usuario => usuario.Estabelecimentos)
+                .HasForeignKey(estabelecimento => estabelecimento.UsuarioId)
+                .HasConstraintName("fk_usuario_id_estabelecimento")
+                .OnDelete(DeleteBehavior.Restrict);
 
             builder.Ignore(estabelecimento => estabelecimento.ValidationResult);
             builder.Ignore(estabelecimento => estabelecimento.CascadeMode);

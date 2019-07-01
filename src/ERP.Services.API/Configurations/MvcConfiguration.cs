@@ -47,8 +47,11 @@ namespace ERP.Services.API.Configurations
 
             services.AddAuthorization(options =>
             {
-                options.AddPolicy("PodeVisualizar", policy => policy.RequireClaim("ERP", "Visualizar"));
-                options.AddPolicy("PodeAlterar", policy => policy.RequireClaim("ERP", "Alterar"));
+                options.AddPolicy("SaveGrupoEmpresarial", policy => policy.RequireClaim("Grupo Empresarial", "Save"));
+                options.AddPolicy("UpdateGrupoEmpresarial", policy => policy.RequireClaim("Grupo Empresarial", "Update"));
+                options.AddPolicy("DeleteGrupoEmpresarial", policy => policy.RequireClaim("Grupo Empresarial", "Delete"));
+                options.AddPolicy("ViewGrupoEmpresarial", policy => policy.RequireClaim("Grupo Empresarial", "View"));
+
                 options.AddPolicy("Bearer", new AuthorizationPolicyBuilder().AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme).RequireAuthenticatedUser().Build());
             });
         }

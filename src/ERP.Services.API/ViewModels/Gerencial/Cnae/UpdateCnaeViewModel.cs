@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ERP.Services.API.Utils.Validation;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace ERP.Services.API.ViewModels.Gerencial.Cnae
@@ -26,9 +27,7 @@ namespace ERP.Services.API.ViewModels.Gerencial.Cnae
         [Display(Name = "CNAE pai")]
         public Guid CnaePai { get; set; }
 
-        public UpdateCnaeViewModel()
-        {
-            DataUltimaAtualizacao = DateTime.Now;
-        }
+        [NotEmptyGuid(ErrorMessage = "Campo obrigatório")]
+        public Guid UsuarioId { get; set; }
     }
 }

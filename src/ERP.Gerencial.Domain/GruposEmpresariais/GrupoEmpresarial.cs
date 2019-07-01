@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using ERP.Domain.Core.Models;
+using ERP.Gerencial.Domain.Usuarios;
 using FluentValidation;
 
 namespace ERP.Gerencial.Domain.GruposEmpresariais
@@ -10,6 +11,7 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais
         public string Codigo { get; private set; }
         public string Descricao { get; private set; }
         public virtual ICollection<Empresa> Empresas { get; set; }
+        public virtual Usuario Usuario { get; private set; }
 
         private GrupoEmpresarial() { }
         
@@ -31,7 +33,7 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais
 
         public static class GrupoEmpresarialFactory
         {
-            public static GrupoEmpresarial NewGrupoEmpresarial(Guid id, string codigo, string descricao, DateTime dataCadastro, DateTime dataUltimaAtualizacao)
+            public static GrupoEmpresarial NewGrupoEmpresarial(Guid id, string codigo, string descricao, DateTime dataCadastro, DateTime dataUltimaAtualizacao, Guid usuarioId)
             {
                 var grupoEmpresarial = new GrupoEmpresarial()
                 {
@@ -39,20 +41,8 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais
                     Codigo = codigo,
                     Descricao = descricao,
                     DataCadastro = dataCadastro,
-                    DataUltimaAtualizacao = dataUltimaAtualizacao
-                };
-
-                return grupoEmpresarial;
-            }
-
-            public static GrupoEmpresarial UpdateGrupoEmpresarial(Guid id, string codigo, string descricao, DateTime dataUltimaAtualizacao)
-            {
-                var grupoEmpresarial = new GrupoEmpresarial()
-                {
-                    Id = id,
-                    Codigo = codigo,
-                    Descricao = descricao,
-                    DataUltimaAtualizacao = dataUltimaAtualizacao
+                    DataUltimaAtualizacao = dataUltimaAtualizacao,
+                    UsuarioId = usuarioId
                 };
 
                 return grupoEmpresarial;

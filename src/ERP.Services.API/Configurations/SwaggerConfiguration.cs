@@ -18,6 +18,8 @@ namespace ERP.Services.API.Configurations
                     Contact = new Contact { Name = "Gajos Projects", Email = "gajosprojects@gmail.com", Url = "" },
                     License = new License { Name = "." }
                 });
+
+                s.OperationFilter<AuthorizationHeaderParameterOperationFilter>();
             });
         }
     }

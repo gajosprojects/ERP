@@ -1,5 +1,4 @@
 ﻿using ERP.Services.API.Utils.Validation;
-using ERP.Services.API.ViewModels.Gerencial.GrupoEmpresarial;
 using System;
 using System.ComponentModel.DataAnnotations;
 
@@ -68,14 +67,12 @@ namespace ERP.Services.API.ViewModels.Gerencial.Empresa
         [NotEmptyGuid(ErrorMessage = "Campo obrigatório")]
         public Guid GrupoEmpresarialId { get; set; }
 
-        public GrupoEmpresarialViewModel GrupoEmpresarial { get; set; }
+        [NotEmptyGuid(ErrorMessage = "Campo obrigatório")]
+        public Guid UsuarioId { get; set; }
 
         public SaveEmpresaViewModel()
         {
             Id = Guid.NewGuid();
-            DataCadastro = DateTime.Now;
-            DataUltimaAtualizacao = DateTime.Now;
-            GrupoEmpresarial = new GrupoEmpresarialViewModel();
         }
     }
 }

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ERP.Infra.Data.Migrations.GruposEmpresariais
 {
     [DbContext(typeof(GruposEmpresariaisContext))]
-    [Migration("20190624015721_Initial")]
+    [Migration("20190701041329_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -51,10 +51,15 @@ namespace ERP.Infra.Data.Migrations.GruposEmpresariais
                         .HasColumnName("descricao")
                         .HasMaxLength(255);
 
+                    b.Property<Guid>("UsuarioId")
+                        .HasColumnName("usuario_id");
+
                     b.HasKey("Id")
                         .HasName("pk_cnae_id");
 
                     b.HasAlternateKey("Codigo");
+
+                    b.HasIndex("UsuarioId");
 
                     b.ToTable("cnaes");
                 });
@@ -126,12 +131,17 @@ namespace ERP.Infra.Data.Migrations.GruposEmpresariais
                     b.Property<int>("TipoIdentificacao")
                         .HasColumnName("tipo_identificacao");
 
+                    b.Property<Guid>("UsuarioId")
+                        .HasColumnName("usuario_id");
+
                     b.HasKey("Id")
                         .HasName("pk_empresa_id");
 
                     b.HasAlternateKey("Codigo");
 
                     b.HasIndex("GrupoEmpresarialId");
+
+                    b.HasIndex("UsuarioId");
 
                     b.ToTable("empresas");
                 });
@@ -219,6 +229,9 @@ namespace ERP.Infra.Data.Migrations.GruposEmpresariais
                     b.Property<int>("TipoIdentificacao")
                         .HasColumnName("tipo_identificacao");
 
+                    b.Property<Guid>("UsuarioId")
+                        .HasColumnName("usuario_id");
+
                     b.HasKey("Id")
                         .HasName("pk_estabelecimento_id");
 
@@ -227,6 +240,8 @@ namespace ERP.Infra.Data.Migrations.GruposEmpresariais
                     b.HasIndex("CnaeId");
 
                     b.HasIndex("EmpresaId");
+
+                    b.HasIndex("UsuarioId");
 
                     b.ToTable("estabelecimentos");
                 });
@@ -258,10 +273,17 @@ namespace ERP.Infra.Data.Migrations.GruposEmpresariais
                         .HasColumnName("descricao")
                         .HasMaxLength(150);
 
+                    b.Property<Guid>("UsuarioId")
+                        .HasColumnName("usuario_id");
+
                     b.HasKey("Id")
                         .HasName("pk_grupo_empresarial_id");
 
-                    b.HasAlternateKey("Codigo");
+                    b.HasIndex("Codigo")
+                        .IsUnique()
+                        .HasName("uk_grupo_empresarial_codigo");
+
+                    b.HasIndex("UsuarioId");
 
                     b.ToTable("grupos_empresariais");
                 });
@@ -290,10 +312,21 @@ namespace ERP.Infra.Data.Migrations.GruposEmpresariais
                         .IsRequired()
                         .HasColumnName("sobrenome");
 
+                    b.Property<Guid>("UsuarioId");
+
                     b.HasKey("Id")
                         .HasName("pk_usuario_id");
 
                     b.ToTable("usuarios");
+                });
+
+            modelBuilder.Entity("ERP.Gerencial.Domain.GruposEmpresariais.Cnae", b =>
+                {
+                    b.HasOne("ERP.Gerencial.Domain.Usuarios.Usuario", "Usuario")
+                        .WithMany("Cnaes")
+                        .HasForeignKey("UsuarioId")
+                        .HasConstraintName("fk_usuario_id_cnae")
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("ERP.Gerencial.Domain.GruposEmpresariais.Empresa", b =>
@@ -301,8 +334,14 @@ namespace ERP.Infra.Data.Migrations.GruposEmpresariais
                     b.HasOne("ERP.Gerencial.Domain.GruposEmpresariais.GrupoEmpresarial", "GrupoEmpresarial")
                         .WithMany("Empresas")
                         .HasForeignKey("GrupoEmpresarialId")
-                        .HasConstraintName("fk_grupo_empresarial_id")
+                        .HasConstraintName("fk_grupo_empresarial_id_empresa")
                         .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("ERP.Gerencial.Domain.Usuarios.Usuario", "Usuario")
+                        .WithMany("Empresas")
+                        .HasForeignKey("UsuarioId")
+                        .HasConstraintName("fk_usuario_id_empresa")
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("ERP.Gerencial.Domain.GruposEmpresariais.Estabelecimento", b =>
@@ -310,14 +349,29 @@ namespace ERP.Infra.Data.Migrations.GruposEmpresariais
                     b.HasOne("ERP.Gerencial.Domain.GruposEmpresariais.Cnae", "Cnae")
                         .WithMany("Estabelecimentos")
                         .HasForeignKey("CnaeId")
-                        .HasConstraintName("fk_cnae_id")
+                        .HasConstraintName("fk_cnae_id_estabelecimento")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("ERP.Gerencial.Domain.GruposEmpresariais.Empresa", "Empresa")
                         .WithMany("Estabelecimentos")
                         .HasForeignKey("EmpresaId")
-                        .HasConstraintName("fk_empresa_id")
+                        .HasConstraintName("fk_empresa_id_estabelecimento")
                         .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("ERP.Gerencial.Domain.Usuarios.Usuario", "Usuario")
+                        .WithMany("Estabelecimentos")
+                        .HasForeignKey("UsuarioId")
+                        .HasConstraintName("fk_usuario_id_estabelecimento")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("ERP.Gerencial.Domain.GruposEmpresariais.GrupoEmpresarial", b =>
+                {
+                    b.HasOne("ERP.Gerencial.Domain.Usuarios.Usuario", "Usuario")
+                        .WithMany("GruposEmpresariais")
+                        .HasForeignKey("UsuarioId")
+                        .HasConstraintName("fk_usuario_id_grupo_empresarial")
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 #pragma warning restore 612, 618
         }

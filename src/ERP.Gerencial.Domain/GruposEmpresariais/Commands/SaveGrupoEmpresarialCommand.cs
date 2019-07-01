@@ -4,11 +4,12 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais.Commands
 {
     public class SaveGrupoEmpresarialCommand : BaseGrupoEmpresarialCommand
     {
-        public SaveGrupoEmpresarialCommand(string codigo, string descricao)
+        public SaveGrupoEmpresarialCommand(string codigo, string descricao, Guid usuarioId)
         {
             Codigo = codigo;
             Descricao = descricao;
             DataCadastro = DateTime.Now;
+            UsuarioId = usuarioId;
         }
     }
 }

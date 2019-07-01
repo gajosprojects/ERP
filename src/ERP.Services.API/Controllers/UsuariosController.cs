@@ -81,7 +81,10 @@ namespace ERP.Services.API.Controllers
 
             if (result.Succeeded)
             {
-                await _userManager.AddClaimAsync(user, new Claim("ERP", "Visualizar"));
+                await _userManager.AddClaimAsync(user, new Claim("Grupo Empresarial", "Save"));
+                await _userManager.AddClaimAsync(user, new Claim("Grupo Empresarial", "Update"));
+                await _userManager.AddClaimAsync(user, new Claim("Grupo Empresarial", "Delete"));
+                await _userManager.AddClaimAsync(user, new Claim("Grupo Empresarial", "View"));
 
                 var usuarioCommand = new SaveUsuarioCommand(Guid.Parse(user.Id), model.Nome, model.Sobrenome, user.Email);
                 await _mediator.SendCommand(usuarioCommand);

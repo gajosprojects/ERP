@@ -1,6 +1,4 @@
 ﻿using ERP.Services.API.Utils.Validation;
-using ERP.Services.API.ViewModels.Gerencial.Cnae;
-using ERP.Services.API.ViewModels.Gerencial.Empresa;
 using System;
 using System.ComponentModel.DataAnnotations;
 
@@ -82,15 +80,7 @@ namespace ERP.Services.API.ViewModels.Gerencial.Estabelecimento
         [NotEmptyGuid(ErrorMessage = "Campo obrigatório")]
         public Guid CnaeId { get; set; }
 
-        public EmpresaViewModel Empresa { get; set; }
-
-        public CnaeViewModel Cnae { get; set; }
-
-        public UpdateEstabelecimentoViewModel()
-        {
-            DataUltimaAtualizacao = DateTime.Now;
-            Empresa = new EmpresaViewModel();
-            Cnae = new CnaeViewModel();
-        }
+        [NotEmptyGuid(ErrorMessage = "Campo obrigatório")]
+        public Guid UsuarioId { get; set; }
     }
 }
