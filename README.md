@@ -22,6 +22,7 @@
 - .NET Core Test Explorer - *Jun Han*
 - Git Blame - *Wade Anderson*
 - GitLens - Git supercharged *Eric Amodio*
+- Trello Viewer - *Ho-Wan*
 - TODO Highlight *(Opcional)* - *Wayou Liu*
 - Dracula Official *(Opcional)* - *Dracula Theme*
 

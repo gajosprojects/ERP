@@ -19,9 +19,6 @@ Project_Readme.html
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
-src/Admin.Services.Api/appsettings.Development.json
-src/Admin.Services.Api/appsettings.Testing.json
-
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
