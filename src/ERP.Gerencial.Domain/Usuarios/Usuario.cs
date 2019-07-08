@@ -35,14 +35,16 @@ namespace ERP.Gerencial.Domain.Usuarios
 
         public static class UsuarioFactory
         {
-            public static Usuario NewUsuario(Guid id, string nome, string sobrenome, string email)
+            public static Usuario NewUsuario(Guid id, string nome, string sobrenome, string email, DateTime dataCadastro, DateTime dataUltimaAtualizacao)
             {
                 var usuario = new Usuario()
                 {
                     Id = id,
                     Nome = nome,
                     Sobrenome = sobrenome,
-                    Email = email
+                    Email = email,
+                    DataCadastro = dataCadastro,
+                    DataUltimaAtualizacao = dataUltimaAtualizacao
                 };
 
                 return usuario;

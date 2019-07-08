@@ -8,7 +8,7 @@ namespace ERP.Services.API.ViewModels.Gerencial.GrupoEmpresarial
         public Guid Id { get; set; }
         public DateTime DataCadastro { get; set; }
         public DateTime DataUltimaAtualizacao { get; set; }
-        public bool Desativado { get; set; }
+        public bool Ativo { get; set; }
         public string Codigo { get; set; }
         public string Descricao { get; set; }
         public UsuarioViewModel Usuario { get; set; }

@@ -67,10 +67,10 @@ namespace ERP.Infra.Data.Mappings.Gerencial
             builder.Property(estabelecimento => estabelecimento.Matriz)
                 .HasColumnName("matriz");
             
-            builder.Property(estabelecimento => estabelecimento.Desativado)
-                .HasColumnName("desativado")
+            builder.Property(estabelecimento => estabelecimento.Ativo)
+                .HasColumnName("ativo")
                 .IsRequired()
-                .HasDefaultValue(false);
+                .HasDefaultValue(true);
             
             builder.Property(estabelecimento => estabelecimento.DataCadastro)
                 .HasColumnName("data_cadastro")

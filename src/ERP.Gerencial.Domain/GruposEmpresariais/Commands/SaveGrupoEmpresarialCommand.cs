@@ -6,6 +6,7 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais.Commands
     {
         public SaveGrupoEmpresarialCommand(string codigo, string descricao, Guid usuarioId)
         {
+            Id = Guid.NewGuid();
             Codigo = codigo;
             Descricao = descricao;
             DataCadastro = DateTime.Now;

@@ -30,10 +30,10 @@ namespace ERP.Infra.Data.Mappings.Gerencial
             builder.Property(cnae => cnae.CnaePai)
                 .HasColumnName("cnae_pai");
             
-            builder.Property(cnae => cnae.Desativado)
-                .HasColumnName("desativado")
+            builder.Property(cnae => cnae.Ativo)
+                .HasColumnName("ativo")
                 .IsRequired()
-                .HasDefaultValue(false);
+                .HasDefaultValue(true);
             
             builder.Property(cnae => cnae.DataCadastro)
                 .HasColumnName("data_cadastro")

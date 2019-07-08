@@ -10,6 +10,8 @@ namespace ERP.Gerencial.Domain.Usuarios.Commands
             Nome = nome;
             Sobrenome = sobrenome;
             Email = email;
+            DataCadastro = DateTime.Now;
+            DataUltimaAtualizacao = DateTime.Now;
         }
     }
 }

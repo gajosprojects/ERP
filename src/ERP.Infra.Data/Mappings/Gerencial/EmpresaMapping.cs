@@ -57,10 +57,10 @@ namespace ERP.Infra.Data.Mappings.Gerencial
             builder.Property(empresa => empresa.Observacao)
                 .HasColumnName("observacao");
             
-            builder.Property(empresa => empresa.Desativado)
-                .HasColumnName("desativado")
+            builder.Property(empresa => empresa.Ativo)
+                .HasColumnName("ativo")
                 .IsRequired()
-                .HasDefaultValue(false);
+                .HasDefaultValue(true);
             
             builder.Property(empresa => empresa.DataCadastro)
                 .HasColumnName("data_cadastro")

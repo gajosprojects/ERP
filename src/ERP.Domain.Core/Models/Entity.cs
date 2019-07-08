@@ -10,7 +10,7 @@ namespace ERP.Domain.Core.Models
         public Guid Id { get; protected set; }
         public DateTime DataCadastro { get; protected set; }
         public DateTime DataUltimaAtualizacao { get; protected set; }
-        public bool Desativado { get; protected set; }
+        public bool Ativo { get; protected set; }
         public Guid UsuarioId { get; protected set; }
         public ValidationResult ValidationResult { get; protected set; }
 
@@ -21,8 +21,9 @@ namespace ERP.Domain.Core.Models
 
         public void Desativar(Guid usuarioId) 
         {
-            Desativado = true;
+            Ativo = false;
             UsuarioId = usuarioId;
+            DataUltimaAtualizacao = DateTime.Now;
         }
 
         public override bool Equals(object obj)

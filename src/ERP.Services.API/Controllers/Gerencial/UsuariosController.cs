@@ -18,7 +18,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace ERP.Services.API.Controllers
+namespace ERP.Services.API.Controllers.Gerencial
 {
     public class UsuariosController : BaseController
     {

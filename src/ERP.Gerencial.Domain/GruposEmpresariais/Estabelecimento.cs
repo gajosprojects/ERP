@@ -120,6 +120,36 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais
 
                 return estabelecimento;
             }
+
+            public static Estabelecimento UpdateEstabelecimento(Guid id, string codigo, string descricao, string nomeFantasia, string inscricaoEstadual, string inscricaoMunicipal, string email, string site, bool bloqueado, DateTime dataRegistro, byte[] logotipo, bool matriz, string observacao, DateTime dataCadastro, DateTime dataUltimaAtualizacao, string documento, int tipoIdentificacao, Guid empresaId, Guid cnaeId, Guid usuarioId, bool ativo)
+            {
+                var estabelecimento = new Estabelecimento()
+                {
+                    Id = id,
+                    Codigo = codigo,
+                    Descricao = descricao,
+                    NomeFantasia = nomeFantasia,
+                    InscricaoEstadual = inscricaoEstadual,
+                    InscricaoMunicipal = inscricaoMunicipal,
+                    Email = email,
+                    Site = site,
+                    Bloqueado = bloqueado,
+                    DataRegistro = dataRegistro,
+                    Logotipo = logotipo,
+                    Matriz = matriz,
+                    DataCadastro = dataCadastro,
+                    DataUltimaAtualizacao = dataUltimaAtualizacao,
+                    Observacao = observacao,
+                    Documento = documento,
+                    TipoIdentificacao = tipoIdentificacao,
+                    EmpresaId = empresaId,
+                    CnaeId = cnaeId,
+                    UsuarioId = usuarioId,
+                    Ativo = ativo
+                };
+
+                return estabelecimento;
+            }
         }
     }
 }

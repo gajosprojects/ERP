@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 
-namespace ERP.Services.API.Controllers
+namespace ERP.Services.API.Controllers.Gerencial
 {
     public class GruposEmpresariaisController : BaseController
     {

@@ -62,7 +62,7 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais.Commands
             }
             else 
             {
-                var grupoEmpresarial = GrupoEmpresarial.GrupoEmpresarialFactory.NewGrupoEmpresarial(grupoEmpresarialExistente.Id, request.Codigo, request.Descricao, grupoEmpresarialExistente.DataCadastro, request.DataUltimaAtualizacao, request.UsuarioId);
+                var grupoEmpresarial = GrupoEmpresarial.GrupoEmpresarialFactory.UpdateGrupoEmpresarial(grupoEmpresarialExistente.Id, request.Codigo, request.Descricao, grupoEmpresarialExistente.DataCadastro, request.DataUltimaAtualizacao, request.UsuarioId, grupoEmpresarialExistente.Ativo);
                 
                 if (IsValid(grupoEmpresarial))
                 {

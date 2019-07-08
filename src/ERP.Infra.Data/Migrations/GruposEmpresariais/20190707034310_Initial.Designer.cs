@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ERP.Infra.Data.Migrations.GruposEmpresariais
 {
     [DbContext(typeof(GruposEmpresariaisContext))]
-    [Migration("20190701041329_Initial")]
+    [Migration("20190707034310_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,6 +27,11 @@ namespace ERP.Infra.Data.Migrations.GruposEmpresariais
                         .ValueGeneratedOnAdd()
                         .HasColumnName("id");
 
+                    b.Property<bool>("Ativo")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("ativo")
+                        .HasDefaultValue(true);
+
                     b.Property<Guid>("CnaePai")
                         .HasColumnName("cnae_pai");
 
@@ -40,11 +45,6 @@ namespace ERP.Infra.Data.Migrations.GruposEmpresariais
 
                     b.Property<DateTime>("DataUltimaAtualizacao")
                         .HasColumnName("data_ultima_atualizacao");
-
-                    b.Property<bool>("Desativado")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("desativado")
-                        .HasDefaultValue(false);
 
                     b.Property<string>("Descricao")
                         .IsRequired()
@@ -70,6 +70,11 @@ namespace ERP.Infra.Data.Migrations.GruposEmpresariais
                         .ValueGeneratedOnAdd()
                         .HasColumnName("id");
 
+                    b.Property<bool>("Ativo")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("ativo")
+                        .HasDefaultValue(true);
+
                     b.Property<bool>("Bloqueada")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("bloqueada")
@@ -88,11 +93,6 @@ namespace ERP.Infra.Data.Migrations.GruposEmpresariais
 
                     b.Property<DateTime>("DataUltimaAtualizacao")
                         .HasColumnName("data_ultima_atualizacao");
-
-                    b.Property<bool>("Desativado")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("desativado")
-                        .HasDefaultValue(false);
 
                     b.Property<string>("Descricao")
                         .IsRequired()
@@ -152,6 +152,11 @@ namespace ERP.Infra.Data.Migrations.GruposEmpresariais
                         .ValueGeneratedOnAdd()
                         .HasColumnName("id");
 
+                    b.Property<bool>("Ativo")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("ativo")
+                        .HasDefaultValue(true);
+
                     b.Property<bool>("Bloqueado")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("bloqueado")
@@ -173,11 +178,6 @@ namespace ERP.Infra.Data.Migrations.GruposEmpresariais
 
                     b.Property<DateTime>("DataUltimaAtualizacao")
                         .HasColumnName("data_ultima_atualizacao");
-
-                    b.Property<bool>("Desativado")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("desativado")
-                        .HasDefaultValue(false);
 
                     b.Property<string>("Descricao")
                         .IsRequired()
@@ -252,6 +252,11 @@ namespace ERP.Infra.Data.Migrations.GruposEmpresariais
                         .ValueGeneratedOnAdd()
                         .HasColumnName("id");
 
+                    b.Property<bool>("Ativo")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("ativo")
+                        .HasDefaultValue(true);
+
                     b.Property<string>("Codigo")
                         .IsRequired()
                         .HasColumnName("codigo")
@@ -262,11 +267,6 @@ namespace ERP.Infra.Data.Migrations.GruposEmpresariais
 
                     b.Property<DateTime>("DataUltimaAtualizacao")
                         .HasColumnName("data_ultima_atualizacao");
-
-                    b.Property<bool>("Desativado")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("desativado")
-                        .HasDefaultValue(false);
 
                     b.Property<string>("Descricao")
                         .IsRequired()
@@ -294,11 +294,16 @@ namespace ERP.Infra.Data.Migrations.GruposEmpresariais
                         .ValueGeneratedOnAdd()
                         .HasColumnName("id");
 
-                    b.Property<DateTime>("DataCadastro");
+                    b.Property<bool>("Ativo")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("ativo")
+                        .HasDefaultValue(true);
 
-                    b.Property<DateTime>("DataUltimaAtualizacao");
+                    b.Property<DateTime>("DataCadastro")
+                        .HasColumnName("data_cadastro");
 
-                    b.Property<bool>("Desativado");
+                    b.Property<DateTime>("DataUltimaAtualizacao")
+                        .HasColumnName("data_ultima_atualizacao");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -311,8 +316,6 @@ namespace ERP.Infra.Data.Migrations.GruposEmpresariais
                     b.Property<string>("Sobrenome")
                         .IsRequired()
                         .HasColumnName("sobrenome");
-
-                    b.Property<Guid>("UsuarioId");
 
                     b.HasKey("Id")
                         .HasName("pk_usuario_id");

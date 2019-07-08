@@ -30,10 +30,10 @@ namespace ERP.Infra.Data.Mappings.Gerencial
                 .IsRequired()
                 .HasMaxLength(150);
             
-            builder.Property(grupoempresarial => grupoempresarial.Desativado)
-                .HasColumnName("desativado")
+            builder.Property(grupoempresarial => grupoempresarial.Ativo)
+                .HasColumnName("ativo")
                 .IsRequired()
-                .HasDefaultValue(false);
+                .HasDefaultValue(true);
             
             builder.Property(grupoempresarial => grupoempresarial.DataCadastro)
                 .HasColumnName("data_cadastro")

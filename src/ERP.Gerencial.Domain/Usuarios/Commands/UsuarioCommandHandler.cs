@@ -30,7 +30,7 @@ namespace ERP.Gerencial.Domain.Usuarios.Commands
 
         public Task<bool> Handle(SaveUsuarioCommand request, CancellationToken cancellationToken)
         {
-            var usuario = Usuario.UsuarioFactory.NewUsuario(request.Id, request.Nome, request.Sobrenome, request.Email);
+            var usuario = Usuario.UsuarioFactory.NewUsuario(request.Id, request.Nome, request.Sobrenome, request.Email, request.DataCadastro, request.DataUltimaAtualizacao);
 
             if (IsValid(usuario))
             {

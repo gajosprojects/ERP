@@ -19,6 +19,7 @@ namespace ERP.Infra.Data.Context
         public GruposEmpresariaisContext(IHostingEnvironment hostingEnvironment)
         {
             _hostingEnvironment = hostingEnvironment;
+            Dapper.DefaultTypeMap.MatchNamesWithUnderscores = true;
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -6,9 +6,6 @@ namespace ERP.Services.API.ViewModels.Gerencial.GrupoEmpresarial
 {
     public class SaveGrupoEmpresarialViewModel
     {
-        [Key]
-        public Guid Id { get; set; }
-
         [Display(Name = "Código")]
         [Required(ErrorMessage = "Campo obrigatório")]
         [MinLength(1, ErrorMessage = "Tamanho mínimo {1} caracteres")]
@@ -23,10 +20,5 @@ namespace ERP.Services.API.ViewModels.Gerencial.GrupoEmpresarial
 
         [NotEmptyGuid(ErrorMessage = "Campo obrigatório")]
         public Guid UsuarioId { get; set; }
-
-        public SaveGrupoEmpresarialViewModel()
-        {
-            Id = Guid.NewGuid();
-        }
     }
 }

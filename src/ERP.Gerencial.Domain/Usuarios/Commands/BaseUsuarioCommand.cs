@@ -9,5 +9,7 @@ namespace ERP.Gerencial.Domain.Usuarios.Commands
         public string Nome { get; protected set; }
         public string Sobrenome { get; protected set; }
         public string Email { get; protected set; }
+        public DateTime DataCadastro { get; protected set; }
+        public DateTime DataUltimaAtualizacao { get; protected set; }
     }
 }

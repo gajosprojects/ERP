@@ -28,6 +28,19 @@ namespace ERP.Infra.Data.Mappings.Gerencial
                 .HasColumnName("email")
                 .IsRequired();
 
+            builder.Property(usuario => usuario.Ativo)
+                .HasColumnName("ativo")
+                .IsRequired()
+                .HasDefaultValue(true);
+
+            builder.Property(usuario => usuario.DataCadastro)
+                .HasColumnName("data_cadastro")
+                .IsRequired();
+
+            builder.Property(usuario => usuario.DataUltimaAtualizacao)
+                .HasColumnName("data_ultima_atualizacao");
+
+            builder.Ignore(usuario => usuario.UsuarioId);
             builder.Ignore(usuario => usuario.ValidationResult);
             builder.Ignore(usuario => usuario.CascadeMode);
         }

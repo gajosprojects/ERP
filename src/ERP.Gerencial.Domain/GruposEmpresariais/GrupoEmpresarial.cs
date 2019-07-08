@@ -31,6 +31,11 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais
             return ValidationResult.IsValid;
         }
 
+        public void AtribuirUsuario(Usuario usuario)
+        {
+            Usuario = usuario;
+        }
+
         public static class GrupoEmpresarialFactory
         {
             public static GrupoEmpresarial NewGrupoEmpresarial(Guid id, string codigo, string descricao, DateTime dataCadastro, DateTime dataUltimaAtualizacao, Guid usuarioId)
@@ -43,6 +48,22 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais
                     DataCadastro = dataCadastro,
                     DataUltimaAtualizacao = dataUltimaAtualizacao,
                     UsuarioId = usuarioId
+                };
+
+                return grupoEmpresarial;
+            }
+
+            public static GrupoEmpresarial UpdateGrupoEmpresarial(Guid id, string codigo, string descricao, DateTime dataCadastro, DateTime dataUltimaAtualizacao, Guid usuarioId, bool ativo)
+            {
+                var grupoEmpresarial = new GrupoEmpresarial()
+                {
+                    Id = id,
+                    Codigo = codigo,
+                    Descricao = descricao,
+                    DataCadastro = dataCadastro,
+                    DataUltimaAtualizacao = dataUltimaAtualizacao,
+                    UsuarioId = usuarioId,
+                    Ativo = ativo
                 };
 
                 return grupoEmpresarial;

@@ -6,9 +6,6 @@ namespace ERP.Services.API.ViewModels.Gerencial.Estabelecimento
 {
     public class SaveEstabelecimentoViewModel
     {
-        [Key]
-        public Guid Id { get; set; }
-
         [Display(Name = "Código")]
         [Required(ErrorMessage = "Campo obrigatório")]
         [MinLength(1, ErrorMessage = "Tamanho mínimo {1} caracteres")]
@@ -79,10 +76,5 @@ namespace ERP.Services.API.ViewModels.Gerencial.Estabelecimento
 
         [NotEmptyGuid(ErrorMessage = "Campo obrigatório")]
         public Guid UsuarioId { get; set; }
-
-        public SaveEstabelecimentoViewModel()
-        {
-            Id = Guid.NewGuid();
-        }
     }
 }

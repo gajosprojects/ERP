@@ -6,9 +6,6 @@ namespace ERP.Services.API.ViewModels.Gerencial.Cnae
 {
     public class SaveCnaeViewModel
     {
-        [Key]
-        public Guid Id { get; set; }
-
         [Display(Name = "Código")]
         [Required(ErrorMessage = "Campo obrigatório")]
         [MinLength(1, ErrorMessage = "Tamanho mínimo {1} caracteres")]
@@ -26,10 +23,5 @@ namespace ERP.Services.API.ViewModels.Gerencial.Cnae
 
         [NotEmptyGuid(ErrorMessage = "Campo obrigatório")]
         public Guid UsuarioId { get; set; }
-
-        public SaveCnaeViewModel()
-        {
-            Id = Guid.NewGuid();
-        }
     }
 }
