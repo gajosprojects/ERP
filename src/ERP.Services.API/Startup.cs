@@ -72,6 +72,9 @@ namespace ERP.Services.API
             app.UseSwaggerUI(s =>
             {
                 s.SwaggerEndpoint("/swagger/v1/swagger.json", "ERP API v1");
+                s.DocumentTitle = "ERP API";
+                s.DisplayRequestDuration();
+                s.EnableFilter();
             });
 
             app.UseHttpsRedirection();

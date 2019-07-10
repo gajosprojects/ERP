@@ -26,6 +26,12 @@ namespace ERP.Services.API.Controllers.Gerencial
             _mediator = mediator;
         }
 
+        /// <summary>
+        /// Salva um novo grupo empresarial
+        /// </summary>
+        /// <param name="grupoEmpresarialViewModel"></param>
+        /// <returns>Grupo Empresarial</returns>
+        /// <remarks>Emite um comando que cria uma instância de grupo empresarial e salva no banco de dados caso esteja válida.</remarks>
         [HttpPost]
         [Route("gruposempresariais")]
         [Authorize(Policy = "SaveGrupoEmpresarial")]
@@ -37,6 +43,12 @@ namespace ERP.Services.API.Controllers.Gerencial
             return Response(grupoEmpresarialCommand);
         }
 
+        /// <summary>
+        /// Atualiza um grupo empresarial existente
+        /// </summary>
+        /// <param name="grupoEmpresarialViewModel"></param>
+        /// <returns>Grupo Empresarial</returns>
+        /// <remarks>Emite um comando que obtém por ID uma instância de um grupo empresarial já existente, atualiza os atributos que foram editados na interface e salva no banco de dados caso esteja válida.</remarks>
         [HttpPut]
         [Route("gruposempresariais")]
         [Authorize(Policy = "UpdateGrupoEmpresarial")]
@@ -48,6 +60,12 @@ namespace ERP.Services.API.Controllers.Gerencial
             return Response(grupoEmpresarialCommand);
         }
 
+        /// <summary>
+        /// Deleta um grupo empresarial
+        /// </summary>
+        /// <param name="id">Obrigatório</param>
+        /// <returns>Boolean</returns>
+        /// <remarks>Emite um comando que obtém por ID uma instância de um grupo empresarial já existente e a deleta.</remarks>
         [HttpDelete]
         [Route("gruposempresariais/{id:guid}")]
         [Authorize(Policy = "DeleteGrupoEmpresarial")]
@@ -58,6 +76,11 @@ namespace ERP.Services.API.Controllers.Gerencial
             return Response(grupoEmpresarialCommand);
         }
 
+        /// <summary>
+        /// Obtém uma lista de grupos empresariais
+        /// </summary>
+        /// <returns>Lista de grupos empresariais</returns>
+        /// <remarks>Lista de grupos empresariais, ordenada pela descrição e excluindo os inativos.</remarks>
         [HttpGet]
         [Route("gruposempresariais")]
         [Authorize(Policy = "ViewGrupoEmpresarial")]
@@ -66,6 +89,11 @@ namespace ERP.Services.API.Controllers.Gerencial
             return _mapper.Map<IEnumerable<GrupoEmpresarialViewModel>>(_gruposEmpresariaisRepository.GetAll());
         }
 
+        /// <summary>
+        /// Obtém um grupo empresarial por ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Grupo empresarial</returns>
         [HttpGet]
         [Route("gruposempresariais/{id:guid}")]
         [Authorize(Policy = "ViewGrupoEmpresarial")]
