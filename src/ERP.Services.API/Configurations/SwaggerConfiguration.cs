@@ -1,5 +1,8 @@
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
+using System;
+using System.IO;
+using System.Reflection;
 
 namespace ERP.Services.API.Configurations
 {
@@ -13,13 +16,11 @@ namespace ERP.Services.API.Configurations
                 {
                     Version = "v1",
                     Title = "ERP API",
-                    Description = "ERP API",
-                    TermsOfService = "None",
-                    Contact = new Contact { Name = "Gajos Projects", Email = "gajosprojects@gmail.com", Url = "" },
-                    License = new License { Name = "." }
+                    Description = "Sistema de gestão que permite acesso fácil, integrado e confiável aos dados de uma empresa. A partir dos dados levantados por um ERP, é possível fazer diagnósticos aprofundados sobre as medidas necessárias para reduzir custos e aumentar a produtividade."
                 });
 
                 s.OperationFilter<AuthorizationHeaderParameterOperationFilter>();
+                s.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, $"{Assembly.GetExecutingAssembly().GetName().Name}.xml"));
             });
         }
     }

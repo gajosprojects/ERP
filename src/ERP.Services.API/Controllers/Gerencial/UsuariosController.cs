@@ -42,6 +42,12 @@ namespace ERP.Services.API.Controllers.Gerencial
             _mapper = mapper;
         }
 
+        /// <summary>
+        /// Autenticação do usuário
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        /// <remarks>Autentica o usuário, permitindo o uso de todas as ferramentas e serviços disponíveis para o seu perfil. É gerado um token que contém todas as informações e será passado em todas as requisições para o servidor.</remarks>
         [HttpPost]
         [AllowAnonymous]
         [Route("login")]
@@ -65,10 +71,16 @@ namespace ERP.Services.API.Controllers.Gerencial
             return Response(model);
         }
 
+        /// <summary>
+        /// Registra as informações do usuário
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        /// <remarks>Registra o usuário como usuário padrão e permissão de visualização. Efetua o login na aplicação automaticamente, gerando um token que contém todas as informações e será passado em todas as requisições para o servidor.</remarks>
         [HttpPost]
         [AllowAnonymous]
         [Route("registro")]
-        public async Task<IActionResult> Register([FromBody] RegisterViewModel model, int version)
+        public async Task<IActionResult> Register([FromBody] RegisterViewModel model)
         {
             if (!ModelState.IsValid)
             {
