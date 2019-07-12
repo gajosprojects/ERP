@@ -44,5 +44,31 @@ namespace ERP.Tests.Unit.Gerencial.API
             Assert.IsType<OkObjectResult>(_gruposEmpresariaisController.Post(grupoEmpresarialViewModel));
             _mockMediator.Verify(m => m.SendCommand(saveGrupoEmpresarialCommand), Times.Once);
         }
+
+        [Fact]
+        public void GruposEmpresariaisController_Post_RetornarErrosModelState()
+        {
+            var notificationList = new List<DomainNotification> { new DomainNotification("Error", "Model error") };
+            _mockNotification.Setup(m => m.GetNotifications()).Returns(notificationList);
+            _mockNotification.Setup(m => m.HasNotifications()).Returns(true);
+            _gruposEmpresariaisController.ModelState.AddModelError("Error", "Model error");
+
+            Assert.IsType<BadRequestObjectResult>(_gruposEmpresariaisController.Post(new SaveGrupoEmpresarialViewModel()));
+            _mockMediator.Verify(m => m.SendCommand(It.IsAny<SaveGrupoEmpresarialCommand>()), Times.Never);
+        }
+
+        [Fact]
+        public void GruposEmpresariaisController_Post_RetornarErrosDominio()
+        {
+            var grupoEmpresarialViewModel = new SaveGrupoEmpresarialViewModel();
+            var saveGrupoEmpresarialCommand = new SaveGrupoEmpresarialCommand("012345678901234567890123456789012", "GE01", Guid.NewGuid());
+            var notificationList = new List<DomainNotification> { new DomainNotification("Error", "Domain error") };
+            _mockMapper.Setup(m => m.Map<SaveGrupoEmpresarialCommand>(grupoEmpresarialViewModel)).Returns(saveGrupoEmpresarialCommand);
+            _mockNotification.Setup(m => m.GetNotifications()).Returns(notificationList);
+            _mockNotification.Setup(m => m.HasNotifications()).Returns(true);
+
+            Assert.IsType<BadRequestObjectResult>(_gruposEmpresariaisController.Post(grupoEmpresarialViewModel));
+            _mockMediator.Verify(m => m.SendCommand(saveGrupoEmpresarialCommand), Times.Once);
+        }
     }
 }
