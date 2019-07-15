@@ -63,15 +63,16 @@ namespace ERP.Services.API.Controllers.Gerencial
         /// <summary>
         /// Deleta um grupo empresarial
         /// </summary>
-        /// <param name="id">Obrigatório</param>
+        /// <param name="grupoEmpresarialViewModel"></param>
         /// <returns>Boolean</returns>
         /// <remarks>Emite um comando que obtém por ID uma instância de um grupo empresarial já existente e a deleta.</remarks>
         [HttpDelete]
         [Route("gruposempresariais/{id:guid}")]
         [Authorize(Policy = "DeleteGrupoEmpresarial")]
-        public IActionResult Delete(Guid id)
+        public IActionResult Delete([FromBody]DeleteGrupoEmpresarialViewModel grupoEmpresarialViewModel)
         {
-            var grupoEmpresarialCommand = _mapper.Map<DeleteGrupoEmpresarialCommand>(new DeleteGrupoEmpresarialViewModel { Id = id, UsuarioId = UsuarioId });
+            if (!IsModelStateValid()) return Response();
+            var grupoEmpresarialCommand = _mapper.Map<DeleteGrupoEmpresarialCommand>(grupoEmpresarialViewModel);
             _mediator.SendCommand(grupoEmpresarialCommand);
             return Response(grupoEmpresarialCommand);
         }
@@ -84,7 +85,7 @@ namespace ERP.Services.API.Controllers.Gerencial
         [HttpGet]
         [Route("gruposempresariais")]
         [Authorize(Policy = "ViewGrupoEmpresarial")]
-        public IEnumerable<GrupoEmpresarialViewModel> Get()
+        public IEnumerable<GrupoEmpresarialViewModel> GetAll()
         {
             return _mapper.Map<IEnumerable<GrupoEmpresarialViewModel>>(_gruposEmpresariaisRepository.GetAll());
         }
