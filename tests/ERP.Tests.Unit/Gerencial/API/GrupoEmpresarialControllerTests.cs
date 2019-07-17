@@ -29,8 +29,6 @@ namespace ERP.Tests.Unit.Gerencial.API
         public Mock<IMapper> _mockMapper;
         public Mock<IMediatorHandler> _mockMediator;
 
-        private readonly IMapper _mapper;
-
         public GrupoEmpresarialControllerTests()
         {
             _mockNotification = new Mock<DomainNotificationHandler>();
