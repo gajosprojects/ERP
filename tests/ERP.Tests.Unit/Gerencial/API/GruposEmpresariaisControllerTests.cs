@@ -19,7 +19,7 @@ using Xunit;
 
 namespace ERP.Tests.Unit.Gerencial.API
 {
-    public class GrupoEmpresarialControllerTests
+    public class GruposEmpresariaisControllerTests
     {
         public GruposEmpresariaisController _gruposEmpresariaisController;
         public GruposEmpresariaisController _gruposEmpresariaisControllerRealMapper;
@@ -29,7 +29,7 @@ namespace ERP.Tests.Unit.Gerencial.API
         public Mock<IMapper> _mockMapper;
         public Mock<IMediatorHandler> _mockMediator;
 
-        public GrupoEmpresarialControllerTests()
+        public GruposEmpresariaisControllerTests()
         {
             _mockNotification = new Mock<DomainNotificationHandler>();
             _mockUser = new Mock<IUser>();
