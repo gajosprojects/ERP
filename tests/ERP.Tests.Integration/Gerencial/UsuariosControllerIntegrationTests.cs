@@ -1,6 +1,7 @@
 ﻿using ERP.Infra.CrossCutting.Identity.Models;
 using ERP.Tests.Integration.Gerencial.DTO;
 using Newtonsoft.Json;
+using System;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -41,6 +42,8 @@ namespace ERP.Tests.Integration.Gerencial
             var postContent = new StringContent(JsonConvert.SerializeObject(loginViewModel), Encoding.UTF8, "application/json");
             var response = await Environment.Client.PostAsync("api/v1/login", postContent);
             var usuarioDTO = JsonConvert.DeserializeObject<UsuarioDTO>(await response.Content.ReadAsStringAsync());
+            Environment.TokenUsuario = usuarioDTO.data.access_token;
+            Environment.UsuarioId = Guid.Parse(usuarioDTO.data.user.id);
 
             response.EnsureSuccessStatusCode();
             Assert.NotEmpty(usuarioDTO.data.access_token);

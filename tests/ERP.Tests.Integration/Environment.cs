@@ -15,6 +15,8 @@ namespace ERP.Tests.Integration
         public static TestServer Server { get; set; }
         public static HttpClient Client { get; set; }
         public static RegisterViewModel RegisterViewModel { get; set; }
+        public static Guid UsuarioId { get; set; }
+        public static String TokenUsuario { get; set; }
 
         public static void CreateServer()
         {

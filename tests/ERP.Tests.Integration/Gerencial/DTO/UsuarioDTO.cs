@@ -5,10 +5,10 @@ namespace ERP.Tests.Integration.Gerencial.DTO
     public class UsuarioDTO
     {
         public bool success { get; set; }
-        public Data data { get; set; }
+        public UsuarioDataResponse data { get; set; }
     }
 
-    public class Data
+    public class UsuarioDataResponse
     {
         public string access_token { get; set; }
         public DateTime expires_in { get; set; }
