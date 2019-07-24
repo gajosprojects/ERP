@@ -26,15 +26,19 @@ namespace ERP.Tests.Integration
                     .UseUrls("http://localhost:9898")
                     .UseStartup<StartupTests>());
 
-            RegisterViewModel = new Faker<RegisterViewModel>("pt_BR")
+            var usuarioFake = new Faker<RegisterViewModel>("pt_BR")
                 .RuleFor(r => r.Nome, c => c.Name.FirstName())
                 .RuleFor(r => r.Sobrenome, c => c.Name.LastName())
                 .RuleFor(r => r.CPF, c => c.Person.Cpf().Replace(".", "").Replace("-", ""))
                 .RuleFor(r => r.Email, (f, r) => f.Internet.Email(r.Nome, r.Sobrenome).ToLower());
 
-            RegisterViewModel.DataNascimento = new DateTime(2000, 1, 1);
-            RegisterViewModel.Senha = "P@ssw0rd";
-            RegisterViewModel.ConfirmSenha = "P@ssw0rd";
+            if (RegisterViewModel == null)
+            {
+                RegisterViewModel = usuarioFake.Generate();
+                RegisterViewModel.DataNascimento = new DateTime(2000, 1, 1);
+                RegisterViewModel.Senha = "P@ssw0rd";
+                RegisterViewModel.ConfirmSenha = "P@ssw0rd";
+            }
 
             Client = Server.CreateClient();
         }
