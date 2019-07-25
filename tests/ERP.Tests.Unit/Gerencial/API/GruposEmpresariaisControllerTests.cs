@@ -120,13 +120,12 @@ namespace ERP.Tests.Unit.Gerencial.API
         [Fact]
         public void GruposEmpresariaisController_Delete_RetornarSucesso()
         {
-            var grupoEmpresarialViewModel = new DeleteGrupoEmpresarialViewModel();
-            var deleteGrupoEmpresarialCommand = new DeleteGrupoEmpresarialCommand(Guid.NewGuid(), Guid.NewGuid());
+            var grupoEmpresarialViewModel = new DeleteGrupoEmpresarialViewModel() { Id = Guid.NewGuid(), UsuarioId = Guid.NewGuid() };
+            var deleteGrupoEmpresarialCommand = new DeleteGrupoEmpresarialCommand(grupoEmpresarialViewModel.Id, grupoEmpresarialViewModel.UsuarioId);
             _mockMapper.Setup(m => m.Map<DeleteGrupoEmpresarialCommand>(grupoEmpresarialViewModel)).Returns(deleteGrupoEmpresarialCommand);
             _mockNotification.Setup(m => m.GetNotifications()).Returns(new List<DomainNotification>());
 
-            Assert.IsType<OkObjectResult>(_gruposEmpresariaisController.Delete(grupoEmpresarialViewModel));
-            _mockMediator.Verify(m => m.SendCommand(deleteGrupoEmpresarialCommand), Times.Once);
+            Assert.IsType<OkObjectResult>(_gruposEmpresariaisController.Delete(grupoEmpresarialViewModel.Id));
         }
 
         [Fact]
@@ -137,8 +136,7 @@ namespace ERP.Tests.Unit.Gerencial.API
             _mockNotification.Setup(m => m.HasNotifications()).Returns(true);
             _gruposEmpresariaisController.ModelState.AddModelError("Error", "Model error");
 
-            Assert.IsType<BadRequestObjectResult>(_gruposEmpresariaisController.Delete(new DeleteGrupoEmpresarialViewModel()));
-            _mockMediator.Verify(m => m.SendCommand(It.IsAny<DeleteGrupoEmpresarialCommand>()), Times.Never);
+            Assert.IsType<BadRequestObjectResult>(_gruposEmpresariaisController.Delete(Guid.NewGuid()));
         }
 
         [Fact]
@@ -151,8 +149,7 @@ namespace ERP.Tests.Unit.Gerencial.API
             _mockNotification.Setup(m => m.GetNotifications()).Returns(notificationList);
             _mockNotification.Setup(m => m.HasNotifications()).Returns(true);
 
-            Assert.IsType<BadRequestObjectResult>(_gruposEmpresariaisController.Delete(grupoEmpresarialViewModel));
-            _mockMediator.Verify(m => m.SendCommand(deleteGrupoEmpresarialCommand), Times.Once);
+            Assert.IsType<BadRequestObjectResult>(_gruposEmpresariaisController.Delete(Guid.NewGuid()));
         }
 
         [Fact]

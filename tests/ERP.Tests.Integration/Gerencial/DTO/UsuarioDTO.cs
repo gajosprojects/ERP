@@ -2,6 +2,14 @@
 
 namespace ERP.Tests.Integration.Gerencial.DTO
 {
+    public class GetUsuarioDTO
+    {
+        public string id { get; set; }
+        public string nome { get; set; }
+        public string sobrenome { get; set; }
+        public string email { get; set; }
+    }
+
     public class UsuarioDTO
     {
         public bool success { get; set; }

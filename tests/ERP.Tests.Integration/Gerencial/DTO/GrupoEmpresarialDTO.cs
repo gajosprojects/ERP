@@ -2,6 +2,17 @@
 
 namespace ERP.Tests.Integration.Gerencial.DTO
 {
+    public class GetGrupoEmpresarialDTO
+    {
+        public string id { get; set; }
+        public DateTime dataCadastro { get; set; }
+        public DateTime dataUltimaAtualizacao { get; set; }
+        public bool ativo { get; set; }
+        public string codigo { get; set; }
+        public string descricao { get; set; }
+        public GetUsuarioDTO usuario { get; set; }
+    }
+
     public class GrupoEmpresarialDTO
     {
         public bool success { get; set; }
@@ -10,6 +21,7 @@ namespace ERP.Tests.Integration.Gerencial.DTO
 
     public class GrupoEmpresarialDataResponse
     {
+        public bool ativo { get; set; }
         public string id { get; set; }
         public string codigo { get; set; }
         public string descricao { get; set; }
