@@ -1,4 +1,5 @@
 ﻿using ERP.Gerencial.Domain.GruposEmpresariais.Events;
+using ERP.Gerencial.Domain.GruposEmpresariais.Events.GruposEmpresariais;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -18,21 +19,21 @@ namespace ERP.Tests.Unit.Gerencial.Events
         [Fact]
         public void GrupoEmpresarialEventHandler_SavedGrupoEmpresarialEvent_RetornarSucesso()
         {
-            SavedGrupoEmpresarialEvent notification = new SavedGrupoEmpresarialEvent(Guid.NewGuid(), "GE01", "GE01", DateTime.Now, DateTime.Now);
+            SavedGrupoEmpresarialEvent notification = new SavedGrupoEmpresarialEvent(Guid.NewGuid(), "GE01", "GE01", DateTime.Now, DateTime.Now, true, Guid.NewGuid());
             Assert.Equal(_grupoEmpresarialEventHandler.Handle(notification, new CancellationToken()), Task.CompletedTask);
         }
 
         [Fact]
         public void GrupoEmpresarialEventHandler_UpdatedGrupoEmpresarialEvent_RetornarSucesso()
         {
-            UpdatedGrupoEmpresarialEvent notification = new UpdatedGrupoEmpresarialEvent(Guid.NewGuid(), "GE01", "GE01", DateTime.Now);
+            UpdatedGrupoEmpresarialEvent notification = new UpdatedGrupoEmpresarialEvent(Guid.NewGuid(), "GE01", "GE01", DateTime.Now, DateTime.Now, true, Guid.NewGuid());
             Assert.Equal(_grupoEmpresarialEventHandler.Handle(notification, new CancellationToken()), Task.CompletedTask);
         }
 
         [Fact]
         public void GrupoEmpresarialEventHandler_DeletedGrupoEmpresarialEvent_RetornarSucesso()
         {
-            DeletedGrupoEmpresarialEvent notification = new DeletedGrupoEmpresarialEvent(Guid.NewGuid());
+            DeletedGrupoEmpresarialEvent notification = new DeletedGrupoEmpresarialEvent(Guid.NewGuid(), Guid.NewGuid());
             Assert.Equal(_grupoEmpresarialEventHandler.Handle(notification, new CancellationToken()), Task.CompletedTask);
         }
     }

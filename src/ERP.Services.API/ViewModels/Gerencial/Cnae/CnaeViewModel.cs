@@ -11,7 +11,7 @@ namespace ERP.Services.API.ViewModels.Gerencial.Cnae
         public bool Ativo { get; set; }
         public string Codigo { get; set; }
         public string Descricao { get; set; }
-        public Guid CnaePai { get; set; }
+        public Guid? CnaePai { get; set; }
         public UsuarioViewModel Usuario { get; set; }
 
         public CnaeViewModel()

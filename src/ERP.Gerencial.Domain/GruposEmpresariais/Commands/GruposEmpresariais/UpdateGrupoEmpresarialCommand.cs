@@ -1,6 +1,6 @@
 using System;
 
-namespace ERP.Gerencial.Domain.GruposEmpresariais.Commands
+namespace ERP.Gerencial.Domain.GruposEmpresariais.Commands.GruposEmpresariais
 {
     public class UpdateGrupoEmpresarialCommand : BaseGrupoEmpresarialCommand
     {

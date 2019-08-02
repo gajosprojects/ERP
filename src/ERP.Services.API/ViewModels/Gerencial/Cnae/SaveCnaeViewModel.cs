@@ -19,7 +19,7 @@ namespace ERP.Services.API.ViewModels.Gerencial.Cnae
         public string Descricao { get; set; }
 
         [Display(Name = "CNAE pai")]
-        public Guid CnaePai { get; set; }
+        public Guid? CnaePai { get; set; }
 
         [NotEmptyGuid(ErrorMessage = "Campo obrigatório")]
         public Guid UsuarioId { get; set; }

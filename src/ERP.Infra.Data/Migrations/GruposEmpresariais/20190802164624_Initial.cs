@@ -12,12 +12,12 @@ namespace ERP.Infra.Data.Migrations.GruposEmpresariais
                 columns: table => new
                 {
                     id = table.Column<Guid>(nullable: false),
-                    nome = table.Column<string>(nullable: false),
-                    sobrenome = table.Column<string>(nullable: false),
-                    email = table.Column<string>(nullable: false),
                     data_cadastro = table.Column<DateTime>(nullable: false),
                     data_ultima_atualizacao = table.Column<DateTime>(nullable: false),
-                    ativo = table.Column<bool>(nullable: false, defaultValue: true)
+                    ativo = table.Column<bool>(nullable: false, defaultValue: true),
+                    nome = table.Column<string>(nullable: false),
+                    sobrenome = table.Column<string>(nullable: false),
+                    email = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -29,18 +29,17 @@ namespace ERP.Infra.Data.Migrations.GruposEmpresariais
                 columns: table => new
                 {
                     id = table.Column<Guid>(nullable: false),
-                    codigo = table.Column<string>(maxLength: 7, nullable: false),
-                    descricao = table.Column<string>(maxLength: 255, nullable: false),
-                    cnae_pai = table.Column<Guid>(nullable: false),
                     data_cadastro = table.Column<DateTime>(nullable: false),
                     data_ultima_atualizacao = table.Column<DateTime>(nullable: false),
                     ativo = table.Column<bool>(nullable: false, defaultValue: true),
-                    usuario_id = table.Column<Guid>(nullable: false)
+                    usuario_id = table.Column<Guid>(nullable: false),
+                    codigo = table.Column<string>(maxLength: 30, nullable: false),
+                    descricao = table.Column<string>(maxLength: 255, nullable: false),
+                    cnae_pai = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("pk_cnae_id", x => x.id);
-                    table.UniqueConstraint("AK_cnaes_codigo", x => x.codigo);
                     table.ForeignKey(
                         name: "fk_usuario_id_cnae",
                         column: x => x.usuario_id,
@@ -54,12 +53,12 @@ namespace ERP.Infra.Data.Migrations.GruposEmpresariais
                 columns: table => new
                 {
                     id = table.Column<Guid>(nullable: false),
-                    codigo = table.Column<string>(maxLength: 30, nullable: false),
-                    descricao = table.Column<string>(maxLength: 150, nullable: false),
                     data_cadastro = table.Column<DateTime>(nullable: false),
                     data_ultima_atualizacao = table.Column<DateTime>(nullable: false),
                     ativo = table.Column<bool>(nullable: false, defaultValue: true),
-                    usuario_id = table.Column<Guid>(nullable: false)
+                    usuario_id = table.Column<Guid>(nullable: false),
+                    codigo = table.Column<string>(maxLength: 30, nullable: false),
+                    descricao = table.Column<string>(maxLength: 150, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -77,6 +76,10 @@ namespace ERP.Infra.Data.Migrations.GruposEmpresariais
                 columns: table => new
                 {
                     id = table.Column<Guid>(nullable: false),
+                    data_cadastro = table.Column<DateTime>(nullable: false),
+                    data_ultima_atualizacao = table.Column<DateTime>(nullable: false),
+                    ativo = table.Column<bool>(nullable: false, defaultValue: true),
+                    usuario_id = table.Column<Guid>(nullable: false),
                     codigo = table.Column<string>(maxLength: 30, nullable: false),
                     descricao = table.Column<string>(maxLength: 150, nullable: false),
                     nome_fantasia = table.Column<string>(maxLength: 150, nullable: false),
@@ -88,16 +91,11 @@ namespace ERP.Infra.Data.Migrations.GruposEmpresariais
                     observacao = table.Column<string>(nullable: true),
                     documento = table.Column<string>(maxLength: 14, nullable: false),
                     tipo_identificacao = table.Column<int>(nullable: false),
-                    data_cadastro = table.Column<DateTime>(nullable: false),
-                    data_ultima_atualizacao = table.Column<DateTime>(nullable: false),
-                    ativo = table.Column<bool>(nullable: false, defaultValue: true),
-                    usuario_id = table.Column<Guid>(nullable: false),
                     grupo_empresarial_id = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("pk_empresa_id", x => x.id);
-                    table.UniqueConstraint("AK_empresas_codigo", x => x.codigo);
                     table.ForeignKey(
                         name: "fk_grupo_empresarial_id_empresa",
                         column: x => x.grupo_empresarial_id,
@@ -117,6 +115,10 @@ namespace ERP.Infra.Data.Migrations.GruposEmpresariais
                 columns: table => new
                 {
                     id = table.Column<Guid>(nullable: false),
+                    data_cadastro = table.Column<DateTime>(nullable: false),
+                    data_ultima_atualizacao = table.Column<DateTime>(nullable: false),
+                    ativo = table.Column<bool>(nullable: false, defaultValue: true),
+                    usuario_id = table.Column<Guid>(nullable: false),
                     codigo = table.Column<string>(maxLength: 30, nullable: false),
                     descricao = table.Column<string>(maxLength: 150, nullable: false),
                     nome_fantasia = table.Column<string>(maxLength: 150, nullable: false),
@@ -131,17 +133,12 @@ namespace ERP.Infra.Data.Migrations.GruposEmpresariais
                     observacao = table.Column<string>(nullable: true),
                     documento = table.Column<string>(maxLength: 14, nullable: false),
                     tipo_identificacao = table.Column<int>(nullable: false),
-                    data_cadastro = table.Column<DateTime>(nullable: false),
-                    data_ultima_atualizacao = table.Column<DateTime>(nullable: false),
-                    ativo = table.Column<bool>(nullable: false, defaultValue: true),
-                    usuario_id = table.Column<Guid>(nullable: false),
                     empresa_id = table.Column<Guid>(nullable: false),
                     cnae_id = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("pk_estabelecimento_id", x => x.id);
-                    table.UniqueConstraint("AK_estabelecimentos_codigo", x => x.codigo);
                     table.ForeignKey(
                         name: "fk_cnae_id_estabelecimento",
                         column: x => x.cnae_id,
@@ -163,9 +160,21 @@ namespace ERP.Infra.Data.Migrations.GruposEmpresariais
                 });
 
             migrationBuilder.CreateIndex(
+                name: "uk_cnae_codigo",
+                table: "cnaes",
+                column: "codigo",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_cnaes_usuario_id",
                 table: "cnaes",
                 column: "usuario_id");
+
+            migrationBuilder.CreateIndex(
+                name: "uk_empresa_codigo",
+                table: "empresas",
+                column: "codigo",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_empresas_grupo_empresarial_id",
@@ -181,6 +190,12 @@ namespace ERP.Infra.Data.Migrations.GruposEmpresariais
                 name: "IX_estabelecimentos_cnae_id",
                 table: "estabelecimentos",
                 column: "cnae_id");
+
+            migrationBuilder.CreateIndex(
+                name: "uk_estabelecimento_codigo",
+                table: "estabelecimentos",
+                column: "codigo",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_estabelecimentos_empresa_id",

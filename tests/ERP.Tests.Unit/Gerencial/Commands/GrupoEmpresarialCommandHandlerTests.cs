@@ -3,7 +3,8 @@ using ERP.Domain.Core.Contracts;
 using ERP.Domain.Core.Notifications;
 using ERP.Gerencial.Domain.GruposEmpresariais;
 using ERP.Gerencial.Domain.GruposEmpresariais.Commands;
-using ERP.Gerencial.Domain.GruposEmpresariais.Events;
+using ERP.Gerencial.Domain.GruposEmpresariais.Commands.GruposEmpresariais;
+using ERP.Gerencial.Domain.GruposEmpresariais.Events.GruposEmpresariais;
 using ERP.Gerencial.Domain.GruposEmpresariais.Repositories;
 using Moq;
 using System;
@@ -38,7 +39,7 @@ namespace ERP.Tests.Unit.Gerencial.Commands
         {
             var request = new SaveGrupoEmpresarialCommand("GE01", "GE01", Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde81a"));
             var grupoEmpresarial = GrupoEmpresarial.GrupoEmpresarialFactory.NewGrupoEmpresarial(request.Id, request.Codigo, request.Descricao, request.DataCadastro, request.DataUltimaAtualizacao, request.UsuarioId);
-            var savedEvent = new SavedGrupoEmpresarialEvent(grupoEmpresarial.Id, grupoEmpresarial.Codigo, grupoEmpresarial.Descricao, grupoEmpresarial.DataCadastro, grupoEmpresarial.DataUltimaAtualizacao);
+            var savedEvent = new SavedGrupoEmpresarialEvent(grupoEmpresarial.Id, grupoEmpresarial.Codigo, grupoEmpresarial.Descricao, grupoEmpresarial.DataCadastro, grupoEmpresarial.DataUltimaAtualizacao, grupoEmpresarial.Ativo, grupoEmpresarial.UsuarioId);
             _mockUoW.Setup(m => m.Commit()).Returns(true);
             _mockNotification.Setup(m => m.GetNotifications()).Returns(new List<DomainNotification>());
 

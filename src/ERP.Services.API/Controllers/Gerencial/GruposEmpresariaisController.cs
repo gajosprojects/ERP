@@ -2,7 +2,7 @@ using AutoMapper;
 using ERP.Domain.Core.Bus;
 using ERP.Domain.Core.Contracts;
 using ERP.Domain.Core.Notifications;
-using ERP.Gerencial.Domain.GruposEmpresariais.Commands;
+using ERP.Gerencial.Domain.GruposEmpresariais.Commands.GruposEmpresariais;
 using ERP.Gerencial.Domain.GruposEmpresariais.Repositories;
 using ERP.Services.API.ViewModels.Gerencial.GrupoEmpresarial;
 using MediatR;
@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using ERP.Gerencial.Domain.GruposEmpresariais.Commands.Cnaes;
+using ERP.Services.API.ViewModels.Gerencial.Cnae;
 
 namespace ERP.Services.API.Controllers.Gerencial
 {
@@ -101,6 +103,57 @@ namespace ERP.Services.API.Controllers.Gerencial
         public GrupoEmpresarialViewModel Get(Guid id)
         {
             return _mapper.Map<GrupoEmpresarialViewModel>(_gruposEmpresariaisRepository.GetById(id));
+        }
+
+        /// <summary>
+        /// Salva um novo CNAE
+        /// </summary>
+        /// <param name="cnaeViewModel"></param>
+        /// <returns>CNAE</returns>
+        /// <remarks>Emite um comando que cria uma instância de CNAE e salva no banco de dados caso esteja válida.</remarks>
+        [HttpPost]
+        [Route("cnaes")]
+        [Authorize(Policy = "SaveCnae")]
+        public IActionResult Post([FromBody]SaveCnaeViewModel cnaeViewModel)
+        {
+            if (!IsModelStateValid()) return Response();
+            var cnaeCommand = _mapper.Map<SaveCnaeCommand>(cnaeViewModel);
+            _mediator.SendCommand(cnaeCommand);
+            return Response(cnaeCommand);
+        }
+
+        /// <summary>
+        /// Atualiza um CNAE existente
+        /// </summary>
+        /// <param name="cnaeViewModel"></param>
+        /// <returns>CNAE</returns>
+        /// <remarks>Emite um comando que obtém por ID uma instância de um CNAE já existente, atualiza os atributos que foram editados na interface e salva no banco de dados caso esteja válida.</remarks>
+        [HttpPut]
+        [Route("cnaes")]
+        [Authorize(Policy = "UpdateCnae")]
+        public IActionResult Put([FromBody]UpdateCnaeViewModel cnaeViewModel)
+        {
+            if (!IsModelStateValid()) return Response();
+            var cnaeCommand = _mapper.Map<UpdateCnaeCommand>(cnaeViewModel);
+            _mediator.SendCommand(cnaeCommand);
+            return Response(cnaeCommand);
+        }
+
+        /// <summary>
+        /// Deleta um CNAE
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Boolean</returns>
+        /// <remarks>Emite um comando que obtém por ID uma instância de um CNAE já existente e a deleta.</remarks>
+        [HttpDelete]
+        [Route("cnaes/{id:guid}")]
+        [Authorize(Policy = "DeleteCnae")]
+        public IActionResult DeleteCnae(Guid id)
+        {
+            if (!IsModelStateValid()) return Response();
+            var cnaeCommand = _mapper.Map<DeleteCnaeCommand>(new DeleteCnaeViewModel { Id = id, UsuarioId = UsuarioId });
+            _mediator.SendCommand(cnaeCommand);
+            return Response(cnaeCommand);
         }
     }
 }

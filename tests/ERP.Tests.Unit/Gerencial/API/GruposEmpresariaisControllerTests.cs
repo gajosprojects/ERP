@@ -3,7 +3,7 @@ using ERP.Domain.Core.Bus;
 using ERP.Domain.Core.Contracts;
 using ERP.Domain.Core.Notifications;
 using ERP.Gerencial.Domain.GruposEmpresariais;
-using ERP.Gerencial.Domain.GruposEmpresariais.Commands;
+using ERP.Gerencial.Domain.GruposEmpresariais.Commands.GruposEmpresariais;
 using ERP.Gerencial.Domain.GruposEmpresariais.Repositories;
 using ERP.Gerencial.Domain.Usuarios;
 using ERP.Services.API.AutoMapper;
@@ -167,7 +167,7 @@ namespace ERP.Tests.Unit.Gerencial.API
             DateTime dateTime = DateTime.Now;
             Usuario usuario = Usuario.UsuarioFactory.NewUsuario(Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde81a"), "Foo", "Ism", "foo@programming.com", dateTime, dateTime);
             GrupoEmpresarial grupoEmpresarial1 = GrupoEmpresarial.GrupoEmpresarialFactory.NewGrupoEmpresarial(Guid.Parse("f51745d6-d84a-49e6-a9bd-3d712c138b95"), "GE1", "GE1", dateTime, dateTime, Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde81a"));
-            GrupoEmpresarial grupoEmpresarial2 = GrupoEmpresarial.GrupoEmpresarialFactory.UpdateGrupoEmpresarial(Guid.Parse("4131468b-adb9-4805-b1ea-1ae7d5e38cf4"), "GE2", "GE2", dateTime, dateTime, Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde81a"), true);
+            GrupoEmpresarial grupoEmpresarial2 = GrupoEmpresarial.GrupoEmpresarialFactory.UpdateGrupoEmpresarial(Guid.Parse("4131468b-adb9-4805-b1ea-1ae7d5e38cf4"), "GE2", "GE2", dateTime, dateTime, Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde81a"), false);
             grupoEmpresarial1.AtribuirUsuario(usuario);
             grupoEmpresarial2.AtribuirUsuario(usuario);
 
@@ -177,8 +177,8 @@ namespace ERP.Tests.Unit.Gerencial.API
 
             IEnumerable<GrupoEmpresarialViewModel> expectedValue = new List<GrupoEmpresarialViewModel>
             {
-                new GrupoEmpresarialViewModel() { Id = Guid.Parse("f51745d6-d84a-49e6-a9bd-3d712c138b95"), Ativo = false, Codigo = "GE1", Descricao = "GE1", DataCadastro = dateTime, DataUltimaAtualizacao = dateTime, Usuario = usuarioViewModel },
-                new GrupoEmpresarialViewModel() { Id = Guid.Parse("4131468b-adb9-4805-b1ea-1ae7d5e38cf4"), Ativo = true, Codigo = "GE2", Descricao = "GE2", DataCadastro = dateTime, DataUltimaAtualizacao = dateTime, Usuario = usuarioViewModel }
+                new GrupoEmpresarialViewModel() { Id = Guid.Parse("f51745d6-d84a-49e6-a9bd-3d712c138b95"), Ativo = true, Codigo = "GE1", Descricao = "GE1", DataCadastro = dateTime, DataUltimaAtualizacao = dateTime, Usuario = usuarioViewModel },
+                new GrupoEmpresarialViewModel() { Id = Guid.Parse("4131468b-adb9-4805-b1ea-1ae7d5e38cf4"), Ativo = false, Codigo = "GE2", Descricao = "GE2", DataCadastro = dateTime, DataUltimaAtualizacao = dateTime, Usuario = usuarioViewModel }
             };
 
             _mockGruposEmpresariaisRepository.Setup(m => m.GetAll()).Returns(gruposEmpresariais);

@@ -47,7 +47,8 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais
                     Descricao = descricao,
                     DataCadastro = dataCadastro,
                     DataUltimaAtualizacao = dataUltimaAtualizacao,
-                    UsuarioId = usuarioId
+                    UsuarioId = usuarioId,
+                    Ativo = true
                 };
 
                 return grupoEmpresarial;

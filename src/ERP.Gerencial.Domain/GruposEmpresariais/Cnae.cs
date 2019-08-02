@@ -10,7 +10,7 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais
     {
         public string Codigo { get; private set; }
         public string Descricao { get; private set; }
-        public Guid CnaePai { get; private set; }
+        public Guid? CnaePai { get; private set; }
         public virtual ICollection<Estabelecimento> Estabelecimentos { get; set; }
         public virtual Usuario Usuario { get; private set; }
 
@@ -34,7 +34,7 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais
 
         public static class CnaeFactory
         {
-            public static Cnae NewCnae(Guid id, string codigo, string descricao, Guid cnaePai, DateTime dataCadastro, DateTime dataUltimaAtualizacao, Guid usuarioId)
+            public static Cnae NewCnae(Guid id, string codigo, string descricao, Guid? cnaePai, DateTime dataCadastro, DateTime dataUltimaAtualizacao, Guid usuarioId)
             {
                 var cnae = new Cnae()
                 {
@@ -50,7 +50,7 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais
                 return cnae;
             }
 
-            public static Cnae UpdateCnae(Guid id, string codigo, string descricao, Guid cnaePai, DateTime dataCadastro, DateTime dataUltimaAtualizacao, Guid usuarioId, bool ativo)
+            public static Cnae UpdateCnae(Guid id, string codigo, string descricao, Guid? cnaePai, DateTime dataCadastro, DateTime dataUltimaAtualizacao, Guid usuarioId, bool ativo)
             {
                 var cnae = new Cnae()
                 {
