@@ -69,46 +69,124 @@ namespace ERP.Infra.Data.Repositories.Gerencial
             .FirstOrDefault();
         }
 
+        public IEnumerable<Cnae> GetAllCnaes()
+        {
+            return _db.Database.GetDbConnection().Query<Cnae, Usuario, Cnae>(@"
+                SELECT 
+                    * 
+                FROM
+                    CNAES C
+                    JOIN USUARIOS U ON U.ID = C.USUARIO_ID
+                WHERE
+                    C.ATIVO = 1
+                ORDER BY 
+                    C.DESCRICAO",
+                (cnae, usuario) =>
+                {
+                    cnae.AtribuirUsuario(usuario);
+                    return cnae;
+                }
+            );
+        }
+
         public Cnae GetByCnaeId(Guid id)
         {
-            return _db.Database.GetDbConnection().Query<Cnae>(@"
+            return _db.Database.GetDbConnection().Query<Cnae, Usuario, Cnae>(@"
                 SELECT 
                     * 
                 FROM 
                     CNAES C
+                    JOIN USUARIOS U ON U.ID = C.USUARIO_ID
                 WHERE 
                     C.ID = @id
                     AND C.ATIVO = 1",
+                (cnae, usuario) =>
+                {
+                    cnae.AtribuirUsuario(usuario);
+                    return cnae;
+                },
                 new { id }
             )
             .FirstOrDefault();
+        }
+
+        public IEnumerable<Empresa> GetAllEmpresas()
+        {
+            return _db.Database.GetDbConnection().Query<Empresa, Usuario, Empresa>(@"
+                SELECT 
+                    * 
+                FROM
+                    EMPRESAS E
+                    JOIN USUARIOS U ON U.ID = E.USUARIO_ID
+                WHERE
+                    E.ATIVO = 1
+                ORDER BY 
+                    E.DESCRICAO",
+                (empresa, usuario) =>
+                {
+                    empresa.AtribuirUsuario(usuario);
+                    return empresa;
+                }
+            );
         }
 
         public Empresa GetByEmpresaId(Guid id)
         {
-            return _db.Database.GetDbConnection().Query<Empresa>(@"
+            return _db.Database.GetDbConnection().Query<Empresa, Usuario, Empresa>(@"
                 SELECT 
                     * 
                 FROM 
                     EMPRESAS E
+                    JOIN USUARIOS U ON U.ID = E.USUARIO_ID
                 WHERE 
                     E.ID = @id
                     AND E.ATIVO = 1",
+                (empresa, usuario) =>
+                {
+                    empresa.AtribuirUsuario(usuario);
+                    return empresa;
+                },
                 new { id }
             )
             .FirstOrDefault();
         }
 
+        public IEnumerable<Estabelecimento> GetAllEstabelecimentos()
+        {
+            return _db.Database.GetDbConnection().Query<Estabelecimento, Usuario, Estabelecimento>(@"
+                SELECT 
+                    * 
+                FROM
+                    ESTABELECIMENTOS E
+                    JOIN USUARIOS U ON U.ID = E.USUARIO_ID
+                WHERE
+                    E.ATIVO = 1
+                ORDER BY 
+                    E.DESCRICAO",
+                (estabelecimento, usuario) =>
+                {
+                    estabelecimento.AtribuirUsuario(usuario);
+                    return estabelecimento;
+                }
+            );
+        }
+
         public Estabelecimento GetByEstabelecimentoId(Guid id)
         {
-            return _db.Database.GetDbConnection().Query<Estabelecimento>(@"
+            return _db.Database.GetDbConnection().Query<Estabelecimento, Usuario, Estabelecimento>(@"
                 SELECT 
                     * 
                 FROM 
                     ESTABELECIMENTOS E
+                    JOIN USUARIOS U ON U.ID = E.USUARIO_ID
                 WHERE 
                     E.ID = @id
                     AND E.ATIVO = 1",
+                (estabelecimento, usuario) =>
+                {
+                    estabelecimento.AtribuirUsuario(usuario);
+                    return estabelecimento;
+                },
                 new { id }
             )
             .FirstOrDefault();

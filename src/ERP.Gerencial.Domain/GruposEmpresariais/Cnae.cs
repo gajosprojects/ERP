@@ -19,17 +19,22 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais
         public override bool IsValid()
         {
             RuleFor(cnae => cnae.Codigo)
-                .NotEmpty().WithMessage("Informe o código")
-                .MinimumLength(1).WithMessage("Tamanho mínimo requerido de 1 caracter")
-                .MaximumLength(7).WithMessage("Limite máximo de 7 caracteres atingido");
+                .NotEmpty().WithMessage("Código: campo obrigatório")
+                .MinimumLength(1).WithMessage("Código: tamanho mínimo requerido de 1 caracter")
+                .MaximumLength(7).WithMessage("Código: limite máximo de 7 caracteres atingido");
             
             RuleFor(cnae => cnae.Descricao)
-                .NotEmpty().WithMessage("Informe a descrição")
-                .MinimumLength(1).WithMessage("Tamanho mínimo requerido de 1 caracter")
-                .MaximumLength(255).WithMessage("Limite máximo de 255 caracteres atingido");
+                .NotEmpty().WithMessage("Descrição: campo obrigatório")
+                .MinimumLength(1).WithMessage("Descrição: tamanho mínimo requerido de 1 caracter")
+                .MaximumLength(255).WithMessage("Descrição: limite máximo de 255 caracteres atingido");
 
             ValidationResult = Validate(this);
             return ValidationResult.IsValid;
+        }
+
+        public void AtribuirUsuario(Usuario usuario)
+        {
+            Usuario = usuario;
         }
 
         public static class CnaeFactory

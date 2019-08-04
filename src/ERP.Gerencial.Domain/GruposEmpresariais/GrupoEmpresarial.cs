@@ -18,14 +18,14 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais
         public override bool IsValid()
         {
             RuleFor(grupoEmpresarial => grupoEmpresarial.Codigo)
-                .NotEmpty().WithMessage("Informe o código")
-                .MinimumLength(1).WithMessage("Tamanho mínimo requerido de 1 caracter")
-                .MaximumLength(30).WithMessage("Limite máximo de 30 caracteres atingido");
+                .NotEmpty().WithMessage("Código: campo obrigatório")
+                .MinimumLength(1).WithMessage("Código: tamanho mínimo requerido de 1 caracter")
+                .MaximumLength(30).WithMessage("Código: limite máximo de 30 caracteres atingido");
             
             RuleFor(grupoEmpresarial => grupoEmpresarial.Descricao)
-                .NotEmpty().WithMessage("Informe a descrição")
-                .MinimumLength(1).WithMessage("Tamanho mínimo requerido de 1 caracter")
-                .MaximumLength(150).WithMessage("Limite máximo de 150 caracteres atingido");
+                .NotEmpty().WithMessage("Descrição: campo obrigatório")
+                .MinimumLength(1).WithMessage("Descrição: tamanho mínimo requerido de 1 caracter")
+                .MaximumLength(150).WithMessage("Descrição: limite máximo de 150 caracteres atingido");
 
             ValidationResult = Validate(this);
             return ValidationResult.IsValid;

@@ -42,7 +42,7 @@ namespace ERP.Tests.Unit.Gerencial.API
         }
 
         [Fact]
-        public void GruposEmpresariaisController_Post_RetornarSucesso()
+        public void GruposEmpresariaisController_Post_GrupoEmpresarial_RetornarSucesso()
         {
             var grupoEmpresarialViewModel = new SaveGrupoEmpresarialViewModel();
             var saveGrupoEmpresarialCommand = new SaveGrupoEmpresarialCommand("01", "GE01", Guid.NewGuid());
@@ -54,7 +54,7 @@ namespace ERP.Tests.Unit.Gerencial.API
         }
 
         [Fact]
-        public void GruposEmpresariaisController_Post_RetornarErrosModelState()
+        public void GruposEmpresariaisController_Post_GrupoEmpresarial_RetornarErrosModelState()
         {
             var notificationList = new List<DomainNotification> { new DomainNotification("Error", "Model error") };
             _mockNotification.Setup(m => m.GetNotifications()).Returns(notificationList);
@@ -66,7 +66,7 @@ namespace ERP.Tests.Unit.Gerencial.API
         }
 
         [Fact]
-        public void GruposEmpresariaisController_Post_RetornarErrosDominio()
+        public void GruposEmpresariaisController_Post_GrupoEmpresarial_RetornarErrosDominio()
         {
             var grupoEmpresarialViewModel = new SaveGrupoEmpresarialViewModel();
             var saveGrupoEmpresarialCommand = new SaveGrupoEmpresarialCommand("012345678901234567890123456789012", "GE01", Guid.NewGuid());
@@ -80,7 +80,7 @@ namespace ERP.Tests.Unit.Gerencial.API
         }
 
         [Fact]
-        public void GruposEmpresariaisController_Put_RetornarSucesso()
+        public void GruposEmpresariaisController_Put_GrupoEmpresarial_RetornarSucesso()
         {
             var grupoEmpresarialViewModel = new UpdateGrupoEmpresarialViewModel();
             var updateGrupoEmpresarialCommand = new UpdateGrupoEmpresarialCommand(Guid.NewGuid(), "01", "GE01", Guid.NewGuid());
@@ -92,7 +92,7 @@ namespace ERP.Tests.Unit.Gerencial.API
         }
 
         [Fact]
-        public void GruposEmpresariaisController_Put_RetornarErrosModelState()
+        public void GruposEmpresariaisController_Put_GrupoEmpresarial_RetornarErrosModelState()
         {
             var notificationList = new List<DomainNotification> { new DomainNotification("Error", "Model error") };
             _mockNotification.Setup(m => m.GetNotifications()).Returns(notificationList);
@@ -104,7 +104,7 @@ namespace ERP.Tests.Unit.Gerencial.API
         }
 
         [Fact]
-        public void GruposEmpresariaisController_Put_RetornarErrosDominio()
+        public void GruposEmpresariaisController_Put_GrupoEmpresarial_RetornarErrosDominio()
         {
             var grupoEmpresarialViewModel = new UpdateGrupoEmpresarialViewModel();
             var updateGrupoEmpresarialCommand = new UpdateGrupoEmpresarialCommand(Guid.NewGuid(), "012345678901234567890123456789012", "GE01", Guid.NewGuid());
@@ -118,29 +118,29 @@ namespace ERP.Tests.Unit.Gerencial.API
         }
 
         [Fact]
-        public void GruposEmpresariaisController_Delete_RetornarSucesso()
+        public void GruposEmpresariaisController_Delete_GrupoEmpresarial_RetornarSucesso()
         {
             var grupoEmpresarialViewModel = new DeleteGrupoEmpresarialViewModel() { Id = Guid.NewGuid(), UsuarioId = Guid.NewGuid() };
             var deleteGrupoEmpresarialCommand = new DeleteGrupoEmpresarialCommand(grupoEmpresarialViewModel.Id, grupoEmpresarialViewModel.UsuarioId);
             _mockMapper.Setup(m => m.Map<DeleteGrupoEmpresarialCommand>(grupoEmpresarialViewModel)).Returns(deleteGrupoEmpresarialCommand);
             _mockNotification.Setup(m => m.GetNotifications()).Returns(new List<DomainNotification>());
 
-            Assert.IsType<OkObjectResult>(_gruposEmpresariaisController.Delete(grupoEmpresarialViewModel.Id));
+            Assert.IsType<OkObjectResult>(_gruposEmpresariaisController.DeleteGrupoEmpresarial(grupoEmpresarialViewModel.Id));
         }
 
         [Fact]
-        public void GruposEmpresariaisController_Delete_RetornarErrosModelState()
+        public void GruposEmpresariaisController_Delete_GrupoEmpresarial_RetornarErrosModelState()
         {
             var notificationList = new List<DomainNotification> { new DomainNotification("Error", "Model error") };
             _mockNotification.Setup(m => m.GetNotifications()).Returns(notificationList);
             _mockNotification.Setup(m => m.HasNotifications()).Returns(true);
             _gruposEmpresariaisController.ModelState.AddModelError("Error", "Model error");
 
-            Assert.IsType<BadRequestObjectResult>(_gruposEmpresariaisController.Delete(Guid.NewGuid()));
+            Assert.IsType<BadRequestObjectResult>(_gruposEmpresariaisController.DeleteGrupoEmpresarial(Guid.NewGuid()));
         }
 
         [Fact]
-        public void GruposEmpresariaisController_Delete_RetornarErrosDominio()
+        public void GruposEmpresariaisController_Delete_GrupoEmpresarial_RetornarErrosDominio()
         {
             var grupoEmpresarialViewModel = new DeleteGrupoEmpresarialViewModel();
             var deleteGrupoEmpresarialCommand = new DeleteGrupoEmpresarialCommand(Guid.NewGuid(), Guid.NewGuid());
@@ -149,11 +149,11 @@ namespace ERP.Tests.Unit.Gerencial.API
             _mockNotification.Setup(m => m.GetNotifications()).Returns(notificationList);
             _mockNotification.Setup(m => m.HasNotifications()).Returns(true);
 
-            Assert.IsType<BadRequestObjectResult>(_gruposEmpresariaisController.Delete(Guid.NewGuid()));
+            Assert.IsType<BadRequestObjectResult>(_gruposEmpresariaisController.DeleteGrupoEmpresarial(Guid.NewGuid()));
         }
 
         [Fact]
-        public void GruposEmpresariaisController_GetAll_RetornarListaVazia()
+        public void GruposEmpresariaisController_GetAll_GruposEmpresariais_RetornarListaVazia()
         {
             var config = new MapperConfiguration(configuration => configuration.AddProfile(new DomainToViewModelMappingProfile()));
             var gruposEmpresariaisController = new GruposEmpresariaisController(_mockNotification.Object, _mockUser.Object, _mockMediator.Object, _mockGruposEmpresariaisRepository.Object, config.CreateMapper());
@@ -162,7 +162,7 @@ namespace ERP.Tests.Unit.Gerencial.API
         }
 
         [Fact]
-        public void GruposEmpresariaisController_GetAll_RetornarSucesso()
+        public void GruposEmpresariaisController_GetAll_GruposEmpresariais_RetornarSucesso()
         {
             DateTime dateTime = DateTime.Now;
             Usuario usuario = Usuario.UsuarioFactory.NewUsuario(Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde81a"), "Foo", "Ism", "foo@programming.com", dateTime, dateTime);
@@ -187,14 +187,14 @@ namespace ERP.Tests.Unit.Gerencial.API
         }
 
         [Fact]
-        public void GruposEmpresariaisController_GetById_RetornarNotFound()
+        public void GruposEmpresariaisController_GetById_GrupoEmpresarial_RetornarNotFound()
         {
             _mockGruposEmpresariaisRepository.Setup(m => m.GetById(Guid.NewGuid())).Returns((GrupoEmpresarial) null);
             Assert.Null(_gruposEmpresariaisControllerRealMapper.Get(Guid.NewGuid()));
         }
 
         [Fact]
-        public void GruposEmpresariaisController_GetById_RetornarErrosDominio()
+        public void GruposEmpresariaisController_GetById_GrupoEmpresarial_RetornarErrosDominio()
         {
             DateTime dateTime = DateTime.Now;
             Usuario usuario = Usuario.UsuarioFactory.NewUsuario(Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde81a"), "Foo", "Ism", "foo@programming.com", dateTime, dateTime);

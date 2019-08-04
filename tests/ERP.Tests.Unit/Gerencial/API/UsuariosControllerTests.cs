@@ -64,7 +64,7 @@ namespace ERP.Tests.Unit.Gerencial.API
             _mockUsuariosRepository.Setup(m => m.GetById(It.IsAny<Guid>())).Returns(Usuario.UsuarioFactory.NewUsuario(Guid.NewGuid(), "Foo", "Ism", "foo.ism@gmail.com", DateTime.Now, DateTime.Now));
 
             Assert.IsType<OkObjectResult>(_usuariosController.Register(registerViewModel).Result);
-            _mockUserManager.Verify(m => m.AddClaimAsync(It.IsAny<IdentityUser>(), It.IsAny<Claim>()), Times.Exactly(4));
+            _mockUserManager.Verify(m => m.AddClaimAsync(It.IsAny<IdentityUser>(), It.IsAny<Claim>()), Times.Exactly(16));
             _mockMediator.Verify(m => m.SendCommand(It.IsAny<SaveUsuarioCommand>()), Times.Once);
         }
 
@@ -106,7 +106,7 @@ namespace ERP.Tests.Unit.Gerencial.API
             _mockUserManager.Setup(m => m.CreateAsync(It.Is<IdentityUser>(u => u.UserName == user.UserName), registerViewModel.Senha)).Returns(Task.FromResult(IdentityResult.Success));
 
             Assert.IsType<BadRequestObjectResult>(_usuariosController.Register(registerViewModel).Result);
-            _mockUserManager.Verify(m => m.AddClaimAsync(It.IsAny<IdentityUser>(), It.IsAny<Claim>()), Times.Exactly(4));
+            _mockUserManager.Verify(m => m.AddClaimAsync(It.IsAny<IdentityUser>(), It.IsAny<Claim>()), Times.Exactly(16));
         }
 
         [Fact]

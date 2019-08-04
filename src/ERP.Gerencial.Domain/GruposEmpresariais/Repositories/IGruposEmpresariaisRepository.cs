@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using ERP.Domain.Core.Contracts;
 
 namespace ERP.Gerencial.Domain.GruposEmpresariais.Repositories
@@ -12,6 +13,10 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais.Repositories
         void Update(Cnae cnae);
         void Update(Empresa empresa);
         void Update(Estabelecimento estabelecimento);
+
+        IEnumerable<Cnae> GetAllCnaes();
+        IEnumerable<Empresa> GetAllEmpresas();
+        IEnumerable<Estabelecimento> GetAllEstabelecimentos();
 
         Cnae GetByCnaeId(Guid id);
         Empresa GetByEmpresaId(Guid id);

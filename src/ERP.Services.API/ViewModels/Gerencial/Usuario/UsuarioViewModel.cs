@@ -9,15 +9,15 @@ namespace ERP.Services.API.ViewModels.Gerencial.Usuario
         public Guid Id { get; set; }
 
         [Display(Name = "Nome")]
-        [Required(ErrorMessage = "Campo obrigatório")]
+        [Required(ErrorMessage = "Nome: campo obrigatório")]
         public string Nome { get; set; }
 
         [Display(Name = "Sobrenome")]
-        [Required(ErrorMessage = "Campo obrigatório")]
+        [Required(ErrorMessage = "Sobrenome: campo obrigatório")]
         public string Sobrenome { get; set; }
 
-        [Display(Name = "Email")]
-        [Required(ErrorMessage = "Campo obrigatório")]
+        [Display(Name = "E-mail")]
+        [Required(ErrorMessage = "E-mail: campo obrigatório")]
         [EmailAddress(ErrorMessage = "E-mail em formato inválido")]
         public string Email { get; set; }
     }

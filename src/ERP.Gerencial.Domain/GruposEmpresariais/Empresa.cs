@@ -29,48 +29,52 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais
         public override bool IsValid()
         {
             RuleFor(empresa => empresa.Codigo)
-                .NotEmpty().WithMessage("Informe o código")
-                .MinimumLength(1).WithMessage("Tamanho mínimo requerido de 1 caracter")
-                .MaximumLength(30).WithMessage("Limite máximo de 30 caracteres atingido");
+                .NotEmpty().WithMessage("Código: campo obrigatório")
+                .MinimumLength(1).WithMessage("Código: tamanho mínimo requerido de 1 caracter")
+                .MaximumLength(30).WithMessage("Código: limite máximo de 30 caracteres atingido");
             
             RuleFor(empresa => empresa.Descricao)
-                .NotEmpty().WithMessage("Informe a descrição")
-                .MinimumLength(1).WithMessage("Tamanho mínimo requerido de 1 caracter")
-                .MaximumLength(150).WithMessage("Limite máximo de 150 caracteres atingido");
+                .NotEmpty().WithMessage("Descrição: campo obrigatório")
+                .MinimumLength(1).WithMessage("Descrição: tamanho mínimo requerido de 1 caracter")
+                .MaximumLength(150).WithMessage("Descrição: limite máximo de 150 caracteres atingido");
 
             RuleFor(empresa => empresa.NomeFantasia)
-                .NotEmpty().WithMessage("Informe o nome fantasia")
-                .MinimumLength(1).WithMessage("Tamanho mínimo requerido de 1 caracter")
-                .MaximumLength(150).WithMessage("Limite máximo de 150 caracteres atingido");
+                .NotEmpty().WithMessage("Nome fantasia: campo obrigatório")
+                .MinimumLength(1).WithMessage("Nome fantasia: tamanho mínimo requerido de 1 caracter")
+                .MaximumLength(150).WithMessage("Nome fantasia: limite máximo de 150 caracteres atingido");
 
             RuleFor(empresa => empresa.Email)
-                .NotEmpty().WithMessage("Informe o e-mail")
-                .MinimumLength(1).WithMessage("Tamanho mínimo requerido de 1 caracter")
-                .MaximumLength(150).WithMessage("Limite máximo de 150 caracteres atingido");
+                .NotEmpty().WithMessage("E-mail: campo obrigatório")
+                .MinimumLength(1).WithMessage("E-mail: tamanho mínimo requerido de 1 caracter")
+                .MaximumLength(150).WithMessage("E-mail: limite máximo de 150 caracteres atingido");
 
             RuleFor(empresa => empresa.Site)
-                .NotEmpty().WithMessage("Informe o site")
-                .MinimumLength(1).WithMessage("Tamanho mínimo requerido de 1 caracter")
-                .MaximumLength(150).WithMessage("Limite máximo de 100 caracteres atingido");
+                .NotEmpty().WithMessage("Site: campo obrigatório")
+                .MinimumLength(1).WithMessage("Site: tamanho mínimo requerido de 1 caracter")
+                .MaximumLength(150).WithMessage("Site: limite máximo de 100 caracteres atingido");
 
             RuleFor(empresa => empresa.DataRegistro)
-                .NotEmpty().WithMessage("Informe a data de registro");
+                .NotEmpty().WithMessage("Data de registro: campo obrigatório");
 
             RuleFor(empresa => empresa.Documento)
-                .NotEmpty().WithMessage("Informe o documento")
-                .MinimumLength(11).WithMessage("Tamanho mínimo requerido de 11 caracter")
-                .MaximumLength(14).WithMessage("Limite máximo de 14 caracteres atingido");
+                .NotEmpty().WithMessage("Documento: campo obrigatório")
+                .MinimumLength(11).WithMessage("Documento: tamanho mínimo requerido de 11 caracter")
+                .MaximumLength(14).WithMessage("Documento: limite máximo de 14 caracteres atingido");
 
             RuleFor(empresa => empresa.TipoIdentificacao)
-                .NotEmpty().WithMessage("Informe o tipo do documento");
+                .NotEmpty().WithMessage("Tipo do documento: campo obrigatório");
 
             RuleFor(empresa => empresa.GrupoEmpresarialId)
-                .NotEmpty().WithMessage("Uma empresa precisa estar vinculada a um grupo empresarial");
+                .NotEmpty().WithMessage("GrupoEmpresarialId: campo obrigatório");
 
             ValidationResult = Validate(this);
             return ValidationResult.IsValid;
         }
-            
+
+        public void AtribuirUsuario(Usuario usuario)
+        {
+            Usuario = usuario;
+        }
 
         public static class EmpresaFactory
         {
