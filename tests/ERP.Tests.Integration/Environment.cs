@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.TestHost;
 using System;
 using System.IO;
 using System.Net.Http;
+using System.Text;
+using ERP.Tests.Integration.Gerencial;
+using Newtonsoft.Json;
 
 namespace ERP.Tests.Integration
 {
@@ -43,6 +46,20 @@ namespace ERP.Tests.Integration
             }
 
             Client = Server.CreateClient();
+        }
+
+        public static RequestBuilder CreateRequest(string requestType, string path, object viewModel)
+        {
+            if (requestType == "GET")
+            {
+                return Server.CreateRequest(path).AddHeader("Authorization", "Bearer " + Environment.TokenUsuario);
+            }
+            else
+            {
+                return Server.CreateRequest(path).AddHeader("Authorization", "Bearer " + TokenUsuario).And(request => {
+                    request.Content = new StringContent(JsonConvert.SerializeObject(viewModel), Encoding.UTF8, "application/json");
+                });
+            }
         }
     }
 }
