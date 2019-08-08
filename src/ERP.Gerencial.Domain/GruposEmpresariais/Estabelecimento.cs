@@ -90,10 +90,11 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais
             return ValidationResult.IsValid;
         }
 
-        public void AtribuirUsuario(Usuario usuario)
-        {
-            Usuario = usuario;
-        }
+        public void AtribuirUsuario(Usuario usuario) => Usuario = usuario;
+
+        public void AtribuirCnae(Cnae cnae) => Cnae = cnae;
+
+        public void AtribuirEmpresa(Empresa empresa) => Empresa = empresa;
 
         public static class EstabelecimentoFactory
         {

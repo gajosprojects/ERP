@@ -71,10 +71,9 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais
             return ValidationResult.IsValid;
         }
 
-        public void AtribuirUsuario(Usuario usuario)
-        {
-            Usuario = usuario;
-        }
+        public void AtribuirUsuario(Usuario usuario) => Usuario = usuario;
+
+        public void AtribuirGrupoEmpresarial(GrupoEmpresarial grupoEmpresarial) => GrupoEmpresarial = grupoEmpresarial;
 
         public static class EmpresaFactory
         {

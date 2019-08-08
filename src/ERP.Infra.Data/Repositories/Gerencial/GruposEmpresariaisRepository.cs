@@ -112,19 +112,21 @@ namespace ERP.Infra.Data.Repositories.Gerencial
 
         public IEnumerable<Empresa> GetAllEmpresas()
         {
-            return _db.Database.GetDbConnection().Query<Empresa, Usuario, Empresa>(@"
+            return _db.Database.GetDbConnection().Query<Empresa, Usuario, GrupoEmpresarial, Empresa>(@"
                 SELECT 
                     * 
                 FROM
                     EMPRESAS E
                     JOIN USUARIOS U ON U.ID = E.USUARIO_ID
+					JOIN GRUPOS_EMPRESARIAIS GE ON GE.ID = E.GRUPO_EMPRESARIAL_ID
                 WHERE
                     E.ATIVO = 1
                 ORDER BY 
                     E.DESCRICAO",
-                (empresa, usuario) =>
+                (empresa, usuario, grupoEmpresarial) =>
                 {
                     empresa.AtribuirUsuario(usuario);
+                    empresa.AtribuirGrupoEmpresarial(grupoEmpresarial);
                     return empresa;
                 }
             );
@@ -132,18 +134,20 @@ namespace ERP.Infra.Data.Repositories.Gerencial
 
         public Empresa GetByEmpresaId(Guid id)
         {
-            return _db.Database.GetDbConnection().Query<Empresa, Usuario, Empresa>(@"
+            return _db.Database.GetDbConnection().Query<Empresa, Usuario, GrupoEmpresarial, Empresa>(@"
                 SELECT 
                     * 
                 FROM 
                     EMPRESAS E
                     JOIN USUARIOS U ON U.ID = E.USUARIO_ID
+					JOIN GRUPOS_EMPRESARIAIS GE ON GE.ID = E.GRUPO_EMPRESARIAL_ID
                 WHERE 
                     E.ID = @id
                     AND E.ATIVO = 1",
-                (empresa, usuario) =>
+                (empresa, usuario, grupoEmpresarial) =>
                 {
                     empresa.AtribuirUsuario(usuario);
+                    empresa.AtribuirGrupoEmpresarial(grupoEmpresarial);
                     return empresa;
                 },
                 new { id }
@@ -153,19 +157,23 @@ namespace ERP.Infra.Data.Repositories.Gerencial
 
         public IEnumerable<Estabelecimento> GetAllEstabelecimentos()
         {
-            return _db.Database.GetDbConnection().Query<Estabelecimento, Usuario, Estabelecimento>(@"
+            return _db.Database.GetDbConnection().Query<Estabelecimento, Usuario, Cnae, Empresa, Estabelecimento>(@"
                 SELECT 
                     * 
                 FROM
                     ESTABELECIMENTOS E
                     JOIN USUARIOS U ON U.ID = E.USUARIO_ID
+                    JOIN CNAES C ON C.ID = E.CNAE_ID
+                    JOIN EMPRESAS EM ON EM.ID = E.EMPRESA_ID
                 WHERE
                     E.ATIVO = 1
                 ORDER BY 
                     E.DESCRICAO",
-                (estabelecimento, usuario) =>
+                (estabelecimento, usuario, cnae, empresa) =>
                 {
                     estabelecimento.AtribuirUsuario(usuario);
+                    estabelecimento.AtribuirCnae(cnae);
+                    estabelecimento.AtribuirEmpresa(empresa);
                     return estabelecimento;
                 }
             );
@@ -173,18 +181,22 @@ namespace ERP.Infra.Data.Repositories.Gerencial
 
         public Estabelecimento GetByEstabelecimentoId(Guid id)
         {
-            return _db.Database.GetDbConnection().Query<Estabelecimento, Usuario, Estabelecimento>(@"
+            return _db.Database.GetDbConnection().Query<Estabelecimento, Usuario, Cnae, Empresa, Estabelecimento>(@"
                 SELECT 
                     * 
                 FROM 
                     ESTABELECIMENTOS E
                     JOIN USUARIOS U ON U.ID = E.USUARIO_ID
+                    JOIN CNAES C ON C.ID = E.CNAE_ID
+                    JOIN EMPRESAS EM ON EM.ID = E.EMPRESA_ID
                 WHERE 
                     E.ID = @id
                     AND E.ATIVO = 1",
-                (estabelecimento, usuario) =>
+                (estabelecimento, usuario, cnae, empresa) =>
                 {
                     estabelecimento.AtribuirUsuario(usuario);
+                    estabelecimento.AtribuirCnae(cnae);
+                    estabelecimento.AtribuirEmpresa(empresa);
                     return estabelecimento;
                 },
                 new { id }

@@ -22,8 +22,8 @@ namespace ERP.Tests.Integration.Gerencial.DTO
         public object observacao { get; set; }
         public string documento { get; set; }
         public int tipoIdentificacao { get; set; }
-        public object empresa { get; set; }
-        public object cnae { get; set; }
+        public GetEmpresaDTO empresa { get; set; }
+        public GetCnaeDTO cnae { get; set; }
         public GetUsuarioDTO usuario { get; set; }
     }
 
@@ -36,6 +36,7 @@ namespace ERP.Tests.Integration.Gerencial.DTO
     public class EstabelecimentoDataResponse
     {
         public string id { get; set; }
+        public bool ativo { get; set; }
         public string usuarioId { get; set; }
         public DateTime dataCadastro { get; set; }
         public DateTime dataUltimaAtualizacao { get; set; }
