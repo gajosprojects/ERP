@@ -1,6 +1,6 @@
-using System.Threading.Tasks;
 using ERP.Domain.Core.Commands;
 using ERP.Domain.Core.Events;
+using System.Threading.Tasks;
 
 namespace ERP.Domain.Core.Bus
 {

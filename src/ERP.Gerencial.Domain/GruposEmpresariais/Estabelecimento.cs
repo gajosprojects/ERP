@@ -1,7 +1,7 @@
-using System;
 using ERP.Domain.Core.Models;
 using ERP.Gerencial.Domain.Usuarios;
 using FluentValidation;
+using System;
 
 namespace ERP.Gerencial.Domain.GruposEmpresariais
 {

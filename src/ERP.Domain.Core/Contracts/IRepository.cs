@@ -1,7 +1,7 @@
+using ERP.Domain.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using ERP.Domain.Core.Models;
 
 namespace ERP.Domain.Core.Contracts
 {

@@ -1,6 +1,6 @@
+using ERP.Domain.Core.Contracts;
 using System;
 using System.Collections.Generic;
-using ERP.Domain.Core.Contracts;
 
 namespace ERP.Gerencial.Domain.GruposEmpresariais.Repositories
 {

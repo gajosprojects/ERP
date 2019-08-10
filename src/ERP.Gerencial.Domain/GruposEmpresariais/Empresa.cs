@@ -1,8 +1,8 @@
-using System;
-using System.Collections.Generic;
 using ERP.Domain.Core.Models;
 using ERP.Gerencial.Domain.Usuarios;
 using FluentValidation;
+using System;
+using System.Collections.Generic;
 
 namespace ERP.Gerencial.Domain.GruposEmpresariais
 {

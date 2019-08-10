@@ -1,11 +1,11 @@
-using System;
-using System.Linq;
 using ERP.Domain.Core.Bus;
 using ERP.Domain.Core.Contracts;
 using ERP.Domain.Core.Notifications;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Linq;
 
 namespace ERP.Services.API.Controllers
 {

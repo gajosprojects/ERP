@@ -2,20 +2,20 @@ using AutoMapper;
 using ERP.Domain.Core.Bus;
 using ERP.Domain.Core.Contracts;
 using ERP.Domain.Core.Notifications;
+using ERP.Gerencial.Domain.GruposEmpresariais.Commands.Cnaes;
+using ERP.Gerencial.Domain.GruposEmpresariais.Commands.Empresas;
+using ERP.Gerencial.Domain.GruposEmpresariais.Commands.Estabelecimentos;
 using ERP.Gerencial.Domain.GruposEmpresariais.Commands.GruposEmpresariais;
 using ERP.Gerencial.Domain.GruposEmpresariais.Repositories;
+using ERP.Services.API.ViewModels.Gerencial.Cnae;
+using ERP.Services.API.ViewModels.Gerencial.Empresa;
+using ERP.Services.API.ViewModels.Gerencial.Estabelecimento;
 using ERP.Services.API.ViewModels.Gerencial.GrupoEmpresarial;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using ERP.Gerencial.Domain.GruposEmpresariais.Commands.Cnaes;
-using ERP.Services.API.ViewModels.Gerencial.Cnae;
-using ERP.Services.API.ViewModels.Gerencial.Empresa;
-using ERP.Gerencial.Domain.GruposEmpresariais.Commands.Empresas;
-using ERP.Services.API.ViewModels.Gerencial.Estabelecimento;
-using ERP.Gerencial.Domain.GruposEmpresariais.Commands.Estabelecimentos;
 
 namespace ERP.Services.API.Controllers.Gerencial
 {

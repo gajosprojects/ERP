@@ -1,5 +1,5 @@
-using System;
 using MediatR;
+using System;
 
 namespace ERP.Domain.Core.Events
 {

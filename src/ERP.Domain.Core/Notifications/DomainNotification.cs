@@ -1,5 +1,5 @@
-using System;
 using ERP.Domain.Core.Events;
+using System;
 
 namespace ERP.Domain.Core.Notifications
 {
