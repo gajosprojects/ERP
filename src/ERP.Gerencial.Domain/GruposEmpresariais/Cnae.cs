@@ -49,7 +49,8 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais
                     CnaePai = cnaePai,
                     DataCadastro = dataCadastro,
                     DataUltimaAtualizacao = dataUltimaAtualizacao,
-                    UsuarioId = usuarioId
+                    UsuarioId = usuarioId,
+                    Ativo = true
                 };
 
                 return cnae;

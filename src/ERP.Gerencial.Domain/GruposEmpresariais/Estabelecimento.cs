@@ -121,7 +121,8 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais
                     TipoIdentificacao = tipoIdentificacao,
                     EmpresaId = empresaId,
                     CnaeId = cnaeId,
-                    UsuarioId = usuarioId
+                    UsuarioId = usuarioId,
+                    Ativo = true
                 };
 
                 return estabelecimento;

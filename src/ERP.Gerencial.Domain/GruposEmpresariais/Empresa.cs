@@ -96,7 +96,8 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais
                     Documento = documento,
                     TipoIdentificacao = tipoIdentificacao,
                     GrupoEmpresarialId = grupoEmpresarialId,
-                    UsuarioId = usuarioId
+                    UsuarioId = usuarioId,
+                    Ativo = true
                 };
 
                 return empresa;
