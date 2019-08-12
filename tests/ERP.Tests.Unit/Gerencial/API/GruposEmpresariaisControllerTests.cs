@@ -4,12 +4,16 @@ using ERP.Domain.Core.Contracts;
 using ERP.Domain.Core.Notifications;
 using ERP.Gerencial.Domain.GruposEmpresariais;
 using ERP.Gerencial.Domain.GruposEmpresariais.Commands.Cnaes;
+using ERP.Gerencial.Domain.GruposEmpresariais.Commands.Empresas;
+using ERP.Gerencial.Domain.GruposEmpresariais.Commands.Estabelecimentos;
 using ERP.Gerencial.Domain.GruposEmpresariais.Commands.GruposEmpresariais;
 using ERP.Gerencial.Domain.GruposEmpresariais.Repositories;
 using ERP.Gerencial.Domain.Usuarios;
 using ERP.Services.API.AutoMapper;
 using ERP.Services.API.Controllers.Gerencial;
 using ERP.Services.API.ViewModels.Gerencial.Cnae;
+using ERP.Services.API.ViewModels.Gerencial.Empresa;
+using ERP.Services.API.ViewModels.Gerencial.Estabelecimento;
 using ERP.Services.API.ViewModels.Gerencial.GrupoEmpresarial;
 using ERP.Services.API.ViewModels.Gerencial.Usuario;
 using ERP.Tests.Unit.Gerencial.Factories;
@@ -381,5 +385,347 @@ namespace ERP.Tests.Unit.Gerencial.API
 
             Assert.Equal(JsonConvert.SerializeObject(expectedValue), JsonConvert.SerializeObject(actualValue));
         }
+
+        [Fact]
+        public void GruposEmpresariaisController_Post_Empresa_RetornarSucesso()
+        {
+            var empresaViewModel = new SaveEmpresaViewModel();
+            var saveEmpresaCommand = CommandFactory.GenerateValidSaveEmpresaCommand();
+            _mockMapper.Setup(m => m.Map<SaveEmpresaCommand>(empresaViewModel)).Returns(saveEmpresaCommand);
+            _mockNotification.Setup(m => m.GetNotifications()).Returns(new List<DomainNotification>());
+
+            Assert.IsType<OkObjectResult>(_gruposEmpresariaisController.Post(empresaViewModel));
+            _mockMediator.Verify(m => m.SendCommand(saveEmpresaCommand), Times.Once);
+        }
+
+        [Fact]
+        public void GruposEmpresariaisController_Post_Empresa_RetornarErrosModelState()
+        {
+            var notificationList = new List<DomainNotification> { new DomainNotification("Error", "Model error") };
+            _mockNotification.Setup(m => m.GetNotifications()).Returns(notificationList);
+            _mockNotification.Setup(m => m.HasNotifications()).Returns(true);
+            _gruposEmpresariaisController.ModelState.AddModelError("Error", "Model error");
+
+            Assert.IsType<BadRequestObjectResult>(_gruposEmpresariaisController.Post(new SaveEmpresaViewModel()));
+            _mockMediator.Verify(m => m.SendCommand(It.IsAny<SaveEmpresaCommand>()), Times.Never);
+        }
+
+        [Fact]
+        public void GruposEmpresariaisController_Post_Empresa_RetornarErrosDominio()
+        {
+            var empresaViewModel = new SaveEmpresaViewModel();
+            var saveEmpresaCommand = CommandFactory.GenerateInvalidSaveEmpresaCommand();
+            var notificationList = new List<DomainNotification> { new DomainNotification("Error", "Domain error") };
+            _mockMapper.Setup(m => m.Map<SaveEmpresaCommand>(empresaViewModel)).Returns(saveEmpresaCommand);
+            _mockNotification.Setup(m => m.GetNotifications()).Returns(notificationList);
+            _mockNotification.Setup(m => m.HasNotifications()).Returns(true);
+
+            Assert.IsType<BadRequestObjectResult>(_gruposEmpresariaisController.Post(empresaViewModel));
+            _mockMediator.Verify(m => m.SendCommand(saveEmpresaCommand), Times.Once);
+        }
+
+        [Fact]
+        public void GruposEmpresariaisController_Put_Empresa_RetornarSucesso()
+        {
+            var empresaViewModel = new UpdateEmpresaViewModel();
+            var updateEmpresaCommand = CommandFactory.GenerateValidUpdateEmpresaCommand();
+            _mockMapper.Setup(m => m.Map<UpdateEmpresaCommand>(empresaViewModel)).Returns(updateEmpresaCommand);
+            _mockNotification.Setup(m => m.GetNotifications()).Returns(new List<DomainNotification>());
+
+            Assert.IsType<OkObjectResult>(_gruposEmpresariaisController.Put(empresaViewModel));
+            _mockMediator.Verify(m => m.SendCommand(updateEmpresaCommand), Times.Once);
+        }
+
+        [Fact]
+        public void GruposEmpresariaisController_Put_Empresa_RetornarErrosModelState()
+        {
+            var notificationList = new List<DomainNotification> { new DomainNotification("Error", "Model error") };
+            _mockNotification.Setup(m => m.GetNotifications()).Returns(notificationList);
+            _mockNotification.Setup(m => m.HasNotifications()).Returns(true);
+            _gruposEmpresariaisController.ModelState.AddModelError("Error", "Model error");
+
+            Assert.IsType<BadRequestObjectResult>(_gruposEmpresariaisController.Put(new UpdateEmpresaViewModel()));
+            _mockMediator.Verify(m => m.SendCommand(It.IsAny<UpdateEmpresaCommand>()), Times.Never);
+        }
+
+        [Fact]
+        public void GruposEmpresariaisController_Put_Empresa_RetornarErrosDominio()
+        {
+            var empresaViewModel = new UpdateEmpresaViewModel();
+            var updateEmpresaCommand = CommandFactory.GenerateInvalidUpdateEmpresaCommand();
+            var notificationList = new List<DomainNotification> { new DomainNotification("Error", "Domain error") };
+            _mockMapper.Setup(m => m.Map<UpdateEmpresaCommand>(empresaViewModel)).Returns(updateEmpresaCommand);
+            _mockNotification.Setup(m => m.GetNotifications()).Returns(notificationList);
+            _mockNotification.Setup(m => m.HasNotifications()).Returns(true);
+
+            Assert.IsType<BadRequestObjectResult>(_gruposEmpresariaisController.Put(empresaViewModel));
+            _mockMediator.Verify(m => m.SendCommand(updateEmpresaCommand), Times.Once);
+        }
+
+        [Fact]
+        public void GruposEmpresariaisController_Delete_Empresa_RetornarSucesso()
+        {
+            var empresaViewModel = new DeleteEmpresaViewModel() { Id = Guid.NewGuid(), UsuarioId = Guid.NewGuid() };
+            var deleteEmpresaCommand = CommandFactory.GenerateValidDeleteEmpresaCommand();
+            _mockMapper.Setup(m => m.Map<DeleteEmpresaCommand>(empresaViewModel)).Returns(deleteEmpresaCommand);
+            _mockNotification.Setup(m => m.GetNotifications()).Returns(new List<DomainNotification>());
+
+            Assert.IsType<OkObjectResult>(_gruposEmpresariaisController.DeleteEmpresa(empresaViewModel.Id));
+        }
+
+        [Fact]
+        public void GruposEmpresariaisController_Delete_Empresa_RetornarErrosModelState()
+        {
+            var notificationList = new List<DomainNotification> { new DomainNotification("Error", "Model error") };
+            _mockNotification.Setup(m => m.GetNotifications()).Returns(notificationList);
+            _mockNotification.Setup(m => m.HasNotifications()).Returns(true);
+            _gruposEmpresariaisController.ModelState.AddModelError("Error", "Model error");
+
+            Assert.IsType<BadRequestObjectResult>(_gruposEmpresariaisController.DeleteEmpresa(Guid.NewGuid()));
+        }
+
+        [Fact]
+        public void GruposEmpresariaisController_Delete_Empresa_RetornarErrosDominio()
+        {
+            var empresaViewModel = new DeleteEmpresaViewModel();
+            var deleteEmpresaCommand = CommandFactory.GenerateInvalidDeleteEmpresaCommand();
+            var notificationList = new List<DomainNotification> { new DomainNotification("Error", "Domain error") };
+            _mockMapper.Setup(m => m.Map<DeleteEmpresaCommand>(empresaViewModel)).Returns(deleteEmpresaCommand);
+            _mockNotification.Setup(m => m.GetNotifications()).Returns(notificationList);
+            _mockNotification.Setup(m => m.HasNotifications()).Returns(true);
+
+            Assert.IsType<BadRequestObjectResult>(_gruposEmpresariaisController.DeleteEmpresa(Guid.NewGuid()));
+        }
+
+        [Fact]
+        public void GruposEmpresariaisController_GetAll_Empresas_RetornarListaVazia()
+        {
+            var config = new MapperConfiguration(configuration => configuration.AddProfile(new DomainToViewModelMappingProfile()));
+            var gruposEmpresariaisController = new GruposEmpresariaisController(_mockNotification.Object, _mockUser.Object, _mockMediator.Object, _mockGruposEmpresariaisRepository.Object, config.CreateMapper());
+            _mockGruposEmpresariaisRepository.Setup(m => m.GetAllEmpresas()).Returns(new List<Empresa>());
+            Assert.Equal(new List<EmpresaViewModel>(), gruposEmpresariaisController.GetAllEmpresas());
+        }
+
+        [Fact]
+        public void GruposEmpresariaisController_GetAll_Empresas_RetornarSucesso()
+        {
+            DateTime dateTime = DateTime.Now;
+            GrupoEmpresarial grupoEmpresarial = GrupoEmpresarial.GrupoEmpresarialFactory.NewGrupoEmpresarial(Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde82a"), "GE1", "GE1", dateTime, dateTime, Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde81a"));
+            Usuario usuario = Usuario.UsuarioFactory.NewUsuario(Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde81a"), "Foo", "Ism", "foo@programming.com", dateTime, dateTime);
+            Empresa empresa1 = Empresa.EmpresaFactory.NewEmpresa(Guid.Parse("f51745d6-d84a-49e6-a9bd-3d712c138b95"), "GE1", "GE1", "GE1", "empresa@gmail.com", "empresa.com.br", false, dateTime, null, "observacao", dateTime, dateTime, "01234567891234", 1, Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde82a"), Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde81a"));
+            Empresa empresa2 = Empresa.EmpresaFactory.UpdateEmpresa(Guid.Parse("4131468b-adb9-4805-b1ea-1ae7d5e38cf4"), "GE1", "GE1", "GE1", "empresa@gmail.com", "empresa.com.br", false, dateTime, null, "observacao", dateTime, dateTime, "01234567891234", 1, Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde82a"), Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde81a"), false);
+            empresa1.AtribuirUsuario(usuario);
+            empresa1.AtribuirGrupoEmpresarial(grupoEmpresarial);
+            empresa2.AtribuirUsuario(usuario);
+            empresa2.AtribuirGrupoEmpresarial(grupoEmpresarial);
+
+            IEnumerable<Empresa> empresas = new List<Empresa> { empresa1, empresa2 };
+
+            UsuarioViewModel usuarioViewModel = new UsuarioViewModel { Id = Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde81a"), Nome = "Foo", Sobrenome = "Ism", Email = "foo@programming.com" };
+            GrupoEmpresarialViewModel grupoEmpresarialViewModel = new GrupoEmpresarialViewModel { Id = Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde82a"), Ativo = true, Codigo = "GE1", Descricao = "GE1", DataCadastro = dateTime, DataUltimaAtualizacao = dateTime, Usuario = usuarioViewModel};
+
+            IEnumerable<EmpresaViewModel> expectedValue = new List<EmpresaViewModel>
+            {
+                new EmpresaViewModel() { Id = Guid.Parse("f51745d6-d84a-49e6-a9bd-3d712c138b95"), Ativo = true, Codigo = "GE1", Descricao = "GE1", Email = "", Site = "", Bloqueada = false, DataRegistro = dateTime, Logotipo = null, Observacao = "observacao", Documento = "01234567891234", TipoIdentificacao = 1, DataCadastro = dateTime, DataUltimaAtualizacao = dateTime, GrupoEmpresarial = grupoEmpresarialViewModel, Usuario = usuarioViewModel },
+                new EmpresaViewModel() { Id = Guid.Parse("4131468b-adb9-4805-b1ea-1ae7d5e38cf4"), Ativo = false, Codigo = "GE2", Descricao = "GE2", Email = "", Site = "", Bloqueada = false, DataRegistro = dateTime, Logotipo = null, Observacao = "observacao", Documento = "01234567891234", TipoIdentificacao = 1, DataCadastro = dateTime, DataUltimaAtualizacao = dateTime, GrupoEmpresarial = grupoEmpresarialViewModel, Usuario = usuarioViewModel }
+            };
+
+            _mockGruposEmpresariaisRepository.Setup(m => m.GetAllEmpresas()).Returns(empresas);
+            IEnumerable<EmpresaViewModel> actualValue = _gruposEmpresariaisControllerRealMapper.GetAllEmpresas();
+            Assert.Equal(JsonConvert.SerializeObject(expectedValue), JsonConvert.SerializeObject(actualValue));
+        }
+
+        [Fact]
+        public void GruposEmpresariaisController_GetById_Empresa_RetornarNotFound()
+        {
+            _mockGruposEmpresariaisRepository.Setup(m => m.GetByEmpresaId(Guid.NewGuid())).Returns((Empresa)null);
+            Assert.Null(_gruposEmpresariaisControllerRealMapper.Get(Guid.NewGuid()));
+        }
+
+        //[Fact]
+        //public void GruposEmpresariaisController_GetById_Empresa_RetornarErrosDominio()
+        //{
+        //    DateTime dateTime = DateTime.Now;
+        //    Usuario usuario = Usuario.UsuarioFactory.NewUsuario(Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde81a"), "Foo", "Ism", "foo@programming.com", dateTime, dateTime);
+        //    Empresa empresa = Empresa.EmpresaFactory.UpdateEmpresa(Guid.Parse("4131468b-adb9-4805-b1ea-1ae7d5e38cf4"), "GE2", "GE2", null, dateTime, dateTime, Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde81a"), true);
+        //    empresa.AtribuirUsuario(usuario);
+
+        //    UsuarioViewModel usuarioViewModel = new UsuarioViewModel { Id = Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde81a"), Nome = "Foo", Sobrenome = "Ism", Email = "foo@programming.com" };
+        //    EmpresaViewModel expectedValue = new EmpresaViewModel() { Id = Guid.Parse("4131468b-adb9-4805-b1ea-1ae7d5e38cf4"), Ativo = true, Codigo = "GE2", Descricao = "GE2", EmpresaPai = null, DataCadastro = dateTime, DataUltimaAtualizacao = dateTime, Usuario = usuarioViewModel };
+
+        //    _mockGruposEmpresariaisRepository.Setup(m => m.GetByEmpresaId(Guid.Parse("4131468b-adb9-4805-b1ea-1ae7d5e38cf4"))).Returns(empresa);
+        //    EmpresaViewModel actualValue = _gruposEmpresariaisControllerRealMapper.GetEmpresa(Guid.Parse("4131468b-adb9-4805-b1ea-1ae7d5e38cf4"));
+
+        //    Assert.Equal(JsonConvert.SerializeObject(expectedValue), JsonConvert.SerializeObject(actualValue));
+        //}
+
+        [Fact]
+        public void GruposEmpresariaisController_Post_Estabelecimento_RetornarSucesso()
+        {
+            var estabelecimentoViewModel = new SaveEstabelecimentoViewModel();
+            var saveEstabelecimentoCommand = CommandFactory.GenerateValidSaveEstabelecimentoCommand();
+            _mockMapper.Setup(m => m.Map<SaveEstabelecimentoCommand>(estabelecimentoViewModel)).Returns(saveEstabelecimentoCommand);
+            _mockNotification.Setup(m => m.GetNotifications()).Returns(new List<DomainNotification>());
+
+            Assert.IsType<OkObjectResult>(_gruposEmpresariaisController.Post(estabelecimentoViewModel));
+            _mockMediator.Verify(m => m.SendCommand(saveEstabelecimentoCommand), Times.Once);
+        }
+
+        [Fact]
+        public void GruposEmpresariaisController_Post_Estabelecimento_RetornarErrosModelState()
+        {
+            var notificationList = new List<DomainNotification> { new DomainNotification("Error", "Model error") };
+            _mockNotification.Setup(m => m.GetNotifications()).Returns(notificationList);
+            _mockNotification.Setup(m => m.HasNotifications()).Returns(true);
+            _gruposEmpresariaisController.ModelState.AddModelError("Error", "Model error");
+
+            Assert.IsType<BadRequestObjectResult>(_gruposEmpresariaisController.Post(new SaveEstabelecimentoViewModel()));
+            _mockMediator.Verify(m => m.SendCommand(It.IsAny<SaveEstabelecimentoCommand>()), Times.Never);
+        }
+
+        [Fact]
+        public void GruposEmpresariaisController_Post_Estabelecimento_RetornarErrosDominio()
+        {
+            var estabelecimentoViewModel = new SaveEstabelecimentoViewModel();
+            var saveEstabelecimentoCommand = CommandFactory.GenerateInvalidSaveEstabelecimentoCommand();
+            var notificationList = new List<DomainNotification> { new DomainNotification("Error", "Domain error") };
+            _mockMapper.Setup(m => m.Map<SaveEstabelecimentoCommand>(estabelecimentoViewModel)).Returns(saveEstabelecimentoCommand);
+            _mockNotification.Setup(m => m.GetNotifications()).Returns(notificationList);
+            _mockNotification.Setup(m => m.HasNotifications()).Returns(true);
+
+            Assert.IsType<BadRequestObjectResult>(_gruposEmpresariaisController.Post(estabelecimentoViewModel));
+            _mockMediator.Verify(m => m.SendCommand(saveEstabelecimentoCommand), Times.Once);
+        }
+
+        [Fact]
+        public void GruposEmpresariaisController_Put_Estabelecimento_RetornarSucesso()
+        {
+            var estabelecimentoViewModel = new UpdateEstabelecimentoViewModel();
+            var updateEstabelecimentoCommand = CommandFactory.GenerateValidUpdateEstabelecimentoCommand();
+            _mockMapper.Setup(m => m.Map<UpdateEstabelecimentoCommand>(estabelecimentoViewModel)).Returns(updateEstabelecimentoCommand);
+            _mockNotification.Setup(m => m.GetNotifications()).Returns(new List<DomainNotification>());
+
+            Assert.IsType<OkObjectResult>(_gruposEmpresariaisController.Put(estabelecimentoViewModel));
+            _mockMediator.Verify(m => m.SendCommand(updateEstabelecimentoCommand), Times.Once);
+        }
+
+        [Fact]
+        public void GruposEmpresariaisController_Put_Estabelecimento_RetornarErrosModelState()
+        {
+            var notificationList = new List<DomainNotification> { new DomainNotification("Error", "Model error") };
+            _mockNotification.Setup(m => m.GetNotifications()).Returns(notificationList);
+            _mockNotification.Setup(m => m.HasNotifications()).Returns(true);
+            _gruposEmpresariaisController.ModelState.AddModelError("Error", "Model error");
+
+            Assert.IsType<BadRequestObjectResult>(_gruposEmpresariaisController.Put(new UpdateEstabelecimentoViewModel()));
+            _mockMediator.Verify(m => m.SendCommand(It.IsAny<UpdateEstabelecimentoCommand>()), Times.Never);
+        }
+
+        [Fact]
+        public void GruposEmpresariaisController_Put_Estabelecimento_RetornarErrosDominio()
+        {
+            var estabelecimentoViewModel = new UpdateEstabelecimentoViewModel();
+            var updateEstabelecimentoCommand = CommandFactory.GenerateInvalidUpdateEstabelecimentoCommand();
+            var notificationList = new List<DomainNotification> { new DomainNotification("Error", "Domain error") };
+            _mockMapper.Setup(m => m.Map<UpdateEstabelecimentoCommand>(estabelecimentoViewModel)).Returns(updateEstabelecimentoCommand);
+            _mockNotification.Setup(m => m.GetNotifications()).Returns(notificationList);
+            _mockNotification.Setup(m => m.HasNotifications()).Returns(true);
+
+            Assert.IsType<BadRequestObjectResult>(_gruposEmpresariaisController.Put(estabelecimentoViewModel));
+            _mockMediator.Verify(m => m.SendCommand(updateEstabelecimentoCommand), Times.Once);
+        }
+
+        [Fact]
+        public void GruposEmpresariaisController_Delete_Estabelecimento_RetornarSucesso()
+        {
+            var estabelecimentoViewModel = new DeleteEstabelecimentoViewModel() { Id = Guid.NewGuid(), UsuarioId = Guid.NewGuid() };
+            var deleteEstabelecimentoCommand = CommandFactory.GenerateValidDeleteEstabelecimentoCommand();
+            _mockMapper.Setup(m => m.Map<DeleteEstabelecimentoCommand>(estabelecimentoViewModel)).Returns(deleteEstabelecimentoCommand);
+            _mockNotification.Setup(m => m.GetNotifications()).Returns(new List<DomainNotification>());
+
+            Assert.IsType<OkObjectResult>(_gruposEmpresariaisController.DeleteEstabelecimento(estabelecimentoViewModel.Id));
+        }
+
+        [Fact]
+        public void GruposEmpresariaisController_Delete_Estabelecimento_RetornarErrosModelState()
+        {
+            var notificationList = new List<DomainNotification> { new DomainNotification("Error", "Model error") };
+            _mockNotification.Setup(m => m.GetNotifications()).Returns(notificationList);
+            _mockNotification.Setup(m => m.HasNotifications()).Returns(true);
+            _gruposEmpresariaisController.ModelState.AddModelError("Error", "Model error");
+
+            Assert.IsType<BadRequestObjectResult>(_gruposEmpresariaisController.DeleteEstabelecimento(Guid.NewGuid()));
+        }
+
+        [Fact]
+        public void GruposEmpresariaisController_Delete_Estabelecimento_RetornarErrosDominio()
+        {
+            var estabelecimentoViewModel = new DeleteEstabelecimentoViewModel();
+            var deleteEstabelecimentoCommand = CommandFactory.GenerateInvalidDeleteEstabelecimentoCommand();
+            var notificationList = new List<DomainNotification> { new DomainNotification("Error", "Domain error") };
+            _mockMapper.Setup(m => m.Map<DeleteEstabelecimentoCommand>(estabelecimentoViewModel)).Returns(deleteEstabelecimentoCommand);
+            _mockNotification.Setup(m => m.GetNotifications()).Returns(notificationList);
+            _mockNotification.Setup(m => m.HasNotifications()).Returns(true);
+
+            Assert.IsType<BadRequestObjectResult>(_gruposEmpresariaisController.DeleteEstabelecimento(Guid.NewGuid()));
+        }
+
+        [Fact]
+        public void GruposEmpresariaisController_GetAll_Estabelecimentos_RetornarListaVazia()
+        {
+            var config = new MapperConfiguration(configuration => configuration.AddProfile(new DomainToViewModelMappingProfile()));
+            var gruposEmpresariaisController = new GruposEmpresariaisController(_mockNotification.Object, _mockUser.Object, _mockMediator.Object, _mockGruposEmpresariaisRepository.Object, config.CreateMapper());
+            _mockGruposEmpresariaisRepository.Setup(m => m.GetAllEstabelecimentos()).Returns(new List<Estabelecimento>());
+            Assert.Equal(new List<EstabelecimentoViewModel>(), gruposEmpresariaisController.GetAllEstabelecimentos());
+        }
+
+        //[Fact]
+        //public void GruposEmpresariaisController_GetAll_Estabelecimentos_RetornarSucesso()
+        //{
+        //    DateTime dateTime = DateTime.Now;
+        //    Usuario usuario = Usuario.UsuarioFactory.NewUsuario(Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde81a"), "Foo", "Ism", "foo@programming.com", dateTime, dateTime);
+        //    Estabelecimento estabelecimento1 = Estabelecimento.EstabelecimentoFactory.NewEstabelecimento(Guid.Parse("f51745d6-d84a-49e6-a9bd-3d712c138b95"), "GE1", "GE1", null, dateTime, dateTime, Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde81a"));
+        //    Estabelecimento estabelecimento2 = Estabelecimento.EstabelecimentoFactory.UpdateEstabelecimento(Guid.Parse("4131468b-adb9-4805-b1ea-1ae7d5e38cf4"), "GE2", "GE2", null, dateTime, dateTime, Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde81a"), false);
+        //    estabelecimento1.AtribuirUsuario(usuario);
+        //    estabelecimento2.AtribuirUsuario(usuario);
+
+        //    IEnumerable<Estabelecimento> estabelecimentos = new List<Estabelecimento> { estabelecimento1, estabelecimento2 };
+
+        //    UsuarioViewModel usuarioViewModel = new UsuarioViewModel { Id = Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde81a"), Nome = "Foo", Sobrenome = "Ism", Email = "foo@programming.com" };
+
+        //    IEnumerable<EstabelecimentoViewModel> expectedValue = new List<EstabelecimentoViewModel>
+        //    {
+        //        new EstabelecimentoViewModel() { Id = Guid.Parse("f51745d6-d84a-49e6-a9bd-3d712c138b95"), Ativo = true, Codigo = "GE1", Descricao = "GE1", EstabelecimentoPai = null, DataCadastro = dateTime, DataUltimaAtualizacao = dateTime, Usuario = usuarioViewModel },
+        //        new EstabelecimentoViewModel() { Id = Guid.Parse("4131468b-adb9-4805-b1ea-1ae7d5e38cf4"), Ativo = false, Codigo = "GE2", Descricao = "GE2", EstabelecimentoPai = null, DataCadastro = dateTime, DataUltimaAtualizacao = dateTime, Usuario = usuarioViewModel }
+        //    };
+
+        //    _mockGruposEmpresariaisRepository.Setup(m => m.GetAllEstabelecimentos()).Returns(estabelecimentos);
+        //    IEnumerable<EstabelecimentoViewModel> actualValue = _gruposEmpresariaisControllerRealMapper.GetAllEstabelecimentos();
+        //    Assert.Equal(JsonConvert.SerializeObject(expectedValue), JsonConvert.SerializeObject(actualValue));
+        //}
+
+        [Fact]
+        public void GruposEmpresariaisController_GetById_Estabelecimento_RetornarNotFound()
+        {
+            _mockGruposEmpresariaisRepository.Setup(m => m.GetByEstabelecimentoId(Guid.NewGuid())).Returns((Estabelecimento)null);
+            Assert.Null(_gruposEmpresariaisControllerRealMapper.Get(Guid.NewGuid()));
+        }
+
+        //[Fact]
+        //public void GruposEmpresariaisController_GetById_Estabelecimento_RetornarErrosDominio()
+        //{
+        //    DateTime dateTime = DateTime.Now;
+        //    Usuario usuario = Usuario.UsuarioFactory.NewUsuario(Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde81a"), "Foo", "Ism", "foo@programming.com", dateTime, dateTime);
+        //    Estabelecimento estabelecimento = Estabelecimento.EstabelecimentoFactory.UpdateEstabelecimento(Guid.Parse("4131468b-adb9-4805-b1ea-1ae7d5e38cf4"), "GE2", "GE2", null, dateTime, dateTime, Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde81a"), true);
+        //    estabelecimento.AtribuirUsuario(usuario);
+
+        //    UsuarioViewModel usuarioViewModel = new UsuarioViewModel { Id = Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde81a"), Nome = "Foo", Sobrenome = "Ism", Email = "foo@programming.com" };
+        //    EstabelecimentoViewModel expectedValue = new EstabelecimentoViewModel() { Id = Guid.Parse("4131468b-adb9-4805-b1ea-1ae7d5e38cf4"), Ativo = true, Codigo = "GE2", Descricao = "GE2", EstabelecimentoPai = null, DataCadastro = dateTime, DataUltimaAtualizacao = dateTime, Usuario = usuarioViewModel };
+
+        //    _mockGruposEmpresariaisRepository.Setup(m => m.GetByEstabelecimentoId(Guid.Parse("4131468b-adb9-4805-b1ea-1ae7d5e38cf4"))).Returns(estabelecimento);
+        //    EstabelecimentoViewModel actualValue = _gruposEmpresariaisControllerRealMapper.GetEstabelecimento(Guid.Parse("4131468b-adb9-4805-b1ea-1ae7d5e38cf4"));
+
+        //    Assert.Equal(JsonConvert.SerializeObject(expectedValue), JsonConvert.SerializeObject(actualValue));
+        //}
     }
 }
