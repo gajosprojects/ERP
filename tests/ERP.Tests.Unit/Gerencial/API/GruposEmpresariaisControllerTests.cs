@@ -201,7 +201,7 @@ namespace ERP.Tests.Unit.Gerencial.API
         }
 
         [Fact]
-        public void GruposEmpresariaisController_GetById_GrupoEmpresarial_RetornarErrosDominio()
+        public void GruposEmpresariaisController_GetById_GrupoEmpresarial_RetornarSucesso()
         {
             DateTime dateTime = DateTime.Now;
             Usuario usuario = Usuario.UsuarioFactory.NewUsuario(Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde81a"), "Foo", "Ism", "foo@programming.com", dateTime, dateTime);
@@ -370,7 +370,7 @@ namespace ERP.Tests.Unit.Gerencial.API
         }
 
         [Fact]
-        public void GruposEmpresariaisController_GetById_Cnae_RetornarErrosDominio()
+        public void GruposEmpresariaisController_GetById_Cnae_RetornarSucesso()
         {
             DateTime dateTime = DateTime.Now;
             Usuario usuario = Usuario.UsuarioFactory.NewUsuario(Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde81a"), "Foo", "Ism", "foo@programming.com", dateTime, dateTime);
@@ -512,8 +512,9 @@ namespace ERP.Tests.Unit.Gerencial.API
             DateTime dateTime = DateTime.Now;
             GrupoEmpresarial grupoEmpresarial = GrupoEmpresarial.GrupoEmpresarialFactory.NewGrupoEmpresarial(Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde82a"), "GE1", "GE1", dateTime, dateTime, Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde81a"));
             Usuario usuario = Usuario.UsuarioFactory.NewUsuario(Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde81a"), "Foo", "Ism", "foo@programming.com", dateTime, dateTime);
-            Empresa empresa1 = Empresa.EmpresaFactory.NewEmpresa(Guid.Parse("f51745d6-d84a-49e6-a9bd-3d712c138b95"), "GE1", "GE1", "GE1", "empresa@gmail.com", "empresa.com.br", false, dateTime, null, "observacao", dateTime, dateTime, "01234567891234", 1, Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde82a"), Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde81a"));
-            Empresa empresa2 = Empresa.EmpresaFactory.UpdateEmpresa(Guid.Parse("4131468b-adb9-4805-b1ea-1ae7d5e38cf4"), "GE1", "GE1", "GE1", "empresa@gmail.com", "empresa.com.br", false, dateTime, null, "observacao", dateTime, dateTime, "01234567891234", 1, Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde82a"), Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde81a"), false);
+            Empresa empresa1 = Empresa.EmpresaFactory.NewEmpresa(Guid.Parse("f51745d6-d84a-49e6-a9bd-3d712c138b95"), "Empresa1", "Empresa1", "Empresa1", "empresa@gmail.com", "empresa.com.br", false, dateTime, new byte[0], "observacao", dateTime, dateTime, "01234567891234", 1, Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde82a"), Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde81a"));
+            Empresa empresa2 = Empresa.EmpresaFactory.UpdateEmpresa(Guid.Parse("4131468b-adb9-4805-b1ea-1ae7d5e38cf4"), "Empresa2", "Empresa2", "Empresa2", "empresa@gmail.com", "empresa.com.br", false, dateTime, new byte[0], "observacao", dateTime, dateTime, "01234567891234", 1, Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde82a"), Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde81a"), false);
+            grupoEmpresarial.AtribuirUsuario(usuario);
             empresa1.AtribuirUsuario(usuario);
             empresa1.AtribuirGrupoEmpresarial(grupoEmpresarial);
             empresa2.AtribuirUsuario(usuario);
@@ -526,8 +527,8 @@ namespace ERP.Tests.Unit.Gerencial.API
 
             IEnumerable<EmpresaViewModel> expectedValue = new List<EmpresaViewModel>
             {
-                new EmpresaViewModel() { Id = Guid.Parse("f51745d6-d84a-49e6-a9bd-3d712c138b95"), Ativo = true, Codigo = "GE1", Descricao = "GE1", Email = "", Site = "", Bloqueada = false, DataRegistro = dateTime, Logotipo = null, Observacao = "observacao", Documento = "01234567891234", TipoIdentificacao = 1, DataCadastro = dateTime, DataUltimaAtualizacao = dateTime, GrupoEmpresarial = grupoEmpresarialViewModel, Usuario = usuarioViewModel },
-                new EmpresaViewModel() { Id = Guid.Parse("4131468b-adb9-4805-b1ea-1ae7d5e38cf4"), Ativo = false, Codigo = "GE2", Descricao = "GE2", Email = "", Site = "", Bloqueada = false, DataRegistro = dateTime, Logotipo = null, Observacao = "observacao", Documento = "01234567891234", TipoIdentificacao = 1, DataCadastro = dateTime, DataUltimaAtualizacao = dateTime, GrupoEmpresarial = grupoEmpresarialViewModel, Usuario = usuarioViewModel }
+                new EmpresaViewModel() { Id = Guid.Parse("f51745d6-d84a-49e6-a9bd-3d712c138b95"), Ativo = true, Codigo = "Empresa1", Descricao = "Empresa1", NomeFantasia = "Empresa1", Email = "empresa@gmail.com", Site = "empresa.com.br", Bloqueada = false, DataRegistro = dateTime, Logotipo = new byte[0], Observacao = "observacao", Documento = "01234567891234", TipoIdentificacao = 1, DataCadastro = dateTime, DataUltimaAtualizacao = dateTime, GrupoEmpresarial = grupoEmpresarialViewModel, Usuario = usuarioViewModel },
+                new EmpresaViewModel() { Id = Guid.Parse("4131468b-adb9-4805-b1ea-1ae7d5e38cf4"), Ativo = false, Codigo = "Empresa2", Descricao = "Empresa2", NomeFantasia = "Empresa2", Email = "empresa@gmail.com", Site = "empresa.com.br", Bloqueada = false, DataRegistro = dateTime, Logotipo = new byte[0], Observacao = "observacao", Documento = "01234567891234", TipoIdentificacao = 1, DataCadastro = dateTime, DataUltimaAtualizacao = dateTime, GrupoEmpresarial = grupoEmpresarialViewModel, Usuario = usuarioViewModel }
             };
 
             _mockGruposEmpresariaisRepository.Setup(m => m.GetAllEmpresas()).Returns(empresas);
@@ -542,22 +543,25 @@ namespace ERP.Tests.Unit.Gerencial.API
             Assert.Null(_gruposEmpresariaisControllerRealMapper.Get(Guid.NewGuid()));
         }
 
-        //[Fact]
-        //public void GruposEmpresariaisController_GetById_Empresa_RetornarErrosDominio()
-        //{
-        //    DateTime dateTime = DateTime.Now;
-        //    Usuario usuario = Usuario.UsuarioFactory.NewUsuario(Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde81a"), "Foo", "Ism", "foo@programming.com", dateTime, dateTime);
-        //    Empresa empresa = Empresa.EmpresaFactory.UpdateEmpresa(Guid.Parse("4131468b-adb9-4805-b1ea-1ae7d5e38cf4"), "GE2", "GE2", null, dateTime, dateTime, Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde81a"), true);
-        //    empresa.AtribuirUsuario(usuario);
+        [Fact]
+        public void GruposEmpresariaisController_GetById_Empresa_RetornarSucesso()
+        {
+            DateTime dateTime = DateTime.Now;
+            GrupoEmpresarial grupoEmpresarial = GrupoEmpresarial.GrupoEmpresarialFactory.NewGrupoEmpresarial(Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde82a"), "GE1", "GE1", dateTime, dateTime, Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde81a"));
+            Usuario usuario = Usuario.UsuarioFactory.NewUsuario(Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde81a"), "Foo", "Ism", "foo@programming.com", dateTime, dateTime);
+            Empresa empresa = Empresa.EmpresaFactory.UpdateEmpresa(Guid.Parse("4131468b-adb9-4805-b1ea-1ae7d5e38cf4"), "Empresa2", "Empresa2", "Empresa2", "empresa@gmail.com", "empresa.com.br", false, dateTime, new byte[0], "observacao", dateTime, dateTime, "01234567891234", 1, Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde82a"), Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde81a"), true);
+            grupoEmpresarial.AtribuirUsuario(usuario);
+            empresa.AtribuirUsuario(usuario);
+            empresa.AtribuirGrupoEmpresarial(grupoEmpresarial);
 
-        //    UsuarioViewModel usuarioViewModel = new UsuarioViewModel { Id = Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde81a"), Nome = "Foo", Sobrenome = "Ism", Email = "foo@programming.com" };
-        //    EmpresaViewModel expectedValue = new EmpresaViewModel() { Id = Guid.Parse("4131468b-adb9-4805-b1ea-1ae7d5e38cf4"), Ativo = true, Codigo = "GE2", Descricao = "GE2", EmpresaPai = null, DataCadastro = dateTime, DataUltimaAtualizacao = dateTime, Usuario = usuarioViewModel };
+            UsuarioViewModel usuarioViewModel = new UsuarioViewModel { Id = Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde81a"), Nome = "Foo", Sobrenome = "Ism", Email = "foo@programming.com" };
+            GrupoEmpresarialViewModel grupoEmpresarialViewModel = new GrupoEmpresarialViewModel { Id = Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde82a"), Ativo = true, Codigo = "GE1", Descricao = "GE1", DataCadastro = dateTime, DataUltimaAtualizacao = dateTime, Usuario = usuarioViewModel };
+            EmpresaViewModel expectedValue = new EmpresaViewModel { Id = Guid.Parse("4131468b-adb9-4805-b1ea-1ae7d5e38cf4"), Ativo = true, Codigo = "Empresa2", Descricao = "Empresa2", NomeFantasia = "Empresa2", Email = "empresa@gmail.com", Site = "empresa.com.br", Bloqueada = false, DataRegistro = dateTime, Logotipo = new byte[0], Observacao = "observacao", Documento = "01234567891234", TipoIdentificacao = 1, DataCadastro = dateTime, DataUltimaAtualizacao = dateTime, GrupoEmpresarial = grupoEmpresarialViewModel, Usuario = usuarioViewModel };
 
-        //    _mockGruposEmpresariaisRepository.Setup(m => m.GetByEmpresaId(Guid.Parse("4131468b-adb9-4805-b1ea-1ae7d5e38cf4"))).Returns(empresa);
-        //    EmpresaViewModel actualValue = _gruposEmpresariaisControllerRealMapper.GetEmpresa(Guid.Parse("4131468b-adb9-4805-b1ea-1ae7d5e38cf4"));
-
-        //    Assert.Equal(JsonConvert.SerializeObject(expectedValue), JsonConvert.SerializeObject(actualValue));
-        //}
+            _mockGruposEmpresariaisRepository.Setup(m => m.GetByEmpresaId(Guid.Parse("4131468b-adb9-4805-b1ea-1ae7d5e38cf4"))).Returns(empresa);
+            EmpresaViewModel actualValue = _gruposEmpresariaisControllerRealMapper.GetEmpresa(Guid.Parse("4131468b-adb9-4805-b1ea-1ae7d5e38cf4"));
+            Assert.Equal(JsonConvert.SerializeObject(expectedValue), JsonConvert.SerializeObject(actualValue));
+        }
 
         [Fact]
         public void GruposEmpresariaisController_Post_Estabelecimento_RetornarSucesso()
@@ -679,30 +683,44 @@ namespace ERP.Tests.Unit.Gerencial.API
             Assert.Equal(new List<EstabelecimentoViewModel>(), gruposEmpresariaisController.GetAllEstabelecimentos());
         }
 
-        //[Fact]
-        //public void GruposEmpresariaisController_GetAll_Estabelecimentos_RetornarSucesso()
-        //{
-        //    DateTime dateTime = DateTime.Now;
-        //    Usuario usuario = Usuario.UsuarioFactory.NewUsuario(Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde81a"), "Foo", "Ism", "foo@programming.com", dateTime, dateTime);
-        //    Estabelecimento estabelecimento1 = Estabelecimento.EstabelecimentoFactory.NewEstabelecimento(Guid.Parse("f51745d6-d84a-49e6-a9bd-3d712c138b95"), "GE1", "GE1", null, dateTime, dateTime, Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde81a"));
-        //    Estabelecimento estabelecimento2 = Estabelecimento.EstabelecimentoFactory.UpdateEstabelecimento(Guid.Parse("4131468b-adb9-4805-b1ea-1ae7d5e38cf4"), "GE2", "GE2", null, dateTime, dateTime, Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde81a"), false);
-        //    estabelecimento1.AtribuirUsuario(usuario);
-        //    estabelecimento2.AtribuirUsuario(usuario);
+        [Fact]
+        public void GruposEmpresariaisController_GetAll_Estabelecimentos_RetornarSucesso()
+        {
+            DateTime dateTime = DateTime.Now;
+            Cnae cnae = Cnae.CnaeFactory.NewCnae(Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde80a"), "Cnae1", "Cnae1", null, dateTime, dateTime, Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde81a"));
+            Empresa empresa = Empresa.EmpresaFactory.NewEmpresa(Guid.Parse("f51745d6-d84a-49e6-a9bd-3d712c138b95"), "Empresa1", "Empresa1", "Empresa1", "empresa@gmail.com", "empresa.com.br", false, dateTime, new byte[0], "observacao", dateTime, dateTime, "01234567891234", 1, Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde82a"), Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde81a"));
+            GrupoEmpresarial grupoEmpresarial = GrupoEmpresarial.GrupoEmpresarialFactory.NewGrupoEmpresarial(Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde82a"), "GE1", "GE1", dateTime, dateTime, Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde81a"));
+            Usuario usuario = Usuario.UsuarioFactory.NewUsuario(Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde81a"), "Foo", "Ism", "foo@programming.com", dateTime, dateTime);
+            Estabelecimento estabelecimento1 = Estabelecimento.EstabelecimentoFactory.NewEstabelecimento(Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde70a"), "Estabelecimento1", "Estabelecimento1", "Estabelecimento1", "01234567890123456789", "01234567890123456789", "estabelecimento@gmail.com", "estabelecimento.com.br", false, dateTime, new byte[0], true, "observacao", dateTime, dateTime, "01234567890123", 1, Guid.Parse("f51745d6-d84a-49e6-a9bd-3d712c138b95"), Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde80a"), Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde81a"));
+            Estabelecimento estabelecimento2 = Estabelecimento.EstabelecimentoFactory.UpdateEstabelecimento(Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde71a"), "Estabelecimento2", "Estabelecimento2", "Estabelecimento2", "01234567890123456789", "01234567890123456789", "estabelecimento@gmail.com", "estabelecimento.com.br", false, dateTime, new byte[0], true, "observacao", dateTime, dateTime, "01234567890123", 1, Guid.Parse("f51745d6-d84a-49e6-a9bd-3d712c138b95"), Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde80a"), Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde81a"), false);
+            grupoEmpresarial.AtribuirUsuario(usuario);
+            cnae.AtribuirUsuario(usuario);
+            empresa.AtribuirGrupoEmpresarial(grupoEmpresarial);
+            empresa.AtribuirUsuario(usuario);
+            estabelecimento1.AtribuirUsuario(usuario);
+            estabelecimento1.AtribuirCnae(cnae);
+            estabelecimento1.AtribuirEmpresa(empresa);
+            estabelecimento2.AtribuirUsuario(usuario);
+            estabelecimento2.AtribuirCnae(cnae);
+            estabelecimento2.AtribuirEmpresa(empresa);
 
-        //    IEnumerable<Estabelecimento> estabelecimentos = new List<Estabelecimento> { estabelecimento1, estabelecimento2 };
+            IEnumerable<Estabelecimento> estabelecimentos = new List<Estabelecimento> { estabelecimento1, estabelecimento2 };
 
-        //    UsuarioViewModel usuarioViewModel = new UsuarioViewModel { Id = Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde81a"), Nome = "Foo", Sobrenome = "Ism", Email = "foo@programming.com" };
+            UsuarioViewModel usuarioViewModel = new UsuarioViewModel { Id = Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde81a"), Nome = "Foo", Sobrenome = "Ism", Email = "foo@programming.com" };
+            GrupoEmpresarialViewModel grupoEmpresarialViewModel = new GrupoEmpresarialViewModel { Id = Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde82a"), Ativo = true, Codigo = "GE1", Descricao = "GE1", DataCadastro = dateTime, DataUltimaAtualizacao = dateTime, Usuario = usuarioViewModel };
+            CnaeViewModel cnaeViewModel = new CnaeViewModel() { Id = Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde80a"), Ativo = true, Codigo = "Cnae1", Descricao = "Cnae1", CnaePai = null, DataCadastro = dateTime, DataUltimaAtualizacao = dateTime, Usuario = usuarioViewModel };
+            EmpresaViewModel empresaViewModel = new EmpresaViewModel() { Id = Guid.Parse("f51745d6-d84a-49e6-a9bd-3d712c138b95"), Ativo = true, Codigo = "Empresa1", Descricao = "Empresa1", NomeFantasia = "Empresa1", Email = "empresa@gmail.com", Site = "empresa.com.br", Bloqueada = false, DataRegistro = dateTime, Logotipo = new byte[0], Observacao = "observacao", Documento = "01234567891234", TipoIdentificacao = 1, DataCadastro = dateTime, DataUltimaAtualizacao = dateTime, GrupoEmpresarial = grupoEmpresarialViewModel, Usuario = usuarioViewModel };
 
-        //    IEnumerable<EstabelecimentoViewModel> expectedValue = new List<EstabelecimentoViewModel>
-        //    {
-        //        new EstabelecimentoViewModel() { Id = Guid.Parse("f51745d6-d84a-49e6-a9bd-3d712c138b95"), Ativo = true, Codigo = "GE1", Descricao = "GE1", EstabelecimentoPai = null, DataCadastro = dateTime, DataUltimaAtualizacao = dateTime, Usuario = usuarioViewModel },
-        //        new EstabelecimentoViewModel() { Id = Guid.Parse("4131468b-adb9-4805-b1ea-1ae7d5e38cf4"), Ativo = false, Codigo = "GE2", Descricao = "GE2", EstabelecimentoPai = null, DataCadastro = dateTime, DataUltimaAtualizacao = dateTime, Usuario = usuarioViewModel }
-        //    };
+            IEnumerable<EstabelecimentoViewModel> expectedValue = new List<EstabelecimentoViewModel>
+            {
+                new EstabelecimentoViewModel() { Id = Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde70a"), Ativo = true, Codigo = "Estabelecimento1", Descricao = "Estabelecimento1", NomeFantasia = "Estabelecimento1", DataCadastro = dateTime, DataUltimaAtualizacao = dateTime, Usuario = usuarioViewModel, Cnae = cnaeViewModel, Empresa = empresaViewModel, TipoIdentificacao = 1, DataRegistro = dateTime, Documento = "01234567890123", Observacao = "observacao", Site = "estabelecimento.com.br", Email = "estabelecimento@gmail.com", Logotipo = new byte[0], InscricaoMunicipal = "01234567890123456789", InscricaoEstadual = "01234567890123456789", Matriz = true, Bloqueado = false },
+                new EstabelecimentoViewModel() { Id = Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde71a"), Ativo = false, Codigo = "Estabelecimento2", Descricao = "Estabelecimento2", NomeFantasia = "Estabelecimento2", DataCadastro = dateTime, DataUltimaAtualizacao = dateTime, Usuario = usuarioViewModel, Cnae = cnaeViewModel, Empresa = empresaViewModel, TipoIdentificacao = 1, DataRegistro = dateTime, Documento = "01234567890123", Observacao = "observacao", Site = "estabelecimento.com.br", Email = "estabelecimento@gmail.com", Logotipo = new byte[0], InscricaoMunicipal = "01234567890123456789", InscricaoEstadual = "01234567890123456789", Matriz = true, Bloqueado = false }
+            };
 
-        //    _mockGruposEmpresariaisRepository.Setup(m => m.GetAllEstabelecimentos()).Returns(estabelecimentos);
-        //    IEnumerable<EstabelecimentoViewModel> actualValue = _gruposEmpresariaisControllerRealMapper.GetAllEstabelecimentos();
-        //    Assert.Equal(JsonConvert.SerializeObject(expectedValue), JsonConvert.SerializeObject(actualValue));
-        //}
+            _mockGruposEmpresariaisRepository.Setup(m => m.GetAllEstabelecimentos()).Returns(estabelecimentos);
+            IEnumerable<EstabelecimentoViewModel> actualValue = _gruposEmpresariaisControllerRealMapper.GetAllEstabelecimentos();
+            Assert.Equal(JsonConvert.SerializeObject(expectedValue), JsonConvert.SerializeObject(actualValue));
+        }
 
         [Fact]
         public void GruposEmpresariaisController_GetById_Estabelecimento_RetornarNotFound()
@@ -711,21 +729,33 @@ namespace ERP.Tests.Unit.Gerencial.API
             Assert.Null(_gruposEmpresariaisControllerRealMapper.Get(Guid.NewGuid()));
         }
 
-        //[Fact]
-        //public void GruposEmpresariaisController_GetById_Estabelecimento_RetornarErrosDominio()
-        //{
-        //    DateTime dateTime = DateTime.Now;
-        //    Usuario usuario = Usuario.UsuarioFactory.NewUsuario(Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde81a"), "Foo", "Ism", "foo@programming.com", dateTime, dateTime);
-        //    Estabelecimento estabelecimento = Estabelecimento.EstabelecimentoFactory.UpdateEstabelecimento(Guid.Parse("4131468b-adb9-4805-b1ea-1ae7d5e38cf4"), "GE2", "GE2", null, dateTime, dateTime, Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde81a"), true);
-        //    estabelecimento.AtribuirUsuario(usuario);
+        [Fact]
+        public void GruposEmpresariaisController_GetById_Estabelecimento_RetornarSucesso()
+        {
+            DateTime dateTime = DateTime.Now;
+            Cnae cnae = Cnae.CnaeFactory.NewCnae(Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde80a"), "Cnae1", "Cnae1", null, dateTime, dateTime, Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde81a"));
+            Empresa empresa = Empresa.EmpresaFactory.NewEmpresa(Guid.Parse("f51745d6-d84a-49e6-a9bd-3d712c138b95"), "Empresa1", "Empresa1", "Empresa1", "empresa@gmail.com", "empresa.com.br", false, dateTime, new byte[0], "observacao", dateTime, dateTime, "01234567891234", 1, Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde82a"), Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde81a"));
+            GrupoEmpresarial grupoEmpresarial = GrupoEmpresarial.GrupoEmpresarialFactory.NewGrupoEmpresarial(Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde82a"), "GE1", "GE1", dateTime, dateTime, Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde81a"));
+            Usuario usuario = Usuario.UsuarioFactory.NewUsuario(Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde81a"), "Foo", "Ism", "foo@programming.com", dateTime, dateTime);
+            Estabelecimento estabelecimento = Estabelecimento.EstabelecimentoFactory.UpdateEstabelecimento(Guid.Parse("4131468b-adb9-4805-b1ea-1ae7d5e38cf4"), "Estabelecimento1", "Estabelecimento1", "Estabelecimento1", "01234567890123456789", "01234567890123456789", "estabelecimento@gmail.com", "estabelecimento.com.br", false, dateTime, new byte[0], true, "observacao", dateTime, dateTime, "01234567890123", 1, Guid.Parse("f51745d6-d84a-49e6-a9bd-3d712c138b95"), Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde80a"), Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde81a"), true);
+            grupoEmpresarial.AtribuirUsuario(usuario);
+            cnae.AtribuirUsuario(usuario);
+            empresa.AtribuirGrupoEmpresarial(grupoEmpresarial);
+            empresa.AtribuirUsuario(usuario);
+            estabelecimento.AtribuirUsuario(usuario);
+            estabelecimento.AtribuirCnae(cnae);
+            estabelecimento.AtribuirEmpresa(empresa);
 
-        //    UsuarioViewModel usuarioViewModel = new UsuarioViewModel { Id = Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde81a"), Nome = "Foo", Sobrenome = "Ism", Email = "foo@programming.com" };
-        //    EstabelecimentoViewModel expectedValue = new EstabelecimentoViewModel() { Id = Guid.Parse("4131468b-adb9-4805-b1ea-1ae7d5e38cf4"), Ativo = true, Codigo = "GE2", Descricao = "GE2", EstabelecimentoPai = null, DataCadastro = dateTime, DataUltimaAtualizacao = dateTime, Usuario = usuarioViewModel };
+            UsuarioViewModel usuarioViewModel = new UsuarioViewModel { Id = Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde81a"), Nome = "Foo", Sobrenome = "Ism", Email = "foo@programming.com" };
+            GrupoEmpresarialViewModel grupoEmpresarialViewModel = new GrupoEmpresarialViewModel { Id = Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde82a"), Ativo = true, Codigo = "GE1", Descricao = "GE1", DataCadastro = dateTime, DataUltimaAtualizacao = dateTime, Usuario = usuarioViewModel };
+            CnaeViewModel cnaeViewModel = new CnaeViewModel() { Id = Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde80a"), Ativo = true, Codigo = "Cnae1", Descricao = "Cnae1", CnaePai = null, DataCadastro = dateTime, DataUltimaAtualizacao = dateTime, Usuario = usuarioViewModel };
+            EmpresaViewModel empresaViewModel = new EmpresaViewModel() { Id = Guid.Parse("f51745d6-d84a-49e6-a9bd-3d712c138b95"), Ativo = true, Codigo = "Empresa1", Descricao = "Empresa1", NomeFantasia = "Empresa1", Email = "empresa@gmail.com", Site = "empresa.com.br", Bloqueada = false, DataRegistro = dateTime, Logotipo = new byte[0], Observacao = "observacao", Documento = "01234567891234", TipoIdentificacao = 1, DataCadastro = dateTime, DataUltimaAtualizacao = dateTime, GrupoEmpresarial = grupoEmpresarialViewModel, Usuario = usuarioViewModel };
+            EstabelecimentoViewModel expectedValue = new EstabelecimentoViewModel() { Id = Guid.Parse("4131468b-adb9-4805-b1ea-1ae7d5e38cf4"), Ativo = true, Codigo = "Estabelecimento1", Descricao = "Estabelecimento1", NomeFantasia = "Estabelecimento1", DataCadastro = dateTime, DataUltimaAtualizacao = dateTime, Usuario = usuarioViewModel, Cnae = cnaeViewModel, Empresa = empresaViewModel, TipoIdentificacao = 1, DataRegistro = dateTime, Documento = "01234567890123", Observacao = "observacao", Site = "estabelecimento.com.br", Email = "estabelecimento@gmail.com", Logotipo = new byte[0], InscricaoMunicipal = "01234567890123456789", InscricaoEstadual = "01234567890123456789", Matriz = true, Bloqueado = false };
 
-        //    _mockGruposEmpresariaisRepository.Setup(m => m.GetByEstabelecimentoId(Guid.Parse("4131468b-adb9-4805-b1ea-1ae7d5e38cf4"))).Returns(estabelecimento);
-        //    EstabelecimentoViewModel actualValue = _gruposEmpresariaisControllerRealMapper.GetEstabelecimento(Guid.Parse("4131468b-adb9-4805-b1ea-1ae7d5e38cf4"));
+            _mockGruposEmpresariaisRepository.Setup(m => m.GetByEstabelecimentoId(Guid.Parse("4131468b-adb9-4805-b1ea-1ae7d5e38cf4"))).Returns(estabelecimento);
+            EstabelecimentoViewModel actualValue = _gruposEmpresariaisControllerRealMapper.GetEstabelecimento(Guid.Parse("4131468b-adb9-4805-b1ea-1ae7d5e38cf4"));
 
-        //    Assert.Equal(JsonConvert.SerializeObject(expectedValue), JsonConvert.SerializeObject(actualValue));
-        //}
+            Assert.Equal(JsonConvert.SerializeObject(expectedValue), JsonConvert.SerializeObject(actualValue));
+        }
     }
 }
