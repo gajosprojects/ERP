@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ERP.Infra.Data.Migrations.GruposEmpresariais
 {
     [DbContext(typeof(GruposEmpresariaisContext))]
-    [Migration("20190707034310_Initial")]
+    [Migration("20190802164624_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -32,13 +32,13 @@ namespace ERP.Infra.Data.Migrations.GruposEmpresariais
                         .HasColumnName("ativo")
                         .HasDefaultValue(true);
 
-                    b.Property<Guid>("CnaePai")
+                    b.Property<Guid?>("CnaePai")
                         .HasColumnName("cnae_pai");
 
                     b.Property<string>("Codigo")
                         .IsRequired()
                         .HasColumnName("codigo")
-                        .HasMaxLength(7);
+                        .HasMaxLength(30);
 
                     b.Property<DateTime>("DataCadastro")
                         .HasColumnName("data_cadastro");
@@ -57,7 +57,9 @@ namespace ERP.Infra.Data.Migrations.GruposEmpresariais
                     b.HasKey("Id")
                         .HasName("pk_cnae_id");
 
-                    b.HasAlternateKey("Codigo");
+                    b.HasIndex("Codigo")
+                        .IsUnique()
+                        .HasName("uk_cnae_codigo");
 
                     b.HasIndex("UsuarioId");
 
@@ -137,7 +139,9 @@ namespace ERP.Infra.Data.Migrations.GruposEmpresariais
                     b.HasKey("Id")
                         .HasName("pk_empresa_id");
 
-                    b.HasAlternateKey("Codigo");
+                    b.HasIndex("Codigo")
+                        .IsUnique()
+                        .HasName("uk_empresa_codigo");
 
                     b.HasIndex("GrupoEmpresarialId");
 
@@ -235,9 +239,11 @@ namespace ERP.Infra.Data.Migrations.GruposEmpresariais
                     b.HasKey("Id")
                         .HasName("pk_estabelecimento_id");
 
-                    b.HasAlternateKey("Codigo");
-
                     b.HasIndex("CnaeId");
+
+                    b.HasIndex("Codigo")
+                        .IsUnique()
+                        .HasName("uk_estabelecimento_codigo");
 
                     b.HasIndex("EmpresaId");
 

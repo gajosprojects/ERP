@@ -6,10 +6,10 @@ namespace ERP.Services.API.ViewModels.Gerencial.GrupoEmpresarial
 {
     public class DeleteGrupoEmpresarialViewModel
     {
-        [Required(ErrorMessage = "Campo obrigatório")]
+        [Required(ErrorMessage = "Id: campo obrigatório")]
         public Guid Id { get; set; }
 
-        [NotEmptyGuid(ErrorMessage = "Campo obrigatório")]
+        [NotEmptyGuid(ErrorMessage = "UsuarioId: campo obrigatório")]
         public Guid UsuarioId { get; set; }
     }
 }

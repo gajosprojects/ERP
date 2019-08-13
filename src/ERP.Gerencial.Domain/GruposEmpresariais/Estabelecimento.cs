@@ -1,7 +1,7 @@
-using System;
 using ERP.Domain.Core.Models;
 using ERP.Gerencial.Domain.Usuarios;
 using FluentValidation;
+using System;
 
 namespace ERP.Gerencial.Domain.GruposEmpresariais
 {
@@ -32,63 +32,69 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais
         public override bool IsValid()
         {
             RuleFor(estabeleciamento => estabeleciamento.Codigo)
-                .NotEmpty().WithMessage("Informe o código")
-                .MinimumLength(1).WithMessage("Tamanho mínimo requerido de 1 caracter")
-                .MaximumLength(30).WithMessage("Limite máximo de 30 caracteres atingido");
+                .NotEmpty().WithMessage("Código: campo obrigatório")
+                .MinimumLength(1).WithMessage("Código: tamanho mínimo requerido de 1 caracter")
+                .MaximumLength(30).WithMessage("Código: limite máximo de 30 caracteres atingido");
             
             RuleFor(estabeleciamento => estabeleciamento.Descricao)
-                .NotEmpty().WithMessage("Informe a descrição")
-                .MinimumLength(1).WithMessage("Tamanho mínimo requerido de 1 caracter")
-                .MaximumLength(150).WithMessage("Limite máximo de 150 caracteres atingido");
+                .NotEmpty().WithMessage("Descrição: campo obrigatório")
+                .MinimumLength(1).WithMessage("Descrição: tamanho mínimo requerido de 1 caracter")
+                .MaximumLength(150).WithMessage("Descrição: limite máximo de 150 caracteres atingido");
 
             RuleFor(estabeleciamento => estabeleciamento.NomeFantasia)
-                .NotEmpty().WithMessage("Informe o nome fantasia")
-                .MinimumLength(1).WithMessage("Tamanho mínimo requerido de 1 caracter")
-                .MaximumLength(150).WithMessage("Limite máximo de 150 caracteres atingido");
+                .NotEmpty().WithMessage("Nome fantasia: campo obrigatório")
+                .MinimumLength(1).WithMessage("Nome fantasia: tamanho mínimo requerido de 1 caracter")
+                .MaximumLength(150).WithMessage("Nome fantasia: limite máximo de 150 caracteres atingido");
 
             RuleFor(estabeleciamento => estabeleciamento.InscricaoEstadual)
-                .NotEmpty().WithMessage("Informe a inscrição estadual")
-                .MinimumLength(20).WithMessage("Tamanho mínimo requerido de 20 caracter")
-                .MaximumLength(20).WithMessage("Limite máximo de 20 caracteres atingido");
+                .NotEmpty().WithMessage("Inscrição Estadual: campo obrigatório")
+                .MinimumLength(20).WithMessage("Inscrição Estadual: tamanho mínimo requerido de 20 caracter")
+                .MaximumLength(20).WithMessage("Inscrição Estadual: limite máximo de 20 caracteres atingido");
 
             RuleFor(estabeleciamento => estabeleciamento.InscricaoMunicipal)
-                .NotEmpty().WithMessage("Informe a inscrição municipal")
-                .MinimumLength(20).WithMessage("Tamanho mínimo requerido de 20 caracter")
-                .MaximumLength(20).WithMessage("Limite máximo de 20 caracteres atingido");
+                .NotEmpty().WithMessage("Inscrição Municipal: campo obrigatório")
+                .MinimumLength(20).WithMessage("Inscrição Municipal: tamanho mínimo requerido de 20 caracter")
+                .MaximumLength(20).WithMessage("Inscrição Municipal: limite máximo de 20 caracteres atingido");
 
             RuleFor(estabeleciamento => estabeleciamento.Email)
-                .NotEmpty().WithMessage("Informe o e-mail")
-                .MinimumLength(1).WithMessage("Tamanho mínimo requerido de 1 caracter")
-                .MaximumLength(150).WithMessage("Limite máximo de 150 caracteres atingido");
+                .NotEmpty().WithMessage("E-mail: campo obrigatório")
+                .MinimumLength(1).WithMessage("E-mail: tamanho mínimo requerido de 1 caracter")
+                .MaximumLength(150).WithMessage("E-mail: limite máximo de 150 caracteres atingido");
 
             RuleFor(estabeleciamento => estabeleciamento.Site)
-                .NotEmpty().WithMessage("Informe o site")
-                .MinimumLength(1).WithMessage("Tamanho mínimo requerido de 1 caracter")
-                .MaximumLength(150).WithMessage("Limite máximo de 100 caracteres atingido");
+                .NotEmpty().WithMessage("Site: campo obrigatório")
+                .MinimumLength(1).WithMessage("Site: tamanho mínimo requerido de 1 caracter")
+                .MaximumLength(150).WithMessage("Site: limite máximo de 100 caracteres atingido");
 
             RuleFor(estabeleciamento => estabeleciamento.DataRegistro)
-                .NotEmpty().WithMessage("Informe a data de registro");
+                .NotEmpty().WithMessage("Data de registro: campo obrigatório");
 
             RuleFor(estabeleciamento => estabeleciamento.Matriz)
-                .NotEmpty().WithMessage("Informe se o estabelecimento é a matriz");
+                .NotNull().WithMessage("Matriz: campo obrigatório");
 
             RuleFor(estabeleciamento => estabeleciamento.Documento)
-                .NotEmpty().WithMessage("Informe o documento")
-                .MinimumLength(11).WithMessage("Tamanho mínimo requerido de 11 caracter")
-                .MaximumLength(14).WithMessage("Limite máximo de 14 caracteres atingido");
+                .NotEmpty().WithMessage("Documento: campo obrigatório")
+                .MinimumLength(11).WithMessage("Documento: tamanho mínimo requerido de 11 caracter")
+                .MaximumLength(14).WithMessage("Documento: limite máximo de 14 caracteres atingido");
 
             RuleFor(estabeleciamento => estabeleciamento.TipoIdentificacao)
-                .NotEmpty().WithMessage("Informe o tipo do documento");
+                .NotEmpty().WithMessage("Tipo do documento: campo obrigatório");
 
             RuleFor(estabeleciamento => estabeleciamento.EmpresaId)
-                .NotEmpty().WithMessage("Uma estabelecimento precisa estar vinculado a uma empresa");
+                .NotEmpty().WithMessage("EmpresaId: campo obrigatório");
 
             RuleFor(estabeleciamento => estabeleciamento.CnaeId)
-                .NotEmpty().WithMessage("Uma estabelecimento precisa estar vinculado a um cnae");
+                .NotEmpty().WithMessage("CNAE: campo obrigatório");
 
             ValidationResult = Validate(this);
             return ValidationResult.IsValid;
         }
+
+        public void AtribuirUsuario(Usuario usuario) => Usuario = usuario;
+
+        public void AtribuirCnae(Cnae cnae) => Cnae = cnae;
+
+        public void AtribuirEmpresa(Empresa empresa) => Empresa = empresa;
 
         public static class EstabelecimentoFactory
         {
@@ -115,7 +121,8 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais
                     TipoIdentificacao = tipoIdentificacao,
                     EmpresaId = empresaId,
                     CnaeId = cnaeId,
-                    UsuarioId = usuarioId
+                    UsuarioId = usuarioId,
+                    Ativo = true
                 };
 
                 return estabelecimento;

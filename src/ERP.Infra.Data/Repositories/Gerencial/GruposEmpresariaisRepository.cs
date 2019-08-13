@@ -16,6 +16,18 @@ namespace ERP.Infra.Data.Repositories.Gerencial
         {
         }
 
+        public void Save(Cnae cnae) => _db.Cnaes.Add(cnae);
+
+        public void Save(Empresa empresa) => _db.Empresas.Add(empresa);
+
+        public void Save(Estabelecimento estabelecimento) => _db.Estabelecimentos.Add(estabelecimento);
+
+        public void Update(Cnae cnae) => _db.Cnaes.Update(cnae);
+
+        public void Update(Empresa empresa) => _db.Empresas.Update(empresa);
+
+        public void Update(Estabelecimento estabelecimento) => _db.Estabelecimentos.Update(estabelecimento);
+
         public override IEnumerable<GrupoEmpresarial> GetAll()
         {
             return _db.Database.GetDbConnection().Query<GrupoEmpresarial, Usuario, GrupoEmpresarial>(@"
@@ -46,14 +58,147 @@ namespace ERP.Infra.Data.Repositories.Gerencial
                     JOIN USUARIOS U ON U.ID = GE.USUARIO_ID
                 WHERE 
                     GE.ID = @id
-                    AND GE.ATIVO = 1
-                ORDER BY 
-                    GE.DESCRICAO",
+                    AND GE.ATIVO = 1",
                 (grupoEmpresarial, usuario) =>
                 {
                     grupoEmpresarial.AtribuirUsuario(usuario);
                     return grupoEmpresarial;
                 }, 
+                new { id }
+            )
+            .FirstOrDefault();
+        }
+
+        public IEnumerable<Cnae> GetAllCnaes()
+        {
+            return _db.Database.GetDbConnection().Query<Cnae, Usuario, Cnae>(@"
+                SELECT 
+                    * 
+                FROM
+                    CNAES C
+                    JOIN USUARIOS U ON U.ID = C.USUARIO_ID
+                WHERE
+                    C.ATIVO = 1
+                ORDER BY 
+                    C.DESCRICAO",
+                (cnae, usuario) =>
+                {
+                    cnae.AtribuirUsuario(usuario);
+                    return cnae;
+                }
+            );
+        }
+
+        public Cnae GetByCnaeId(Guid id)
+        {
+            return _db.Database.GetDbConnection().Query<Cnae, Usuario, Cnae>(@"
+                SELECT 
+                    * 
+                FROM 
+                    CNAES C
+                    JOIN USUARIOS U ON U.ID = C.USUARIO_ID
+                WHERE 
+                    C.ID = @id
+                    AND C.ATIVO = 1",
+                (cnae, usuario) =>
+                {
+                    cnae.AtribuirUsuario(usuario);
+                    return cnae;
+                },
+                new { id }
+            )
+            .FirstOrDefault();
+        }
+
+        public IEnumerable<Empresa> GetAllEmpresas()
+        {
+            return _db.Database.GetDbConnection().Query<Empresa, Usuario, GrupoEmpresarial, Empresa>(@"
+                SELECT 
+                    * 
+                FROM
+                    EMPRESAS E
+                    JOIN USUARIOS U ON U.ID = E.USUARIO_ID
+					JOIN GRUPOS_EMPRESARIAIS GE ON GE.ID = E.GRUPO_EMPRESARIAL_ID
+                WHERE
+                    E.ATIVO = 1
+                ORDER BY 
+                    E.DESCRICAO",
+                (empresa, usuario, grupoEmpresarial) =>
+                {
+                    empresa.AtribuirUsuario(usuario);
+                    empresa.AtribuirGrupoEmpresarial(grupoEmpresarial);
+                    return empresa;
+                }
+            );
+        }
+
+        public Empresa GetByEmpresaId(Guid id)
+        {
+            return _db.Database.GetDbConnection().Query<Empresa, Usuario, GrupoEmpresarial, Empresa>(@"
+                SELECT 
+                    * 
+                FROM 
+                    EMPRESAS E
+                    JOIN USUARIOS U ON U.ID = E.USUARIO_ID
+					JOIN GRUPOS_EMPRESARIAIS GE ON GE.ID = E.GRUPO_EMPRESARIAL_ID
+                WHERE 
+                    E.ID = @id
+                    AND E.ATIVO = 1",
+                (empresa, usuario, grupoEmpresarial) =>
+                {
+                    empresa.AtribuirUsuario(usuario);
+                    empresa.AtribuirGrupoEmpresarial(grupoEmpresarial);
+                    return empresa;
+                },
+                new { id }
+            )
+            .FirstOrDefault();
+        }
+
+        public IEnumerable<Estabelecimento> GetAllEstabelecimentos()
+        {
+            return _db.Database.GetDbConnection().Query<Estabelecimento, Usuario, Cnae, Empresa, Estabelecimento>(@"
+                SELECT 
+                    * 
+                FROM
+                    ESTABELECIMENTOS E
+                    JOIN USUARIOS U ON U.ID = E.USUARIO_ID
+                    JOIN CNAES C ON C.ID = E.CNAE_ID
+                    JOIN EMPRESAS EM ON EM.ID = E.EMPRESA_ID
+                WHERE
+                    E.ATIVO = 1
+                ORDER BY 
+                    E.DESCRICAO",
+                (estabelecimento, usuario, cnae, empresa) =>
+                {
+                    estabelecimento.AtribuirUsuario(usuario);
+                    estabelecimento.AtribuirCnae(cnae);
+                    estabelecimento.AtribuirEmpresa(empresa);
+                    return estabelecimento;
+                }
+            );
+        }
+
+        public Estabelecimento GetByEstabelecimentoId(Guid id)
+        {
+            return _db.Database.GetDbConnection().Query<Estabelecimento, Usuario, Cnae, Empresa, Estabelecimento>(@"
+                SELECT 
+                    * 
+                FROM 
+                    ESTABELECIMENTOS E
+                    JOIN USUARIOS U ON U.ID = E.USUARIO_ID
+                    JOIN CNAES C ON C.ID = E.CNAE_ID
+                    JOIN EMPRESAS EM ON EM.ID = E.EMPRESA_ID
+                WHERE 
+                    E.ID = @id
+                    AND E.ATIVO = 1",
+                (estabelecimento, usuario, cnae, empresa) =>
+                {
+                    estabelecimento.AtribuirUsuario(usuario);
+                    estabelecimento.AtribuirCnae(cnae);
+                    estabelecimento.AtribuirEmpresa(empresa);
+                    return estabelecimento;
+                },
                 new { id }
             )
             .FirstOrDefault();

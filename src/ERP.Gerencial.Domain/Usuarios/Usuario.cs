@@ -21,13 +21,13 @@ namespace ERP.Gerencial.Domain.Usuarios
         public override bool IsValid()
         {
             RuleFor(usuario => usuario.Nome)
-                .NotEmpty().WithMessage("Informe o nome");
+                .NotEmpty().WithMessage("Nome: campo obrigatório");
 
             RuleFor(usuario => usuario.Sobrenome)
-                .NotEmpty().WithMessage("Informe o sobrenome");
+                .NotEmpty().WithMessage("Sobrenome: campo obrigatório");
 
             RuleFor(usuario => usuario.Email)
-                .NotEmpty().WithMessage("Informe o e-mail");
+                .NotEmpty().WithMessage("E-mail: campo obrigatório");
 
             ValidationResult = Validate(this);
             return ValidationResult.IsValid;

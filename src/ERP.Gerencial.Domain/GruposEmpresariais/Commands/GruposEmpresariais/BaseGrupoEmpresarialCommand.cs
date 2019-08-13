@@ -1,7 +1,7 @@
-using System;
 using ERP.Domain.Core.Commands;
+using System;
 
-namespace ERP.Gerencial.Domain.GruposEmpresariais.Commands
+namespace ERP.Gerencial.Domain.GruposEmpresariais.Commands.GruposEmpresariais
 {
     public class BaseGrupoEmpresarialCommand : Command
     {

@@ -16,12 +16,15 @@ namespace ERP.Infra.Data.Mappings.Gerencial
             builder.Property(empresa => empresa.Id)
                 .HasColumnName("id");
 
-            builder.HasAlternateKey(empresa => empresa.Codigo);
+            builder.HasIndex(empresa => empresa.Codigo)
+                .IsUnique()
+                .HasName("uk_empresa_codigo");
+
             builder.Property(empresa => empresa.Codigo)
                 .HasColumnName("codigo")
                 .IsRequired()
                 .HasMaxLength(30);
-            
+
             builder.Property(empresa => empresa.Descricao)
                 .HasColumnName("descricao")
                 .IsRequired()

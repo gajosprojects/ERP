@@ -10,32 +10,32 @@ namespace ERP.Services.API.ViewModels.Gerencial.Empresa
         public Guid Id { get; set; }
 
         [Display(Name = "Código")]
-        [Required(ErrorMessage = "Campo obrigatório")]
-        [MinLength(1, ErrorMessage = "Tamanho mínimo {1} caracteres")]
-        [MaxLength(30, ErrorMessage = "Tamanho máximo {1} caracteres")]
+        [Required(ErrorMessage = "Código: campo obrigatório")]
+        [MinLength(1, ErrorMessage = "Código: tamanho mínimo {1} caracteres")]
+        [MaxLength(30, ErrorMessage = "Código: tamanho máximo {1} caracteres")]
         public string Codigo { get; set; }
 
         [Display(Name = "Descrição")]
-        [Required(ErrorMessage = "Campo obrigatório")]
-        [MinLength(1, ErrorMessage = "Tamanho mínimo {1} caracteres")]
-        [MaxLength(150, ErrorMessage = "Tamanho máximo {1} caracteres")]
+        [Required(ErrorMessage = "Descrição: campo obrigatório")]
+        [MinLength(1, ErrorMessage = "Descrição: tamanho mínimo {1} caracteres")]
+        [MaxLength(150, ErrorMessage = "Descrição: tamanho máximo {1} caracteres")]
         public string Descricao { get; set; }
 
         [Display(Name = "Nome fantasia")]
-        [MaxLength(150, ErrorMessage = "Tamanho máximo {1} caracteres")]
+        [MaxLength(150, ErrorMessage = "Nome fantasia: tamanho máximo {1} caracteres")]
         public string NomeFantasia { get; set; }
 
-        [Display(Name = "Email")]
-        [MaxLength(150, ErrorMessage = "Tamanho máximo {1} caracteres")]
-        [EmailAddress(ErrorMessage = "E-mail em formato inválido")]
+        [Display(Name = "E-mail")]
+        [MaxLength(150, ErrorMessage = "E-mail: tamanho máximo {1} caracteres")]
+        [EmailAddress(ErrorMessage = "E-mail: formato inválido")]
         public string Email { get; set; }
 
         [Display(Name = "Site")]
-        [MaxLength(100, ErrorMessage = "Tamanho máximo {1} caracteres")]
+        [MaxLength(100, ErrorMessage = "Site: tamanho máximo {1} caracteres")]
         public string Site { get; set; }
 
         [Display(Name = "Bloqueada")]
-        [Required(ErrorMessage = "Campo obrigatório")]
+        [Required(ErrorMessage = "Bloqueada: campo obrigatório")]
         public bool Bloqueada { get; set; }
 
         [Display(Name = "Data registro")]
@@ -48,20 +48,19 @@ namespace ERP.Services.API.ViewModels.Gerencial.Empresa
         public string Observacao { get; set; }
 
         [Display(Name = "Documento")]
-        [Required(ErrorMessage = "Campo obrigatório")]
-        [MinLength(11, ErrorMessage = "Tamanho mínimo {1} caracteres")]
-        [MaxLength(14, ErrorMessage = "Tamanho máximo {1} caracteres")]
+        [Required(ErrorMessage = "Documento: campo obrigatório")]
+        [MinLength(11, ErrorMessage = "Documento: tamanho mínimo {1} caracteres")]
+        [MaxLength(14, ErrorMessage = "Documento: tamanho máximo {1} caracteres")]
         public string Documento { get; set; }
 
         [Display(Name = "Tipo identificação")]
-        [Required(ErrorMessage = "Campo obrigatório")]
+        [Required(ErrorMessage = "Tipo identificação: campo obrigatório")]
         public int TipoIdentificacao { get; set; }
 
-        [Display(Name = "Grupo empresarial")]
-        [NotEmptyGuid(ErrorMessage = "Campo obrigatório")]
+        [NotEmptyGuid(ErrorMessage = "GrupoEmpresarialId: campo obrigatório")]
         public Guid GrupoEmpresarialId { get; set; }
 
-        [NotEmptyGuid(ErrorMessage = "Campo obrigatório")]
+        [NotEmptyGuid(ErrorMessage = "UsuarioId: campo obrigatório")]
         public Guid UsuarioId { get; set; }
     }
 }

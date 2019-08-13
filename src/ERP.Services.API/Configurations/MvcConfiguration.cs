@@ -52,6 +52,21 @@ namespace ERP.Services.API.Configurations
                 options.AddPolicy("DeleteGrupoEmpresarial", policy => policy.RequireClaim("Grupo Empresarial", "Delete"));
                 options.AddPolicy("ViewGrupoEmpresarial", policy => policy.RequireClaim("Grupo Empresarial", "View"));
 
+                options.AddPolicy("SaveCnae", policy => policy.RequireClaim("Cnae", "Save"));
+                options.AddPolicy("UpdateCnae", policy => policy.RequireClaim("Cnae", "Update"));
+                options.AddPolicy("DeleteCnae", policy => policy.RequireClaim("Cnae", "Delete"));
+                options.AddPolicy("ViewCnae", policy => policy.RequireClaim("Cnae", "View"));
+
+                options.AddPolicy("SaveEmpresa", policy => policy.RequireClaim("Empresa", "Save"));
+                options.AddPolicy("UpdateEmpresa", policy => policy.RequireClaim("Empresa", "Update"));
+                options.AddPolicy("DeleteEmpresa", policy => policy.RequireClaim("Empresa", "Delete"));
+                options.AddPolicy("ViewEmpresa", policy => policy.RequireClaim("Empresa", "View"));
+
+                options.AddPolicy("SaveEstabelecimento", policy => policy.RequireClaim("Estabelecimento", "Save"));
+                options.AddPolicy("UpdateEstabelecimento", policy => policy.RequireClaim("Estabelecimento", "Update"));
+                options.AddPolicy("DeleteEstabelecimento", policy => policy.RequireClaim("Estabelecimento", "Delete"));
+                options.AddPolicy("ViewEstabelecimento", policy => policy.RequireClaim("Estabelecimento", "View"));
+
                 options.AddPolicy("Bearer", new AuthorizationPolicyBuilder().AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme).RequireAuthenticatedUser().Build());
             });
         }

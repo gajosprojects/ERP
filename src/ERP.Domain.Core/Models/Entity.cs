@@ -1,6 +1,6 @@
-using System;
 using FluentValidation;
 using FluentValidation.Results;
+using System;
 
 namespace ERP.Domain.Core.Models
 {

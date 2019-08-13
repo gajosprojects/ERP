@@ -1,14 +1,15 @@
-using System;
+﻿using System;
 
-namespace ERP.Gerencial.Domain.GruposEmpresariais.Commands
+namespace ERP.Gerencial.Domain.GruposEmpresariais.Commands.Cnaes
 {
-    public class SaveGrupoEmpresarialCommand : BaseGrupoEmpresarialCommand
+    public class SaveCnaeCommand : BaseCnaeCommand
     {
-        public SaveGrupoEmpresarialCommand(string codigo, string descricao, Guid usuarioId)
+        public SaveCnaeCommand(string codigo, string descricao, Guid? cnaePai, Guid usuarioId)
         {
             Id = Guid.NewGuid();
             Codigo = codigo;
             Descricao = descricao;
+            CnaePai = cnaePai;
             DataCadastro = DateTime.Now;
             DataUltimaAtualizacao = DateTime.Now;
             UsuarioId = usuarioId;

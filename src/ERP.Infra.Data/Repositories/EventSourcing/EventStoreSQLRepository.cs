@@ -1,8 +1,8 @@
+using ERP.Domain.Core.Events;
+using ERP.Infra.Data.Context;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using ERP.Domain.Core.Events;
-using ERP.Infra.Data.Context;
 
 namespace ERP.Infra.Data.Repositories.EventSourcing
 {

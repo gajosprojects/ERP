@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.TestHost;
 using System;
 using System.IO;
 using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace ERP.Tests.Integration
 {
@@ -44,5 +45,9 @@ namespace ERP.Tests.Integration
 
             Client = Server.CreateClient();
         }
+
+        public static Task<HttpResponseMessage> CreateGetRequest(string path) => Server.CreateRequest(path).AddHeader("Authorization", "Bearer " + TokenUsuario).GetAsync();
+
+        public static Task<HttpResponseMessage> CreateRequest(string method, string path, StringContent content) => Server.CreateRequest(path).AddHeader("Authorization", "Bearer " + TokenUsuario).And(r => r.Content = content).SendAsync(method);
     }
 }

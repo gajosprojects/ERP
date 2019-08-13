@@ -98,6 +98,21 @@ namespace ERP.Services.API.Controllers.Gerencial
                 await _userManager.AddClaimAsync(user, new Claim("Grupo Empresarial", "Delete"));
                 await _userManager.AddClaimAsync(user, new Claim("Grupo Empresarial", "View"));
 
+                await _userManager.AddClaimAsync(user, new Claim("Cnae", "Save"));
+                await _userManager.AddClaimAsync(user, new Claim("Cnae", "Update"));
+                await _userManager.AddClaimAsync(user, new Claim("Cnae", "Delete"));
+                await _userManager.AddClaimAsync(user, new Claim("Cnae", "View"));
+
+                await _userManager.AddClaimAsync(user, new Claim("Empresa", "Save"));
+                await _userManager.AddClaimAsync(user, new Claim("Empresa", "Update"));
+                await _userManager.AddClaimAsync(user, new Claim("Empresa", "Delete"));
+                await _userManager.AddClaimAsync(user, new Claim("Empresa", "View"));
+
+                await _userManager.AddClaimAsync(user, new Claim("Estabelecimento", "Save"));
+                await _userManager.AddClaimAsync(user, new Claim("Estabelecimento", "Update"));
+                await _userManager.AddClaimAsync(user, new Claim("Estabelecimento", "Delete"));
+                await _userManager.AddClaimAsync(user, new Claim("Estabelecimento", "View"));
+
                 var usuarioCommand = new SaveUsuarioCommand(Guid.Parse(user.Id), model.Nome, model.Sobrenome, user.Email);
                 await _mediator.SendCommand(usuarioCommand);
 
