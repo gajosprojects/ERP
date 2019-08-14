@@ -22,6 +22,7 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais.Commands.Empresas
             Documento = documento;
             TipoIdentificacao = tipoIdentificacao;
             GrupoEmpresarialId = grupoEmpresarialId;
+            AggregateId = Id;
         }
     }
 }

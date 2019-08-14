@@ -12,6 +12,7 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais.Commands.Cnaes
             CnaePai = cnaePai;
             DataUltimaAtualizacao = DateTime.Now;
             UsuarioId = usuarioId;
+            AggregateId = Id;
         }
     }
 }

@@ -12,6 +12,7 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais.Commands.GruposEmpresariais
             DataCadastro = DateTime.Now;
             DataUltimaAtualizacao = DateTime.Now;
             UsuarioId = usuarioId;
+            AggregateId = Id;
         }
     }
 }

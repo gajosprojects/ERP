@@ -26,6 +26,7 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais.Commands.Estabelecimentos
             TipoIdentificacao = tipoIdentificacao;
             EmpresaId = empresaId;
             CnaeId = cnaeId;
+            AggregateId = Id;
         }
     }
 }

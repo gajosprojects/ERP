@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ERP.Infra.Data.Migrations
 {
-    public partial class EventStore : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -15,6 +15,7 @@ namespace ERP.Infra.Data.Migrations
                     acao = table.Column<string>(type: "varchar(100)", nullable: true),
                     aggregate_id = table.Column<Guid>(nullable: false),
                     data_cadastro = table.Column<DateTime>(nullable: false),
+                    transaction_id = table.Column<Guid>(nullable: false),
                     data = table.Column<string>(nullable: true),
                     usuario = table.Column<string>(type: "varchar(100)", nullable: true)
                 },

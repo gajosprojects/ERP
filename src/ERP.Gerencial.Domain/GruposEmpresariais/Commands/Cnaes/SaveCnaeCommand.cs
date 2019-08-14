@@ -13,6 +13,7 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais.Commands.Cnaes
             DataCadastro = DateTime.Now;
             DataUltimaAtualizacao = DateTime.Now;
             UsuarioId = usuarioId;
+            AggregateId = Id;
         }
     }
 }

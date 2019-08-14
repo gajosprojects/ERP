@@ -11,6 +11,7 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais.Commands.GruposEmpresariais
             Descricao = descricao;
             DataUltimaAtualizacao = DateTime.Now;
             UsuarioId = usuarioId;
+            AggregateId = Id;
         }
     }
 }
