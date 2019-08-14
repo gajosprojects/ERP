@@ -1,4 +1,5 @@
 ﻿using ERP.Domain.Core.Commands;
+using ERP.Gerencial.Domain.GruposEmpresariais.Types;
 using System;
 
 namespace ERP.Gerencial.Domain.GruposEmpresariais.Commands.Estabelecimentos
@@ -22,7 +23,7 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais.Commands.Estabelecimentos
         public bool Matriz { get; protected set; }
         public string Observacao { get; protected set; }
         public string Documento { get; protected set; }
-        public int TipoIdentificacao { get; protected set; }
+        public TipoIdentificacao TipoIdentificacao { get; protected set; }
         public Guid EmpresaId { get; protected set; }
         public Guid CnaeId { get; protected set; }
     }

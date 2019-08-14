@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ERP.Gerencial.Domain.GruposEmpresariais.Types;
+using System;
 
 namespace ERP.Tests.Integration.Gerencial.DTO
 {
@@ -21,7 +22,7 @@ namespace ERP.Tests.Integration.Gerencial.DTO
         public bool matriz { get; set; }
         public object observacao { get; set; }
         public string documento { get; set; }
-        public int tipoIdentificacao { get; set; }
+        public TipoIdentificacao tipoIdentificacao { get; set; }
         public GetEmpresaDTO empresa { get; set; }
         public GetCnaeDTO cnae { get; set; }
         public GetUsuarioDTO usuario { get; set; }

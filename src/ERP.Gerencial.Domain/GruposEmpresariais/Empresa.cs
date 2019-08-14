@@ -1,4 +1,5 @@
 using ERP.Domain.Core.Models;
+using ERP.Gerencial.Domain.GruposEmpresariais.Types;
 using ERP.Gerencial.Domain.Usuarios;
 using FluentValidation;
 using System;
@@ -18,7 +19,7 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais
         public byte[] Logotipo { get; private set; }
         public string Observacao { get; private set; }
         public string Documento { get; private set; }
-        public int TipoIdentificacao { get; private set; }
+        public TipoIdentificacao TipoIdentificacao { get; private set; }
         public Guid GrupoEmpresarialId { get; private set; }
         public virtual GrupoEmpresarial GrupoEmpresarial { get; private set; }
         public virtual ICollection<Estabelecimento> Estabelecimentos { get; set; }
@@ -77,7 +78,7 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais
 
         public static class EmpresaFactory
         {
-            public static Empresa NewEmpresa(Guid id, string codigo, string descricao, string nomeFantasia, string email, string site, bool bloqueada, DateTime dataRegistro, byte[] logotipo, string observacao, DateTime dataCadastro, DateTime dataUltimaAtualizacao, string documento, int tipoIdentificacao, Guid grupoEmpresarialId, Guid usuarioId)
+            public static Empresa NewEmpresa(Guid id, string codigo, string descricao, string nomeFantasia, string email, string site, bool bloqueada, DateTime dataRegistro, byte[] logotipo, string observacao, DateTime dataCadastro, DateTime dataUltimaAtualizacao, string documento, TipoIdentificacao tipoIdentificacao, Guid grupoEmpresarialId, Guid usuarioId)
             {
                 var empresa = new Empresa()
                 {
@@ -103,7 +104,7 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais
                 return empresa;
             }
 
-            public static Empresa UpdateEmpresa(Guid id, string codigo, string descricao, string nomeFantasia, string email, string site, bool bloqueada, DateTime dataRegistro, byte[] logotipo, string observacao, DateTime dataCadastro, DateTime dataUltimaAtualizacao, string documento, int tipoIdentificacao, Guid grupoEmpresarialId, Guid usuarioId, bool ativo)
+            public static Empresa UpdateEmpresa(Guid id, string codigo, string descricao, string nomeFantasia, string email, string site, bool bloqueada, DateTime dataRegistro, byte[] logotipo, string observacao, DateTime dataCadastro, DateTime dataUltimaAtualizacao, string documento, TipoIdentificacao tipoIdentificacao, Guid grupoEmpresarialId, Guid usuarioId, bool ativo)
             {
                 var empresa = new Empresa()
                 {

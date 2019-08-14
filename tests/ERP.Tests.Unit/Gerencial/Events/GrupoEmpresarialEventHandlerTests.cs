@@ -6,6 +6,7 @@ using ERP.Gerencial.Domain.GruposEmpresariais.Events.GruposEmpresariais;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using ERP.Gerencial.Domain.GruposEmpresariais.Types;
 using Xunit;
 
 namespace ERP.Tests.Unit.Gerencial.Events
@@ -64,14 +65,14 @@ namespace ERP.Tests.Unit.Gerencial.Events
         [Fact]
         public void GrupoEmpresarialEventHandler_SavedEmpresaEvent_RetornarSucesso()
         {
-            SavedEmpresaEvent notification = new SavedEmpresaEvent(Guid.NewGuid(), true, Guid.NewGuid(), DateTime.Now, DateTime.Now, "Empresa1", "Empresa1", "Empresa1", "empresa@gmail.com", "empresa.com.br", false, DateTime.Now, null, "", "", 1, Guid.NewGuid());
+            SavedEmpresaEvent notification = new SavedEmpresaEvent(Guid.NewGuid(), true, Guid.NewGuid(), DateTime.Now, DateTime.Now, "Empresa1", "Empresa1", "Empresa1", "empresa@gmail.com", "empresa.com.br", false, DateTime.Now, null, "", "", TipoIdentificacao.CPF, Guid.NewGuid());
             Assert.Equal(_grupoEmpresarialEventHandler.Handle(notification, new CancellationToken()), Task.CompletedTask);
         }
 
         [Fact]
         public void GrupoEmpresarialEventHandler_UpdatedEmpresaEvent_RetornarSucesso()
         {
-            UpdatedEmpresaEvent notification = new UpdatedEmpresaEvent(Guid.NewGuid(), true, Guid.NewGuid(), DateTime.Now, DateTime.Now, "Empresa1", "Empresa1", "Empresa1", "empresa@gmail.com", "empresa.com.br", false, DateTime.Now, null, "", "", 1, Guid.NewGuid());
+            UpdatedEmpresaEvent notification = new UpdatedEmpresaEvent(Guid.NewGuid(), true, Guid.NewGuid(), DateTime.Now, DateTime.Now, "Empresa1", "Empresa1", "Empresa1", "empresa@gmail.com", "empresa.com.br", false, DateTime.Now, null, "", "", TipoIdentificacao.CPF, Guid.NewGuid());
             Assert.Equal(_grupoEmpresarialEventHandler.Handle(notification, new CancellationToken()), Task.CompletedTask);
         }
 
@@ -85,14 +86,14 @@ namespace ERP.Tests.Unit.Gerencial.Events
         [Fact]
         public void GrupoEmpresarialEventHandler_SavedEstabelecimentoEvent_RetornarSucesso()
         {
-            SavedEstabelecimentoEvent notification = new SavedEstabelecimentoEvent(Guid.NewGuid(), true, Guid.NewGuid(), DateTime.Now, DateTime.Now, "Estabelecimento1", "Estabelecimento1", "Estabelecimento1", "0123456789", "0123456789", "estabelecimento@gmail.com", "estabelecimento.com.br", false, DateTime.Now, null, true, "", "", 1, Guid.NewGuid(), Guid.NewGuid());
+            SavedEstabelecimentoEvent notification = new SavedEstabelecimentoEvent(Guid.NewGuid(), true, Guid.NewGuid(), DateTime.Now, DateTime.Now, "Estabelecimento1", "Estabelecimento1", "Estabelecimento1", "0123456789", "0123456789", "estabelecimento@gmail.com", "estabelecimento.com.br", false, DateTime.Now, null, true, "", "", TipoIdentificacao.CPF, Guid.NewGuid(), Guid.NewGuid());
             Assert.Equal(_grupoEmpresarialEventHandler.Handle(notification, new CancellationToken()), Task.CompletedTask);
         }
 
         [Fact]
         public void GrupoEmpresarialEventHandler_UpdatedEstabelecimentoEvent_RetornarSucesso()
         {
-            UpdatedEstabelecimentoEvent notification = new UpdatedEstabelecimentoEvent(Guid.NewGuid(), true, Guid.NewGuid(), DateTime.Now, DateTime.Now, "Estabelecimento1", "Estabelecimento1", "Estabelecimento1", "0123456789", "0123456789", "estabelecimento@gmail.com", "estabelecimento.com.br", false, DateTime.Now, null, true, "", "", 1, Guid.NewGuid(), Guid.NewGuid());
+            UpdatedEstabelecimentoEvent notification = new UpdatedEstabelecimentoEvent(Guid.NewGuid(), true, Guid.NewGuid(), DateTime.Now, DateTime.Now, "Estabelecimento1", "Estabelecimento1", "Estabelecimento1", "0123456789", "0123456789", "estabelecimento@gmail.com", "estabelecimento.com.br", false, DateTime.Now, null, true, "", "", TipoIdentificacao.CPF, Guid.NewGuid(), Guid.NewGuid());
             Assert.Equal(_grupoEmpresarialEventHandler.Handle(notification, new CancellationToken()), Task.CompletedTask);
         }
 

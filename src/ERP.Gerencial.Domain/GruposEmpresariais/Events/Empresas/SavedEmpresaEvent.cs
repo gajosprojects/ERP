@@ -1,10 +1,11 @@
-﻿using System;
+﻿using ERP.Gerencial.Domain.GruposEmpresariais.Types;
+using System;
 
 namespace ERP.Gerencial.Domain.GruposEmpresariais.Events.Empresas
 {
     public class SavedEmpresaEvent : BaseEmpresaEvent
     {
-        public SavedEmpresaEvent(Guid id, bool ativo, Guid usuarioId, DateTime dataCadastro, DateTime dataUltimaAtualizacao, string codigo, string descricao, string nomeFantasia, string email, string site, bool bloqueada, DateTime dataRegistro, byte[] logotipo, string observacao, string documento, int tipoIdentificacao, Guid grupoEmpresarialId)
+        public SavedEmpresaEvent(Guid id, bool ativo, Guid usuarioId, DateTime dataCadastro, DateTime dataUltimaAtualizacao, string codigo, string descricao, string nomeFantasia, string email, string site, bool bloqueada, DateTime dataRegistro, byte[] logotipo, string observacao, string documento, TipoIdentificacao tipoIdentificacao, Guid grupoEmpresarialId)
         {
             Id = id;
             Ativo = ativo;

@@ -4,6 +4,7 @@ using ERP.Gerencial.Domain.GruposEmpresariais.Commands.Cnaes;
 using ERP.Gerencial.Domain.GruposEmpresariais.Commands.Empresas;
 using ERP.Gerencial.Domain.GruposEmpresariais.Commands.Estabelecimentos;
 using ERP.Gerencial.Domain.GruposEmpresariais.Commands.GruposEmpresariais;
+using ERP.Gerencial.Domain.GruposEmpresariais.Types;
 using System;
 
 namespace ERP.Tests.Unit.Gerencial.Factories
@@ -124,7 +125,7 @@ namespace ERP.Tests.Unit.Gerencial.Factories
                 null,
                 c.Company.CatchPhrase(),
                 c.Company.Cnpj().Replace(".", "").Replace("-", "").Replace("/", ""),
-                1,
+                TipoIdentificacao.CPF,
                 Guid.NewGuid()))
             .Generate();
         }
@@ -143,7 +144,7 @@ namespace ERP.Tests.Unit.Gerencial.Factories
                 null,
                 c.Company.CatchPhrase(),
                 c.Company.Cnpj().Replace(".", "").Replace("-", "").Replace("/", ""),
-                1,
+                TipoIdentificacao.CPF,
                 Guid.NewGuid()))
             .Generate();
         }
@@ -163,7 +164,7 @@ namespace ERP.Tests.Unit.Gerencial.Factories
                 null,
                 c.Company.CatchPhrase(),
                 c.Company.Cnpj().Replace(".", "").Replace("-", "").Replace("/", ""),
-                1,
+                TipoIdentificacao.CPF,
                 Guid.NewGuid()))
             .Generate();
         }
@@ -183,7 +184,7 @@ namespace ERP.Tests.Unit.Gerencial.Factories
                 null,
                 c.Company.CatchPhrase(),
                 c.Company.Cnpj().Replace(".", "").Replace("-", "").Replace("/", ""),
-                1,
+                TipoIdentificacao.CPF,
                 Guid.NewGuid()))
             .Generate();
         }
@@ -215,7 +216,7 @@ namespace ERP.Tests.Unit.Gerencial.Factories
                 true,
                 c.Company.CatchPhrase(),
                 c.Company.Cnpj().Replace(".", "").Replace("-", "").Replace("/", ""),
-                1,
+                TipoIdentificacao.CPF,
                 Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde82a"),
                 Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde18a")))
             .Generate();
@@ -238,7 +239,7 @@ namespace ERP.Tests.Unit.Gerencial.Factories
                 true,
                 c.Company.CatchPhrase(),
                 c.Company.Cnpj().Replace(".", "").Replace("-", "").Replace("/", ""),
-                1,
+                TipoIdentificacao.CPF,
                 Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde82a"),
                 Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde18a")))
             .Generate();
@@ -262,7 +263,7 @@ namespace ERP.Tests.Unit.Gerencial.Factories
                 true,
                 c.Company.CatchPhrase(),
                 c.Company.Cnpj().Replace(".", "").Replace("-", "").Replace("/", ""),
-                1,
+                TipoIdentificacao.CPF,
                 Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde82a"),
                 Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde18a")))
             .Generate();
@@ -286,7 +287,7 @@ namespace ERP.Tests.Unit.Gerencial.Factories
                 true,
                 c.Company.CatchPhrase(),
                 c.Company.Cnpj().Replace(".", "").Replace("-", "").Replace("/", ""),
-                1,
+                TipoIdentificacao.CPF,
                 Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde82a"),
                 Guid.Parse("e7261a1f-18e8-4de6-9b4b-a659a8fde18a")))
             .Generate();

@@ -1,10 +1,11 @@
-﻿using System;
+﻿using ERP.Gerencial.Domain.GruposEmpresariais.Types;
+using System;
 
 namespace ERP.Gerencial.Domain.GruposEmpresariais.Events.Estabelecimentos
 {
     public class UpdatedEstabelecimentoEvent : BaseEstabelecimentoEvent
     {
-        public UpdatedEstabelecimentoEvent(Guid id, bool ativo, Guid usuarioId, DateTime dataCadastro, DateTime dataUltimaAtualizacao, string codigo, string descricao, string nomeFantasia, string inscricaoEstadual, string inscricaoMunicipal, string email, string site, bool bloqueado, DateTime dataRegistro, byte[] logotipo, bool matriz, string observacao, string documento, int tipoIdentificacao, Guid empresaId, Guid cnaeId)
+        public UpdatedEstabelecimentoEvent(Guid id, bool ativo, Guid usuarioId, DateTime dataCadastro, DateTime dataUltimaAtualizacao, string codigo, string descricao, string nomeFantasia, string inscricaoEstadual, string inscricaoMunicipal, string email, string site, bool bloqueado, DateTime dataRegistro, byte[] logotipo, bool matriz, string observacao, string documento, TipoIdentificacao tipoIdentificacao, Guid empresaId, Guid cnaeId)
         {
             Id = id;
             Ativo = ativo;
