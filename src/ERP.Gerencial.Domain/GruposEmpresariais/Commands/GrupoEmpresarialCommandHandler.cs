@@ -93,6 +93,12 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais.Commands
             }
             else 
             {
+                if (_grupoEmpresarialRepository.ObterQuantidadeDeEmpresasVinculadasAoGrupoEmpresarial(grupoEmpresarialExistente.Id) > 0)
+                {
+                    _mediator.RaiseEvent(new DomainNotification(request.MessageType, $"Existem empresas vinculadas ao grupo empresarial ({ grupoEmpresarialExistente.Descricao })"));
+                    return Task.FromResult(false);
+                }
+
                 grupoEmpresarialExistente.Desativar(request.UsuarioId);
                 _grupoEmpresarialRepository.Update(grupoEmpresarialExistente);
 
@@ -168,6 +174,12 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais.Commands
             }
             else
             {
+                if (_grupoEmpresarialRepository.ObterQuantidadeDeEstabelecimentosVinculadosAoCnae(cnaeExistente.Id) > 0)
+                {
+                    _mediator.RaiseEvent(new DomainNotification(request.MessageType, $"Existem estabelecimentos vinculados ao CNAE ({ cnaeExistente.Descricao })"));
+                    return Task.FromResult(false);
+                }
+
                 cnaeExistente.Desativar(request.UsuarioId);
                 _grupoEmpresarialRepository.Update(cnaeExistente);
 
@@ -243,6 +255,12 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais.Commands
             }
             else
             {
+                if (_grupoEmpresarialRepository.ObterQuantidadeDeEstabelecimentosVinculadosAEmpresa(empresaExistente.Id) > 0)
+                {
+                    _mediator.RaiseEvent(new DomainNotification(request.MessageType, $"Existem estabelecimentos vinculados a empresa ({ empresaExistente.Descricao })"));
+                    return Task.FromResult(false);
+                }
+
                 empresaExistente.Desativar(request.UsuarioId);
                 _grupoEmpresarialRepository.Update(empresaExistente);
 

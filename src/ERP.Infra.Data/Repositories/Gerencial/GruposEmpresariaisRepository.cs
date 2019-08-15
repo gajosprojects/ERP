@@ -203,5 +203,50 @@ namespace ERP.Infra.Data.Repositories.Gerencial
             )
             .FirstOrDefault();
         }
+
+        public int ObterQuantidadeDeEstabelecimentosVinculadosAoCnae(Guid id)
+        {
+            return _db.Database.GetDbConnection().Query<int>(@"
+                SELECT
+	                COUNT(1)
+                FROM
+	                ESTABELECIMENTOS E
+                WHERE
+	                E.CNAE_ID = @id
+                    AND E.ATIVO = 1",
+                new { id }
+            )
+            .Single();
+        }
+
+        public int ObterQuantidadeDeEstabelecimentosVinculadosAEmpresa(Guid id)
+        {
+            return _db.Database.GetDbConnection().Query<int>(@"
+                SELECT
+	                COUNT(1)
+                FROM
+	                ESTABELECIMENTOS E
+                WHERE
+	                E.EMPRESA_ID = @id
+                    AND E.ATIVO = 1",
+                new { id }
+            )
+            .Single();
+        }
+
+        public int ObterQuantidadeDeEmpresasVinculadasAoGrupoEmpresarial(Guid id)
+        {
+            return _db.Database.GetDbConnection().Query<int>(@"
+                SELECT
+	                COUNT(1)
+                FROM
+	                EMPRESAS E
+                WHERE
+	                E.GRUPO_EMPRESARIAL_ID = @id
+                    AND E.ATIVO = 1",
+                new { id }
+            )
+            .Single();
+        }
     }
 }

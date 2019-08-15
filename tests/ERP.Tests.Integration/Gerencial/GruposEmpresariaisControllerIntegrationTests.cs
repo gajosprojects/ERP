@@ -212,18 +212,18 @@ namespace ERP.Tests.Integration.Gerencial
         }
 
         [Fact, Order(21)]
-        public async Task GruposEmpresariaisController_Delete_GrupoEmpresarial_RetornarSucesso()
+        public async Task GruposEmpresariaisController_Delete_Estabelecimento_RetornarSucesso()
         {
-            var response = await Environment.CreateGetRequest("api/v1/gruposempresariais");
-            var grupoEmpresarialDTO = JsonConvert.DeserializeObject<IEnumerable<GetGrupoEmpresarialDTO>>(await response.Content.ReadAsStringAsync()).FirstOrDefault();
+            var response = await Environment.CreateGetRequest("api/v1/estabelecimentos");
+            var estabelecimentoDTO = JsonConvert.DeserializeObject<IEnumerable<GetEstabelecimentoDTO>>(await response.Content.ReadAsStringAsync()).FirstOrDefault();
 
-            response = await Environment.CreateRequest("DELETE", "api/v1/gruposempresariais/" + grupoEmpresarialDTO.id, null);
-            var deletedGrupoEmpresarialDTO = JsonConvert.DeserializeObject<GrupoEmpresarialDTO>(await response.Content.ReadAsStringAsync());
+            response = await Environment.CreateRequest("DELETE", "api/v1/estabelecimentos/" + estabelecimentoDTO.id, null);
+            var deletedEstabelecimentoDTO = JsonConvert.DeserializeObject<EstabelecimentoDTO>(await response.Content.ReadAsStringAsync());
 
             response.EnsureSuccessStatusCode();
-            Assert.IsType<GrupoEmpresarialDataResponse>(deletedGrupoEmpresarialDTO.data);
-            Assert.False(deletedGrupoEmpresarialDTO.data.ativo);
-            Assert.NotEqual(grupoEmpresarialDTO.dataUltimaAtualizacao, deletedGrupoEmpresarialDTO.data.dataUltimaAtualizacao);
+            Assert.IsType<EstabelecimentoDataResponse>(deletedEstabelecimentoDTO.data);
+            Assert.False(deletedEstabelecimentoDTO.data.ativo);
+            Assert.NotEqual(estabelecimentoDTO.dataUltimaAtualizacao, deletedEstabelecimentoDTO.data.dataUltimaAtualizacao);
         }
 
         [Fact, Order(22)]
@@ -257,18 +257,18 @@ namespace ERP.Tests.Integration.Gerencial
         }
 
         [Fact, Order(24)]
-        public async Task GruposEmpresariaisController_Delete_Estabelecimento_RetornarSucesso()
+        public async Task GruposEmpresariaisController_Delete_GrupoEmpresarial_RetornarSucesso()
         {
-            var response = await Environment.CreateGetRequest("api/v1/estabelecimentos");
-            var estabelecimentoDTO = JsonConvert.DeserializeObject<IEnumerable<GetEstabelecimentoDTO>>(await response.Content.ReadAsStringAsync()).FirstOrDefault();
+            var response = await Environment.CreateGetRequest("api/v1/gruposempresariais");
+            var grupoEmpresarialDTO = JsonConvert.DeserializeObject<IEnumerable<GetGrupoEmpresarialDTO>>(await response.Content.ReadAsStringAsync()).FirstOrDefault();
 
-            response = await Environment.CreateRequest("DELETE", "api/v1/estabelecimentos/" + estabelecimentoDTO.id, null);
-            var deletedEstabelecimentoDTO = JsonConvert.DeserializeObject<EstabelecimentoDTO>(await response.Content.ReadAsStringAsync());
+            response = await Environment.CreateRequest("DELETE", "api/v1/gruposempresariais/" + grupoEmpresarialDTO.id, null);
+            var deletedGrupoEmpresarialDTO = JsonConvert.DeserializeObject<GrupoEmpresarialDTO>(await response.Content.ReadAsStringAsync());
 
             response.EnsureSuccessStatusCode();
-            Assert.IsType<EstabelecimentoDataResponse>(deletedEstabelecimentoDTO.data);
-            Assert.False(deletedEstabelecimentoDTO.data.ativo);
-            Assert.NotEqual(estabelecimentoDTO.dataUltimaAtualizacao, deletedEstabelecimentoDTO.data.dataUltimaAtualizacao);
+            Assert.IsType<GrupoEmpresarialDataResponse>(deletedGrupoEmpresarialDTO.data);
+            Assert.False(deletedGrupoEmpresarialDTO.data.ativo);
+            Assert.NotEqual(grupoEmpresarialDTO.dataUltimaAtualizacao, deletedGrupoEmpresarialDTO.data.dataUltimaAtualizacao);
         }
     }
 }
