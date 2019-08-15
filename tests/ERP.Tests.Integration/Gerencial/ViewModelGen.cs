@@ -1,5 +1,6 @@
 ﻿using Bogus;
 using Bogus.Extensions.Brazil;
+using ERP.Gerencial.Domain.GruposEmpresariais.Types;
 using ERP.Services.API.ViewModels.Gerencial.Cnae;
 using ERP.Services.API.ViewModels.Gerencial.Empresa;
 using ERP.Services.API.ViewModels.Gerencial.Estabelecimento;
@@ -50,7 +51,7 @@ namespace ERP.Tests.Integration.Gerencial
                     .RuleFor(r => r.Bloqueada, false)
                     .RuleFor(r => r.DataRegistro, c => c.Person.DateOfBirth)
                     .RuleFor(r => r.Documento, c => c.Company.Cnpj().Replace(".", "").Replace("-", "").Replace("/", ""))
-                    .RuleFor(r => r.TipoIdentificacao, 2)
+                    .RuleFor(r => r.TipoIdentificacao, TipoIdentificacao.CNPJ)
                     .RuleFor(r => r.GrupoEmpresarialId, Guid.Parse(gruposEmpresariaisId))
                     .RuleFor(r => r.UsuarioId, Environment.UsuarioId)
                     .Generate()), Encoding.UTF8, "application/json");
@@ -68,7 +69,7 @@ namespace ERP.Tests.Integration.Gerencial
                     .RuleFor(r => r.Bloqueado, false)
                     .RuleFor(r => r.DataRegistro, c => c.Person.DateOfBirth)
                     .RuleFor(r => r.Documento, c => c.Company.Cnpj().Replace(".", "").Replace("-", "").Replace("/", ""))
-                    .RuleFor(r => r.TipoIdentificacao, 2)
+                    .RuleFor(r => r.TipoIdentificacao, TipoIdentificacao.CNPJ)
                     .RuleFor(r => r.InscricaoEstadual, c => c.Person.Cpf().Replace(".", "").Replace("-", "").Substring(0, 9) + c.Person.Cpf().Replace(".", "").Replace("-", ""))
                     .RuleFor(r => r.InscricaoMunicipal, c => c.Person.Cpf().Replace(".", "").Replace("-", "").Substring(0, 9) + c.Person.Cpf().Replace(".", "").Replace("-", ""))
                     .RuleFor(r => r.CnaeId, Guid.Parse(cnaeId))

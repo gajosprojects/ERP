@@ -12,6 +12,7 @@ namespace ERP.Gerencial.Domain.Usuarios.Commands
             Email = email;
             DataCadastro = DateTime.Now;
             DataUltimaAtualizacao = DateTime.Now;
+            AggregateId = Id;
         }
     }
 }

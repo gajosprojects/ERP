@@ -101,6 +101,7 @@ namespace ERP.Tests.Unit.Gerencial.Commands
             var request = CommandFactory.GenerateValidDeleteGrupoEmpresarialCommand();
             var grupoEmpresarial = EntityFactory.UpdateGrupoEmpresarial(request);
             _mockGruposEmpresariaisRepository.Setup(m => m.GetById(Guid.Parse("04681edc-c9fe-4a39-97e7-c02582f5cde1"))).Returns(grupoEmpresarial);
+            _mockGruposEmpresariaisRepository.Setup(m => m.ObterQuantidadeDeEmpresasVinculadasAoGrupoEmpresarial(Guid.Parse("04681edc-c9fe-4a39-97e7-c02582f5cde1"))).Returns(0);
 
             Assert.True(_grupoEmpresarialCommandHandler.Handle(request, new CancellationToken()).Result);
             _mockGruposEmpresariaisRepository.Verify(m => m.Update(grupoEmpresarial), Times.Once);
@@ -114,6 +115,19 @@ namespace ERP.Tests.Unit.Gerencial.Commands
             var request = CommandFactory.GenerateInvalidDeleteGrupoEmpresarialCommand();
             var grupoEmpresarial = EntityFactory.UpdateGrupoEmpresarial(request);
             _mockGruposEmpresariaisRepository.Setup(m => m.GetById(Guid.NewGuid())).Returns((GrupoEmpresarial)null);
+
+            Assert.False(_grupoEmpresarialCommandHandler.Handle(request, new CancellationToken()).Result);
+            _mockGruposEmpresariaisRepository.Verify(m => m.Update(grupoEmpresarial), Times.Never);
+            _mockUoW.Verify(m => m.Commit(), Times.Never);
+        }
+
+        [Fact]
+        public void GrupoEmpresarialCommandHandler_DeleteGrupoEmpresarialCommand_RetornarErroEmpresaVinculada()
+        {
+            var request = CommandFactory.GenerateValidDeleteGrupoEmpresarialCommand();
+            var grupoEmpresarial = EntityFactory.UpdateGrupoEmpresarial(request);
+            _mockGruposEmpresariaisRepository.Setup(m => m.GetById(Guid.Parse("04681edc-c9fe-4a39-97e7-c02582f5cde1"))).Returns(grupoEmpresarial);
+            _mockGruposEmpresariaisRepository.Setup(m => m.ObterQuantidadeDeEmpresasVinculadasAoGrupoEmpresarial(Guid.Parse("04681edc-c9fe-4a39-97e7-c02582f5cde1"))).Returns(1);
 
             Assert.False(_grupoEmpresarialCommandHandler.Handle(request, new CancellationToken()).Result);
             _mockGruposEmpresariaisRepository.Verify(m => m.Update(grupoEmpresarial), Times.Never);
@@ -188,6 +202,7 @@ namespace ERP.Tests.Unit.Gerencial.Commands
             var request = CommandFactory.GenerateValidDeleteCnaeCommand();
             var cnae = EntityFactory.UpdateCnae(request);
             _mockGruposEmpresariaisRepository.Setup(m => m.GetByCnaeId(Guid.Parse("04681edc-c9fe-4a39-97e7-c02582f5cde1"))).Returns(cnae);
+            _mockGruposEmpresariaisRepository.Setup(m => m.ObterQuantidadeDeEstabelecimentosVinculadosAoCnae(Guid.Parse("04681edc-c9fe-4a39-97e7-c02582f5cde1"))).Returns(0);
 
             Assert.True(_grupoEmpresarialCommandHandler.Handle(request, new CancellationToken()).Result);
             _mockGruposEmpresariaisRepository.Verify(m => m.Update(cnae), Times.Once);
@@ -201,6 +216,19 @@ namespace ERP.Tests.Unit.Gerencial.Commands
             var request = CommandFactory.GenerateInvalidDeleteCnaeCommand();
             var cnae = EntityFactory.UpdateCnae(request);
             _mockGruposEmpresariaisRepository.Setup(m => m.GetByCnaeId(Guid.NewGuid())).Returns((Cnae)null);
+
+            Assert.False(_grupoEmpresarialCommandHandler.Handle(request, new CancellationToken()).Result);
+            _mockGruposEmpresariaisRepository.Verify(m => m.Update(cnae), Times.Never);
+            _mockUoW.Verify(m => m.Commit(), Times.Never);
+        }
+
+        [Fact]
+        public void GrupoEmpresarialCommandHandler_DeleteCnaeCommand_RetornarErroEstabelecimentoVinculado()
+        {
+            var request = CommandFactory.GenerateValidDeleteCnaeCommand();
+            var cnae = EntityFactory.UpdateCnae(request);
+            _mockGruposEmpresariaisRepository.Setup(m => m.GetByCnaeId(Guid.Parse("04681edc-c9fe-4a39-97e7-c02582f5cde1"))).Returns(cnae);
+            _mockGruposEmpresariaisRepository.Setup(m => m.ObterQuantidadeDeEstabelecimentosVinculadosAoCnae(Guid.Parse("04681edc-c9fe-4a39-97e7-c02582f5cde1"))).Returns(1);
 
             Assert.False(_grupoEmpresarialCommandHandler.Handle(request, new CancellationToken()).Result);
             _mockGruposEmpresariaisRepository.Verify(m => m.Update(cnae), Times.Never);
@@ -275,6 +303,7 @@ namespace ERP.Tests.Unit.Gerencial.Commands
             var request = CommandFactory.GenerateValidDeleteEmpresaCommand();
             var cnae = EntityFactory.UpdateEmpresa(request);
             _mockGruposEmpresariaisRepository.Setup(m => m.GetByEmpresaId(Guid.Parse("04681edc-c9fe-4a39-97e7-c02582f5cde1"))).Returns(cnae);
+            _mockGruposEmpresariaisRepository.Setup(m => m.ObterQuantidadeDeEstabelecimentosVinculadosAEmpresa(Guid.Parse("04681edc-c9fe-4a39-97e7-c02582f5cde1"))).Returns(0);
 
             Assert.True(_grupoEmpresarialCommandHandler.Handle(request, new CancellationToken()).Result);
             _mockGruposEmpresariaisRepository.Verify(m => m.Update(cnae), Times.Once);
@@ -288,6 +317,19 @@ namespace ERP.Tests.Unit.Gerencial.Commands
             var request = CommandFactory.GenerateInvalidDeleteEmpresaCommand();
             var cnae = EntityFactory.UpdateEmpresa(request);
             _mockGruposEmpresariaisRepository.Setup(m => m.GetByEmpresaId(Guid.NewGuid())).Returns((Empresa)null);
+
+            Assert.False(_grupoEmpresarialCommandHandler.Handle(request, new CancellationToken()).Result);
+            _mockGruposEmpresariaisRepository.Verify(m => m.Update(cnae), Times.Never);
+            _mockUoW.Verify(m => m.Commit(), Times.Never);
+        }
+
+        [Fact]
+        public void GrupoEmpresarialCommandHandler_DeleteEmpresaCommand_RetornarErroEstabelecimentoVinculado()
+        {
+            var request = CommandFactory.GenerateValidDeleteEmpresaCommand();
+            var cnae = EntityFactory.UpdateEmpresa(request);
+            _mockGruposEmpresariaisRepository.Setup(m => m.GetByEmpresaId(Guid.Parse("04681edc-c9fe-4a39-97e7-c02582f5cde1"))).Returns(cnae);
+            _mockGruposEmpresariaisRepository.Setup(m => m.ObterQuantidadeDeEstabelecimentosVinculadosAEmpresa(Guid.Parse("04681edc-c9fe-4a39-97e7-c02582f5cde1"))).Returns(1);
 
             Assert.False(_grupoEmpresarialCommandHandler.Handle(request, new CancellationToken()).Result);
             _mockGruposEmpresariaisRepository.Verify(m => m.Update(cnae), Times.Never);

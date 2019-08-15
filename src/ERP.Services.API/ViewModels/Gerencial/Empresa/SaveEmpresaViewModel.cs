@@ -1,4 +1,5 @@
-﻿using ERP.Services.API.Utils.Validation;
+﻿using ERP.Gerencial.Domain.GruposEmpresariais.Types;
+using ERP.Services.API.Utils.Validation;
 using System;
 using System.ComponentModel.DataAnnotations;
 
@@ -52,7 +53,7 @@ namespace ERP.Services.API.ViewModels.Gerencial.Empresa
 
         [Display(Name = "Tipo identificação")]
         [Required(ErrorMessage = "Tipo identificação: campo obrigatório")]
-        public int TipoIdentificacao { get; set; }
+        public TipoIdentificacao TipoIdentificacao { get; set; }
 
         [NotEmptyGuid(ErrorMessage = "GrupoEmpresarialId: campo obrigatório")]
         public Guid GrupoEmpresarialId { get; set; }

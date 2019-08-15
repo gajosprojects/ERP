@@ -1,5 +1,6 @@
 ﻿using ERP.Domain.Core.Commands;
 using System;
+using ERP.Gerencial.Domain.GruposEmpresariais.Types;
 
 namespace ERP.Gerencial.Domain.GruposEmpresariais.Commands.Empresas
 {
@@ -19,7 +20,7 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais.Commands.Empresas
         public byte[] Logotipo { get; protected set; }
         public string Observacao { get; protected set; }
         public string Documento { get; protected set; }
-        public int TipoIdentificacao { get; protected set; }
+        public TipoIdentificacao TipoIdentificacao { get; protected set; }
         public Guid GrupoEmpresarialId { get; protected set; }
     }
 }

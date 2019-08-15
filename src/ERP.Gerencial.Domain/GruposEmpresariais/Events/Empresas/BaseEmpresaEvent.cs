@@ -1,4 +1,5 @@
 ﻿using ERP.Domain.Core.Events;
+using ERP.Gerencial.Domain.GruposEmpresariais.Types;
 using System;
 
 namespace ERP.Gerencial.Domain.GruposEmpresariais.Events.Empresas
@@ -20,7 +21,7 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais.Events.Empresas
         public byte[] Logotipo { get; protected set; }
         public string Observacao { get; protected set; }
         public string Documento { get; protected set; }
-        public int TipoIdentificacao { get; protected set; }
+        public TipoIdentificacao TipoIdentificacao { get; protected set; }
         public Guid GrupoEmpresarialId { get; protected set; }
     }
 }

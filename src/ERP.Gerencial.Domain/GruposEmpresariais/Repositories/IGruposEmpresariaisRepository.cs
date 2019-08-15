@@ -21,5 +21,9 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais.Repositories
         Cnae GetByCnaeId(Guid id);
         Empresa GetByEmpresaId(Guid id);
         Estabelecimento GetByEstabelecimentoId(Guid id);
+
+        int ObterQuantidadeDeEstabelecimentosVinculadosAoCnae(Guid id);
+        int ObterQuantidadeDeEstabelecimentosVinculadosAEmpresa(Guid id);
+        int ObterQuantidadeDeEmpresasVinculadasAoGrupoEmpresarial(Guid id);
     }
 }

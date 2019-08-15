@@ -10,6 +10,7 @@ namespace ERP.Gerencial.Domain.Usuarios.Events
             Nome = nome;
             Sobrenome = sobrenome;
             Email = email;
+            AggregateId = Id;
         }
     }
 }

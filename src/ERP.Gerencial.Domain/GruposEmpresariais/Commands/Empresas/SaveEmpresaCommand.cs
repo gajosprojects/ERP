@@ -1,10 +1,11 @@
-﻿using System;
+﻿using ERP.Gerencial.Domain.GruposEmpresariais.Types;
+using System;
 
 namespace ERP.Gerencial.Domain.GruposEmpresariais.Commands.Empresas
 {
     public class SaveEmpresaCommand : BaseEmpresaCommand
     {
-        public SaveEmpresaCommand(Guid usuarioId, string codigo, string descricao, string nomeFantasia, string email, string site, bool bloqueada, DateTime dataRegistro, byte[] logotipo, string observacao, string documento, int tipoIdentificacao, Guid grupoEmpresarialId)
+        public SaveEmpresaCommand(Guid usuarioId, string codigo, string descricao, string nomeFantasia, string email, string site, bool bloqueada, DateTime dataRegistro, byte[] logotipo, string observacao, string documento, TipoIdentificacao tipoIdentificacao, Guid grupoEmpresarialId)
         {
             Id = Guid.NewGuid();
             UsuarioId = usuarioId;
@@ -22,6 +23,7 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais.Commands.Empresas
             Documento = documento;
             TipoIdentificacao = tipoIdentificacao;
             GrupoEmpresarialId = grupoEmpresarialId;
+            AggregateId = Id;
         }
     }
 }

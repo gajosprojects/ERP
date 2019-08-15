@@ -1,4 +1,5 @@
-﻿using ERP.Services.API.ViewModels.Gerencial.GrupoEmpresarial;
+﻿using ERP.Gerencial.Domain.GruposEmpresariais.Types;
+using ERP.Services.API.ViewModels.Gerencial.GrupoEmpresarial;
 using ERP.Services.API.ViewModels.Gerencial.Usuario;
 using System;
 
@@ -20,7 +21,7 @@ namespace ERP.Services.API.ViewModels.Gerencial.Empresa
         public byte[] Logotipo { get; set; }
         public string Observacao { get; set; }
         public string Documento { get; set; }
-        public int TipoIdentificacao { get; set; }
+        public TipoIdentificacao TipoIdentificacao { get; set; }
         public GrupoEmpresarialViewModel GrupoEmpresarial { get; set; }
         public UsuarioViewModel Usuario { get; set; }
 

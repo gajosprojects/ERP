@@ -16,6 +16,9 @@ namespace ERP.Infra.Data.Mappings
             builder.Property(storedEvent => storedEvent.Id)
                 .HasColumnName("id");
 
+            builder.Property(storedEvent => storedEvent.TransactionId)
+                .HasColumnName("transaction_id");
+
             builder.Property(storedEvent => storedEvent.AggregateId)
                 .HasColumnName("aggregate_id");
 

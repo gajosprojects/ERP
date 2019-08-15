@@ -1,10 +1,11 @@
-﻿using System;
+﻿using ERP.Gerencial.Domain.GruposEmpresariais.Types;
+using System;
 
 namespace ERP.Gerencial.Domain.GruposEmpresariais.Commands.Estabelecimentos
 {
     public class UpdateEstabelecimentoCommand : BaseEstabelecimentoCommand
     {
-        public UpdateEstabelecimentoCommand(Guid id, Guid usuarioId, string codigo, string descricao, string nomeFantasia, string inscricaoEstadual, string inscricaoMunicipal, string email, string site, bool bloqueado, DateTime dataRegistro, byte[] logotipo, bool matriz, string observacao, string documento, int tipoIdentificacao, Guid empresaId, Guid cnaeId)
+        public UpdateEstabelecimentoCommand(Guid id, Guid usuarioId, string codigo, string descricao, string nomeFantasia, string inscricaoEstadual, string inscricaoMunicipal, string email, string site, bool bloqueado, DateTime dataRegistro, byte[] logotipo, bool matriz, string observacao, string documento, TipoIdentificacao tipoIdentificacao, Guid empresaId, Guid cnaeId)
         {
             Id = id;
             UsuarioId = usuarioId;
@@ -25,6 +26,7 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais.Commands.Estabelecimentos
             TipoIdentificacao = tipoIdentificacao;
             EmpresaId = empresaId;
             CnaeId = cnaeId;
+            AggregateId = Id;
         }
     }
 }
