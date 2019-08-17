@@ -12,6 +12,7 @@ namespace ERP.Services.API
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .UseSentry(config => { config.IncludeActivityData = true; })
                 .UseStartup<Startup>();
     }
 }
