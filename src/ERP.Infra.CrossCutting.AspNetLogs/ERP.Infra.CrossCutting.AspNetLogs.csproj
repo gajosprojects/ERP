@@ -13,7 +13,6 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.Rest.ClientRuntime" Version="3.0.3" />
-    <PackageReference Include="Sentry.AspNetCore" Version="1.2.0" />
   </ItemGroup>
 
 </Project>

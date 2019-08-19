@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using Sentry;
 using System;
 
 namespace ERP.Infra.CrossCutting.AspNetLogs
@@ -37,22 +36,6 @@ namespace ERP.Infra.CrossCutting.AspNetLogs
                 };
 
                 _logger.LogInformation(1, data.ToString());
-            }
-
-            if (_hostingEnviroment.IsProduction())
-            {
-                SentrySdk.ConfigureScope(scope =>
-                {
-                    scope.SetTag("Application", "ERP");
-                    scope.SetTag("Version", "v1.0");
-                    scope.SetTag("Source", "GlobalActionLoggerFilter");
-                    scope.SetTag("Hostname", context.HttpContext.Request.Host.Host);
-                    scope.SetTag("URL", context.HttpContext.Request.GetDisplayUrl());
-                    scope.SetTag("Method", context.HttpContext.Request.Method);
-                    scope.SetTag("StatusCode", context.HttpContext.Response.StatusCode.ToString());
-                    scope.SetTag("Data", context.Exception?.ToString());
-                    scope.User.Username = context.HttpContext.User.Identity.Name;
-                });
             }
         }
 
