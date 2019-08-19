@@ -1,4 +1,5 @@
-﻿using ERP.Infra.CrossCutting.AspNetLogs;
+﻿using CorrelationId;
+using ERP.Infra.CrossCutting.AspNetLogs;
 using ERP.Infra.CrossCutting.Identity.Context;
 using ERP.Infra.Data.Context;
 using ERP.Services.API.AutoMapper;
@@ -43,6 +44,7 @@ namespace ERP.Services.API
                 options.Filters.Add(new AuthorizeFilter(new AuthorizationPolicyBuilder().AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme).RequireAuthenticatedUser().Build()));
             });
 
+            services.AddCorrelationId();
             services.AddApiVersioning("api/v{version}");
             services.AddSwaggerConfiguration();
             services.RegisterMappings();
@@ -77,6 +79,12 @@ namespace ERP.Services.API
                 s.EnableFilter();
             });
 
+            app.UseCorrelationId(new CorrelationIdOptions
+            {
+                Header = "X-Correlation-ID",
+                UseGuidForCorrelationId = true,
+                UpdateTraceIdentifier = false
+            });
             app.UseHttpsRedirection();
             app.UseAuthentication();
             app.UseMvc();
