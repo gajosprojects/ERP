@@ -35,19 +35,19 @@ namespace ERP.Services.API.AutoMapper
                 .ConstructUsing(c => new DeleteCnaeCommand(c.Id, c.UsuarioId));
 
             CreateMap<SaveEmpresaViewModel, SaveEmpresaCommand>()
-                .ConstructUsing(e => new SaveEmpresaCommand(e.UsuarioId, e.Codigo, e.Descricao, e.NomeFantasia, e.Email, e.Site, e.Bloqueada, e.DataRegistro, e.Logotipo, e.Observacao, e.Documento, e.TipoIdentificacao, e.GrupoEmpresarialId));
+                .ConstructUsing(e => new SaveEmpresaCommand(e.UsuarioId, e.Codigo, e.Descricao, e.NomeFantasia, e.Email, e.Site, e.DataRegistro, e.Logotipo, e.Observacao, e.Documento, e.TipoIdentificacao, e.GrupoEmpresarialId));
 
             CreateMap<UpdateEmpresaViewModel, UpdateEmpresaCommand>()
-                .ConstructUsing(e => new UpdateEmpresaCommand(e.Id, e.UsuarioId, e.Codigo, e.Descricao, e.NomeFantasia, e.Email, e.Site, e.Bloqueada, e.DataRegistro, e.Logotipo, e.Observacao, e.Documento, e.TipoIdentificacao, e.GrupoEmpresarialId));
+                .ConstructUsing(e => new UpdateEmpresaCommand(e.Id, e.UsuarioId, e.Codigo, e.Descricao, e.NomeFantasia, e.Email, e.Site, e.DataRegistro, e.Logotipo, e.Observacao, e.Documento, e.TipoIdentificacao, e.GrupoEmpresarialId));
 
             CreateMap<DeleteEmpresaViewModel, DeleteEmpresaCommand>()
                 .ConstructUsing(e => new DeleteEmpresaCommand(e.Id, e.UsuarioId));
 
             CreateMap<SaveEstabelecimentoViewModel, SaveEstabelecimentoCommand>()
-                .ConstructUsing(e => new SaveEstabelecimentoCommand(e.UsuarioId, e.Codigo, e.Descricao, e.NomeFantasia, e.InscricaoEstadual, e.InscricaoMunicipal, e.Email, e.Site, e.Bloqueado, e.DataRegistro, e.Logotipo, e.Matriz, e.Observacao, e.Documento, e.TipoIdentificacao, e.EmpresaId, e.CnaeId));
+                .ConstructUsing(e => new SaveEstabelecimentoCommand(e.UsuarioId, e.Codigo, e.Descricao, e.NomeFantasia, e.InscricaoEstadual, e.InscricaoMunicipal, e.Email, e.Site, e.DataRegistro, e.Logotipo, e.Matriz, e.Observacao, e.Documento, e.TipoIdentificacao, e.EmpresaId, e.CnaeId));
 
             CreateMap<UpdateEstabelecimentoViewModel, UpdateEstabelecimentoCommand>()
-                .ConstructUsing(e => new UpdateEstabelecimentoCommand(e.Id, e.UsuarioId, e.Codigo, e.Descricao, e.NomeFantasia, e.InscricaoEstadual, e.InscricaoMunicipal, e.Email, e.Site, e.Bloqueado, e.DataRegistro, e.Logotipo, e.Matriz, e.Observacao, e.Documento, e.TipoIdentificacao, e.EmpresaId, e.CnaeId));
+                .ConstructUsing(e => new UpdateEstabelecimentoCommand(e.Id, e.UsuarioId, e.Codigo, e.Descricao, e.NomeFantasia, e.InscricaoEstadual, e.InscricaoMunicipal, e.Email, e.Site, e.DataRegistro, e.Logotipo, e.Matriz, e.Observacao, e.Documento, e.TipoIdentificacao, e.EmpresaId, e.CnaeId));
 
             CreateMap<DeleteEstabelecimentoViewModel, DeleteEstabelecimentoCommand>()
                 .ConstructUsing(e => new DeleteEstabelecimentoCommand(e.Id, e.UsuarioId));

@@ -32,10 +32,6 @@ namespace ERP.Services.API.ViewModels.Gerencial.Empresa
         [MaxLength(100, ErrorMessage = "Site: tamanho máximo {1} caracteres")]
         public string Site { get; set; }
 
-        [Display(Name = "Bloqueada")]
-        [Required(ErrorMessage = "Bloqueada: campo obrigatório")]
-        public bool Bloqueada { get; set; }
-
         [Display(Name = "Data registro")]
         public DateTime DataRegistro { get; set; }
 

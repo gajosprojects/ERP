@@ -15,7 +15,6 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais
         public string InscricaoMunicipal { get; private set; }
         public string Email { get; private set; }
         public string Site { get; private set; }
-        public bool Bloqueado { get; private set; }
         public DateTime DataRegistro { get; private set; }
         public byte[] Logotipo { get; private set; }
         public bool Matriz { get; private set; }
@@ -99,7 +98,7 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais
 
         public static class EstabelecimentoFactory
         {
-            public static Estabelecimento NewEstabelecimento(Guid id, string codigo, string descricao, string nomeFantasia, string inscricaoEstadual, string inscricaoMunicipal, string email, string site, bool bloqueado, DateTime dataRegistro, byte[] logotipo, bool matriz, string observacao, DateTime dataCadastro, DateTime dataUltimaAtualizacao, string documento, TipoIdentificacao tipoIdentificacao, Guid empresaId, Guid cnaeId, Guid usuarioId)
+            public static Estabelecimento NewEstabelecimento(Guid id, string codigo, string descricao, string nomeFantasia, string inscricaoEstadual, string inscricaoMunicipal, string email, string site, DateTime dataRegistro, byte[] logotipo, bool matriz, string observacao, DateTime dataCadastro, DateTime dataUltimaAtualizacao, string documento, TipoIdentificacao tipoIdentificacao, Guid empresaId, Guid cnaeId, Guid usuarioId)
             {
                 var estabelecimento = new Estabelecimento()
                 {
@@ -111,7 +110,6 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais
                     InscricaoMunicipal = inscricaoMunicipal,
                     Email = email,
                     Site = site,
-                    Bloqueado = bloqueado,
                     DataRegistro = dataRegistro,
                     Logotipo = logotipo,
                     Matriz = matriz,
@@ -123,13 +121,13 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais
                     EmpresaId = empresaId,
                     CnaeId = cnaeId,
                     UsuarioId = usuarioId,
-                    Ativo = true
+                    Excluido = false
                 };
 
                 return estabelecimento;
             }
 
-            public static Estabelecimento UpdateEstabelecimento(Guid id, string codigo, string descricao, string nomeFantasia, string inscricaoEstadual, string inscricaoMunicipal, string email, string site, bool bloqueado, DateTime dataRegistro, byte[] logotipo, bool matriz, string observacao, DateTime dataCadastro, DateTime dataUltimaAtualizacao, string documento, TipoIdentificacao tipoIdentificacao, Guid empresaId, Guid cnaeId, Guid usuarioId, bool ativo)
+            public static Estabelecimento UpdateEstabelecimento(Guid id, string codigo, string descricao, string nomeFantasia, string inscricaoEstadual, string inscricaoMunicipal, string email, string site, DateTime dataRegistro, byte[] logotipo, bool matriz, string observacao, DateTime dataCadastro, DateTime dataUltimaAtualizacao, string documento, TipoIdentificacao tipoIdentificacao, Guid empresaId, Guid cnaeId, Guid usuarioId, bool excluido)
             {
                 var estabelecimento = new Estabelecimento()
                 {
@@ -141,7 +139,6 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais
                     InscricaoMunicipal = inscricaoMunicipal,
                     Email = email,
                     Site = site,
-                    Bloqueado = bloqueado,
                     DataRegistro = dataRegistro,
                     Logotipo = logotipo,
                     Matriz = matriz,
@@ -153,7 +150,7 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais
                     EmpresaId = empresaId,
                     CnaeId = cnaeId,
                     UsuarioId = usuarioId,
-                    Ativo = ativo
+                    Excluido = excluido
                 };
 
                 return estabelecimento;

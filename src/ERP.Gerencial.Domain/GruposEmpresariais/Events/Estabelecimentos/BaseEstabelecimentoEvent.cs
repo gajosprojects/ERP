@@ -7,7 +7,7 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais.Events.Estabelecimentos
     public class BaseEstabelecimentoEvent : Event
     {
         public Guid Id { get; protected set; }
-        public bool Ativo { get; protected set; }
+        public bool Excluido { get; protected set; }
         public Guid UsuarioId { get; protected set; }
         public DateTime DataCadastro { get; protected set; }
         public DateTime DataUltimaAtualizacao { get; protected set; }
@@ -18,7 +18,6 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais.Events.Estabelecimentos
         public string InscricaoMunicipal { get; protected set; }
         public string Email { get; protected set; }
         public string Site { get; protected set; }
-        public bool Bloqueado { get; protected set; }
         public DateTime DataRegistro { get; protected set; }
         public byte[] Logotipo { get; protected set; }
         public bool Matriz { get; protected set; }

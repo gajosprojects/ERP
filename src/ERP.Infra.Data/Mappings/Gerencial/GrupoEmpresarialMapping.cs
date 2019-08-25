@@ -30,11 +30,11 @@ namespace ERP.Infra.Data.Mappings.Gerencial
                 .IsRequired()
                 .HasMaxLength(150);
             
-            builder.Property(grupoempresarial => grupoempresarial.Ativo)
-                .HasColumnName("ativo")
+            builder.Property(grupoempresarial => grupoempresarial.Excluido)
+                .HasColumnName("excluido")
                 .IsRequired()
-                .HasDefaultValue(true);
-            
+                .HasDefaultValue(false);
+
             builder.Property(grupoempresarial => grupoempresarial.DataCadastro)
                 .HasColumnName("data_cadastro")
                 .IsRequired();

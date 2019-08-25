@@ -41,32 +41,32 @@ namespace ERP.Tests.Unit.Gerencial.Factories
 
         public static Empresa NewEmpresa(SaveEmpresaCommand c)
         {
-            return Empresa.EmpresaFactory.NewEmpresa(c.Id, c.Codigo, c.Descricao, c.NomeFantasia, c.Email, c.Site, c.Bloqueada, c.DataRegistro, c.Logotipo, c.Observacao, c.DataCadastro, c.DataUltimaAtualizacao, c.Documento, c.TipoIdentificacao, c.GrupoEmpresarialId, c.UsuarioId);
+            return Empresa.EmpresaFactory.NewEmpresa(c.Id, c.Codigo, c.Descricao, c.NomeFantasia, c.Email, c.Site, c.DataRegistro, c.Logotipo, c.Observacao, c.DataCadastro, c.DataUltimaAtualizacao, c.Documento, c.TipoIdentificacao, c.GrupoEmpresarialId, c.UsuarioId);
         }
 
         public static Empresa UpdateEmpresa(UpdateEmpresaCommand c)
         {
-            return Empresa.EmpresaFactory.UpdateEmpresa(c.Id, c.Codigo, c.Descricao, c.NomeFantasia, c.Email, c.Site, c.Bloqueada, c.DataRegistro, c.Logotipo, c.Observacao, c.DataCadastro, c.DataUltimaAtualizacao, c.Documento, c.TipoIdentificacao, c.GrupoEmpresarialId, c.UsuarioId, true);
+            return Empresa.EmpresaFactory.UpdateEmpresa(c.Id, c.Codigo, c.Descricao, c.NomeFantasia, c.Email, c.Site, c.DataRegistro, c.Logotipo, c.Observacao, c.DataCadastro, c.DataUltimaAtualizacao, c.Documento, c.TipoIdentificacao, c.GrupoEmpresarialId, c.UsuarioId, true);
         }
 
         public static Empresa UpdateEmpresa(DeleteEmpresaCommand c)
         {
-            return Empresa.EmpresaFactory.UpdateEmpresa(c.Id, c.Codigo, c.Descricao, c.NomeFantasia, c.Email, c.Site, c.Bloqueada, c.DataRegistro, c.Logotipo, c.Observacao, c.DataCadastro, c.DataUltimaAtualizacao, c.Documento, c.TipoIdentificacao, c.GrupoEmpresarialId, c.UsuarioId, true);
+            return Empresa.EmpresaFactory.UpdateEmpresa(c.Id, c.Codigo, c.Descricao, c.NomeFantasia, c.Email, c.Site, c.DataRegistro, c.Logotipo, c.Observacao, c.DataCadastro, c.DataUltimaAtualizacao, c.Documento, c.TipoIdentificacao, c.GrupoEmpresarialId, c.UsuarioId, true);
         }
 
         public static Estabelecimento NewEstabelecimento(SaveEstabelecimentoCommand c)
         {
-            return Estabelecimento.EstabelecimentoFactory.NewEstabelecimento(c.Id, c.Codigo, c.Descricao, c.NomeFantasia, c.InscricaoEstadual, c.InscricaoMunicipal, c.Email, c.Site, c.Bloqueado, c.DataRegistro, c.Logotipo, c.Matriz, c.Observacao, c.DataCadastro, c.DataUltimaAtualizacao, c.Documento, c.TipoIdentificacao, c.EmpresaId, c.CnaeId, c.UsuarioId);
+            return Estabelecimento.EstabelecimentoFactory.NewEstabelecimento(c.Id, c.Codigo, c.Descricao, c.NomeFantasia, c.InscricaoEstadual, c.InscricaoMunicipal, c.Email, c.Site, c.DataRegistro, c.Logotipo, c.Matriz, c.Observacao, c.DataCadastro, c.DataUltimaAtualizacao, c.Documento, c.TipoIdentificacao, c.EmpresaId, c.CnaeId, c.UsuarioId);
         }
 
         public static Estabelecimento UpdateEstabelecimento(UpdateEstabelecimentoCommand c)
         {
-            return Estabelecimento.EstabelecimentoFactory.UpdateEstabelecimento(c.Id, c.Codigo, c.Descricao, c.NomeFantasia, c.InscricaoEstadual, c.InscricaoMunicipal, c.Email, c.Site, c.Bloqueado, c.DataRegistro, c.Logotipo, c.Matriz, c.Observacao, c.DataCadastro, c.DataUltimaAtualizacao, c.Documento, c.TipoIdentificacao, c.EmpresaId, c.CnaeId, c.UsuarioId, true);
+            return Estabelecimento.EstabelecimentoFactory.UpdateEstabelecimento(c.Id, c.Codigo, c.Descricao, c.NomeFantasia, c.InscricaoEstadual, c.InscricaoMunicipal, c.Email, c.Site, c.DataRegistro, c.Logotipo, c.Matriz, c.Observacao, c.DataCadastro, c.DataUltimaAtualizacao, c.Documento, c.TipoIdentificacao, c.EmpresaId, c.CnaeId, c.UsuarioId, true);
         }
 
         public static Estabelecimento UpdateEstabelecimento(DeleteEstabelecimentoCommand c)
         {
-            return Estabelecimento.EstabelecimentoFactory.UpdateEstabelecimento(c.Id, c.Codigo, c.Descricao, c.NomeFantasia, c.InscricaoEstadual, c.InscricaoMunicipal, c.Email, c.Site, c.Bloqueado, c.DataRegistro, c.Logotipo, c.Matriz, c.Observacao, c.DataCadastro, c.DataUltimaAtualizacao, c.Documento, c.TipoIdentificacao, c.EmpresaId, c.CnaeId, c.UsuarioId, true);
+            return Estabelecimento.EstabelecimentoFactory.UpdateEstabelecimento(c.Id, c.Codigo, c.Descricao, c.NomeFantasia, c.InscricaoEstadual, c.InscricaoMunicipal, c.Email, c.Site, c.DataRegistro, c.Logotipo, c.Matriz, c.Observacao, c.DataCadastro, c.DataUltimaAtualizacao, c.Documento, c.TipoIdentificacao, c.EmpresaId, c.CnaeId, c.UsuarioId, true);
         }
     }
 }

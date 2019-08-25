@@ -55,11 +55,6 @@ namespace ERP.Infra.Data.Mappings.Gerencial
                 .IsRequired()
                 .HasMaxLength(100);
 
-            builder.Property(estabelecimento => estabelecimento.Bloqueado)
-                .HasColumnName("bloqueado")
-                .IsRequired()
-                .HasDefaultValue(false);
-
             builder.Property(estabelecimento => estabelecimento.DataRegistro)
                 .HasColumnName("data_registro")
                 .IsRequired();
@@ -70,11 +65,11 @@ namespace ERP.Infra.Data.Mappings.Gerencial
             builder.Property(estabelecimento => estabelecimento.Matriz)
                 .HasColumnName("matriz");
             
-            builder.Property(estabelecimento => estabelecimento.Ativo)
-                .HasColumnName("ativo")
+            builder.Property(estabelecimento => estabelecimento.Excluido)
+                .HasColumnName("excluido")
                 .IsRequired()
-                .HasDefaultValue(true);
-            
+                .HasDefaultValue(false);
+
             builder.Property(estabelecimento => estabelecimento.DataCadastro)
                 .HasColumnName("data_cadastro")
                 .IsRequired();

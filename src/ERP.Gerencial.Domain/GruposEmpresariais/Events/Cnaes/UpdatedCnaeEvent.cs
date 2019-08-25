@@ -4,10 +4,10 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais.Events.Cnaes
 {
     public class UpdatedCnaeEvent : BaseCnaeEvent
     {
-        public UpdatedCnaeEvent(Guid id, bool ativo, Guid usuarioId, DateTime dataCadastro, DateTime dataUltimaAtualizacao, string codigo, string descricao, Guid? cnaePai)
+        public UpdatedCnaeEvent(Guid id, bool excluido, Guid usuarioId, DateTime dataCadastro, DateTime dataUltimaAtualizacao, string codigo, string descricao, Guid? cnaePai)
         {
             Id = id;
-            Ativo = ativo;
+            Excluido = excluido;
             UsuarioId = usuarioId;
             DataCadastro = dataCadastro;
             DataUltimaAtualizacao = dataUltimaAtualizacao;

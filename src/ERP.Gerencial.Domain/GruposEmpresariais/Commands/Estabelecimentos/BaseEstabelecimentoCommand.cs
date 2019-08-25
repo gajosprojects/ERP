@@ -17,7 +17,6 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais.Commands.Estabelecimentos
         public string InscricaoMunicipal { get; protected set; }
         public string Email { get; protected set; }
         public string Site { get; protected set; }
-        public bool Bloqueado { get; protected set; }
         public DateTime DataRegistro { get; protected set; }
         public byte[] Logotipo { get; protected set; }
         public bool Matriz { get; protected set; }

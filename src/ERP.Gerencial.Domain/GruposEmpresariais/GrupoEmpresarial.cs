@@ -48,13 +48,13 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais
                     DataCadastro = dataCadastro,
                     DataUltimaAtualizacao = dataUltimaAtualizacao,
                     UsuarioId = usuarioId,
-                    Ativo = true
+                    Excluido = false
                 };
 
                 return grupoEmpresarial;
             }
 
-            public static GrupoEmpresarial UpdateGrupoEmpresarial(Guid id, string codigo, string descricao, DateTime dataCadastro, DateTime dataUltimaAtualizacao, Guid usuarioId, bool ativo)
+            public static GrupoEmpresarial UpdateGrupoEmpresarial(Guid id, string codigo, string descricao, DateTime dataCadastro, DateTime dataUltimaAtualizacao, Guid usuarioId, bool excluido)
             {
                 var grupoEmpresarial = new GrupoEmpresarial()
                 {
@@ -64,7 +64,7 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais
                     DataCadastro = dataCadastro,
                     DataUltimaAtualizacao = dataUltimaAtualizacao,
                     UsuarioId = usuarioId,
-                    Ativo = ativo
+                    Excluido = excluido
                 };
 
                 return grupoEmpresarial;

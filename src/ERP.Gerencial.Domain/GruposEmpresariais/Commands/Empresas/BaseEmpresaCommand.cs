@@ -15,7 +15,6 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais.Commands.Empresas
         public string NomeFantasia { get; protected set; }
         public string Email { get; protected set; }
         public string Site { get; protected set; }
-        public bool Bloqueada { get; protected set; }
         public DateTime DataRegistro { get; protected set; }
         public byte[] Logotipo { get; protected set; }
         public string Observacao { get; protected set; }
