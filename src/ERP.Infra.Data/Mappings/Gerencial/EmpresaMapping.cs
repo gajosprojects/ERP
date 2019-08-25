@@ -45,11 +45,6 @@ namespace ERP.Infra.Data.Mappings.Gerencial
                 .IsRequired()
                 .HasMaxLength(100);
 
-            builder.Property(empresa => empresa.Bloqueada)
-                .HasColumnName("bloqueada")
-                .IsRequired()
-                .HasDefaultValue(false);
-
             builder.Property(empresa => empresa.DataRegistro)
                 .HasColumnName("data_registro")
                 .IsRequired();
@@ -60,11 +55,11 @@ namespace ERP.Infra.Data.Mappings.Gerencial
             builder.Property(empresa => empresa.Observacao)
                 .HasColumnName("observacao");
             
-            builder.Property(empresa => empresa.Ativo)
-                .HasColumnName("ativo")
+            builder.Property(empresa => empresa.Excluido)
+                .HasColumnName("excluido")
                 .IsRequired()
-                .HasDefaultValue(true);
-            
+                .HasDefaultValue(false);
+
             builder.Property(empresa => empresa.DataCadastro)
                 .HasColumnName("data_cadastro")
                 .IsRequired();

@@ -7,7 +7,7 @@ namespace ERP.Tests.Integration.Gerencial.DTO
         public string id { get; set; }
         public DateTime dataCadastro { get; set; }
         public DateTime dataUltimaAtualizacao { get; set; }
-        public bool ativo { get; set; }
+        public bool excluido { get; set; }
         public string codigo { get; set; }
         public string descricao { get; set; }
         public GetUsuarioDTO usuario { get; set; }
@@ -21,7 +21,7 @@ namespace ERP.Tests.Integration.Gerencial.DTO
 
     public class CnaeDataResponse
     {
-        public bool ativo { get; set; }
+        public bool excluido { get; set; }
         public string id { get; set; }
         public string codigo { get; set; }
         public string descricao { get; set; }

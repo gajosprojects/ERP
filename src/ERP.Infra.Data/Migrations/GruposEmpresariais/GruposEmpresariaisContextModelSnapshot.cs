@@ -25,11 +25,6 @@ namespace ERP.Infra.Data.Migrations.GruposEmpresariais
                         .ValueGeneratedOnAdd()
                         .HasColumnName("id");
 
-                    b.Property<bool>("Ativo")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("ativo")
-                        .HasDefaultValue(true);
-
                     b.Property<Guid?>("CnaePai")
                         .HasColumnName("cnae_pai");
 
@@ -48,6 +43,11 @@ namespace ERP.Infra.Data.Migrations.GruposEmpresariais
                         .IsRequired()
                         .HasColumnName("descricao")
                         .HasMaxLength(255);
+
+                    b.Property<bool>("Excluido")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("excluido")
+                        .HasDefaultValue(false);
 
                     b.Property<Guid>("UsuarioId")
                         .HasColumnName("usuario_id");
@@ -69,16 +69,6 @@ namespace ERP.Infra.Data.Migrations.GruposEmpresariais
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("id");
-
-                    b.Property<bool>("Ativo")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("ativo")
-                        .HasDefaultValue(true);
-
-                    b.Property<bool>("Bloqueada")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("bloqueada")
-                        .HasDefaultValue(false);
 
                     b.Property<string>("Codigo")
                         .IsRequired()
@@ -108,6 +98,11 @@ namespace ERP.Infra.Data.Migrations.GruposEmpresariais
                         .IsRequired()
                         .HasColumnName("email")
                         .HasMaxLength(150);
+
+                    b.Property<bool>("Excluido")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("excluido")
+                        .HasDefaultValue(false);
 
                     b.Property<Guid>("GrupoEmpresarialId")
                         .HasColumnName("grupo_empresarial_id");
@@ -154,16 +149,6 @@ namespace ERP.Infra.Data.Migrations.GruposEmpresariais
                         .ValueGeneratedOnAdd()
                         .HasColumnName("id");
 
-                    b.Property<bool>("Ativo")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("ativo")
-                        .HasDefaultValue(true);
-
-                    b.Property<bool>("Bloqueado")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("bloqueado")
-                        .HasDefaultValue(false);
-
                     b.Property<Guid>("CnaeId")
                         .HasColumnName("cnae_id");
 
@@ -198,6 +183,11 @@ namespace ERP.Infra.Data.Migrations.GruposEmpresariais
 
                     b.Property<Guid>("EmpresaId")
                         .HasColumnName("empresa_id");
+
+                    b.Property<bool>("Excluido")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("excluido")
+                        .HasDefaultValue(false);
 
                     b.Property<string>("InscricaoEstadual")
                         .IsRequired()
@@ -256,11 +246,6 @@ namespace ERP.Infra.Data.Migrations.GruposEmpresariais
                         .ValueGeneratedOnAdd()
                         .HasColumnName("id");
 
-                    b.Property<bool>("Ativo")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("ativo")
-                        .HasDefaultValue(true);
-
                     b.Property<string>("Codigo")
                         .IsRequired()
                         .HasColumnName("codigo")
@@ -276,6 +261,11 @@ namespace ERP.Infra.Data.Migrations.GruposEmpresariais
                         .IsRequired()
                         .HasColumnName("descricao")
                         .HasMaxLength(150);
+
+                    b.Property<bool>("Excluido")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("excluido")
+                        .HasDefaultValue(false);
 
                     b.Property<Guid>("UsuarioId")
                         .HasColumnName("usuario_id");
@@ -298,11 +288,6 @@ namespace ERP.Infra.Data.Migrations.GruposEmpresariais
                         .ValueGeneratedOnAdd()
                         .HasColumnName("id");
 
-                    b.Property<bool>("Ativo")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("ativo")
-                        .HasDefaultValue(true);
-
                     b.Property<DateTime>("DataCadastro")
                         .HasColumnName("data_cadastro");
 
@@ -312,6 +297,11 @@ namespace ERP.Infra.Data.Migrations.GruposEmpresariais
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnName("email");
+
+                    b.Property<bool>("Excluido")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("excluido")
+                        .HasDefaultValue(false);
 
                     b.Property<string>("Nome")
                         .IsRequired()

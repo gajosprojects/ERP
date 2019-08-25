@@ -5,7 +5,7 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais.Commands.Estabelecimentos
 {
     public class SaveEstabelecimentoCommand : BaseEstabelecimentoCommand
     {
-        public SaveEstabelecimentoCommand(Guid usuarioId, string codigo, string descricao, string nomeFantasia, string inscricaoEstadual, string inscricaoMunicipal, string email, string site, bool bloqueado, DateTime dataRegistro, byte[] logotipo, bool matriz, string observacao, string documento, TipoIdentificacao tipoIdentificacao, Guid empresaId, Guid cnaeId)
+        public SaveEstabelecimentoCommand(Guid usuarioId, string codigo, string descricao, string nomeFantasia, string inscricaoEstadual, string inscricaoMunicipal, string email, string site, DateTime dataRegistro, byte[] logotipo, bool matriz, string observacao, string documento, TipoIdentificacao tipoIdentificacao, Guid empresaId, Guid cnaeId)
         {
             Id = Guid.NewGuid();
             UsuarioId = usuarioId;
@@ -18,7 +18,6 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais.Commands.Estabelecimentos
             InscricaoMunicipal = inscricaoMunicipal;
             Email = email;
             Site = site;
-            Bloqueado = bloqueado;
             DataRegistro = dataRegistro;
             Logotipo = logotipo;
             Matriz = matriz;

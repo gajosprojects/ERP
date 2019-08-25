@@ -23,7 +23,7 @@ namespace ERP.Infra.Data.Repositories.Gerencial
                 FROM
                     USUARIOS U
                 WHERE
-                    U.ATIVO = 1
+                    U.EXCLUIDO = 0
                 ORDER BY 
                     U.NOME,
                     U.SOBRENOME"
@@ -38,7 +38,7 @@ namespace ERP.Infra.Data.Repositories.Gerencial
                 FROM
                     USUARIOS U
                 WHERE
-                    U.ATIVO = 1
+                    U.EXCLUIDO = 0
                     AND U.ID = @id
                 ORDER BY 
                     U.NOME,

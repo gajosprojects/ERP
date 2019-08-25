@@ -71,7 +71,7 @@ namespace ERP.Services.API.Controllers.Gerencial
         /// </summary>
         /// <param name="id"></param>
         /// <returns>Boolean</returns>
-        /// <remarks>Emite um comando que obtem por ID uma instancia de um grupo empresarial existente e a deleta/desativa.</remarks>
+        /// <remarks>Emite um comando que obtem por ID uma instancia de um grupo empresarial existente e a deleta ou exclui logicamente.</remarks>
         [HttpDelete]
         [Route("gruposempresariais/{id:guid}")]
         [Authorize(Policy = "DeleteGrupoEmpresarial")]
@@ -87,7 +87,7 @@ namespace ERP.Services.API.Controllers.Gerencial
         /// Obtem uma lista de grupos empresariais
         /// </summary>
         /// <returns>Lista de grupos empresariais</returns>
-        /// <remarks>Lista de grupos empresariais, ordenada pela descricao e excluindo os inativos.</remarks>
+        /// <remarks>Lista de grupos empresariais, ordenada pela descricao (não incluindo as entidades que foram excluidas logicamente).</remarks>
         [HttpGet]
         [Route("gruposempresariais")]
         [Authorize(Policy = "ViewGrupoEmpresarial")]
@@ -142,7 +142,7 @@ namespace ERP.Services.API.Controllers.Gerencial
         /// </summary>
         /// <param name="id"></param>
         /// <returns>Boolean</returns>
-        /// <remarks>Emite um comando que obtem por ID uma instancia de um CNAE existente e a deleta/desativa.</remarks>
+        /// <remarks>Emite um comando que obtem por ID uma instancia de um CNAE existente e a deleta ou exclui logicamente.</remarks>
         [HttpDelete]
         [Route("cnaes/{id:guid}")]
         [Authorize(Policy = "DeleteCnae")]
@@ -158,7 +158,7 @@ namespace ERP.Services.API.Controllers.Gerencial
         /// Obtem uma lista de CNAEs
         /// </summary>
         /// <returns>Lista de CNAEs</returns>
-        /// <remarks>Lista de CNAEs, ordenada pela descricao e excluindo os inativos.</remarks>
+        /// <remarks>Lista de CNAEs, ordenada pela descricao (não incluindo as entidades que foram excluidas logicamente).</remarks>
         [HttpGet]
         [Route("cnaes")]
         [Authorize(Policy = "ViewCnae")]
@@ -213,7 +213,7 @@ namespace ERP.Services.API.Controllers.Gerencial
         /// </summary>
         /// <param name="id"></param>
         /// <returns>Boolean</returns>
-        /// <remarks>Emite um comando que obtem por ID uma instancia de uma empresa existente e a deleta/desativa.</remarks>
+        /// <remarks>Emite um comando que obtem por ID uma instancia de uma empresa existente e a deleta ou exclui logicamente.</remarks>
         [HttpDelete]
         [Route("empresas/{id:guid}")]
         [Authorize(Policy = "DeleteEmpresa")]
@@ -229,7 +229,7 @@ namespace ERP.Services.API.Controllers.Gerencial
         /// Obtem uma lista de empresas
         /// </summary>
         /// <returns>Lista de empresas</returns>
-        /// <remarks>Lista de empresas, ordenada pela descricao e excluindo os inativos.</remarks>
+        /// <remarks>Lista de empresas, ordenada pela descricao (não incluindo as entidades que foram excluidas logicamente).</remarks>
         [HttpGet]
         [Route("empresas")]
         [Authorize(Policy = "ViewEmpresa")]
@@ -284,7 +284,7 @@ namespace ERP.Services.API.Controllers.Gerencial
         /// </summary>
         /// <param name="id"></param>
         /// <returns>Boolean</returns>
-        /// <remarks>Emite um comando que obtem por ID uma instancia de um estabelecimento existente e a deleta/desativa.</remarks>
+        /// <remarks>Emite um comando que obtem por ID uma instancia de um estabelecimento existente e a deleta ou exclui logicamente.</remarks>
         [HttpDelete]
         [Route("estabelecimentos/{id:guid}")]
         [Authorize(Policy = "DeleteEstabelecimento")]
@@ -300,7 +300,7 @@ namespace ERP.Services.API.Controllers.Gerencial
         /// Obtem uma lista de estabelecimentos
         /// </summary>
         /// <returns>Lista de estabelecimentos</returns>
-        /// <remarks>Lista de estabelecimentos, ordenada pela descricao e excluindo os inativos.</remarks>
+        /// <remarks>Lista de estabelecimentos, ordenada pela descricao (não incluindo as entidades que foram excluidas logicamente).</remarks>
         [HttpGet]
         [Route("estabelecimentos")]
         [Authorize(Policy = "ViewEstabelecimento")]

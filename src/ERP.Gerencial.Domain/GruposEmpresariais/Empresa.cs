@@ -14,7 +14,6 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais
         public string NomeFantasia { get; private set; }
         public string Email { get; private set; }
         public string Site { get; private set; }
-        public bool Bloqueada { get; private set; }
         public DateTime DataRegistro { get; private set; }
         public byte[] Logotipo { get; private set; }
         public string Observacao { get; private set; }
@@ -78,7 +77,7 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais
 
         public static class EmpresaFactory
         {
-            public static Empresa NewEmpresa(Guid id, string codigo, string descricao, string nomeFantasia, string email, string site, bool bloqueada, DateTime dataRegistro, byte[] logotipo, string observacao, DateTime dataCadastro, DateTime dataUltimaAtualizacao, string documento, TipoIdentificacao tipoIdentificacao, Guid grupoEmpresarialId, Guid usuarioId)
+            public static Empresa NewEmpresa(Guid id, string codigo, string descricao, string nomeFantasia, string email, string site, DateTime dataRegistro, byte[] logotipo, string observacao, DateTime dataCadastro, DateTime dataUltimaAtualizacao, string documento, TipoIdentificacao tipoIdentificacao, Guid grupoEmpresarialId, Guid usuarioId)
             {
                 var empresa = new Empresa()
                 {
@@ -88,7 +87,6 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais
                     NomeFantasia = nomeFantasia,
                     Email = email,
                     Site = site,
-                    Bloqueada = bloqueada,
                     DataRegistro = dataRegistro,
                     Logotipo = logotipo,
                     Observacao = observacao,
@@ -98,13 +96,13 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais
                     TipoIdentificacao = tipoIdentificacao,
                     GrupoEmpresarialId = grupoEmpresarialId,
                     UsuarioId = usuarioId,
-                    Ativo = true
+                    Excluido = false
                 };
 
                 return empresa;
             }
 
-            public static Empresa UpdateEmpresa(Guid id, string codigo, string descricao, string nomeFantasia, string email, string site, bool bloqueada, DateTime dataRegistro, byte[] logotipo, string observacao, DateTime dataCadastro, DateTime dataUltimaAtualizacao, string documento, TipoIdentificacao tipoIdentificacao, Guid grupoEmpresarialId, Guid usuarioId, bool ativo)
+            public static Empresa UpdateEmpresa(Guid id, string codigo, string descricao, string nomeFantasia, string email, string site, DateTime dataRegistro, byte[] logotipo, string observacao, DateTime dataCadastro, DateTime dataUltimaAtualizacao, string documento, TipoIdentificacao tipoIdentificacao, Guid grupoEmpresarialId, Guid usuarioId, bool excluido)
             {
                 var empresa = new Empresa()
                 {
@@ -114,7 +112,6 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais
                     NomeFantasia = nomeFantasia,
                     Email = email,
                     Site = site,
-                    Bloqueada = bloqueada,
                     DataRegistro = dataRegistro,
                     Logotipo = logotipo,
                     Observacao = observacao,
@@ -124,7 +121,7 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais
                     TipoIdentificacao = tipoIdentificacao,
                     GrupoEmpresarialId = grupoEmpresarialId,
                     UsuarioId = usuarioId,
-                    Ativo = ativo
+                    Excluido = excluido
                 };
 
                 return empresa;

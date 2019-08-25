@@ -33,11 +33,11 @@ namespace ERP.Infra.Data.Mappings.Gerencial
             builder.Property(cnae => cnae.CnaePai)
                 .HasColumnName("cnae_pai");
             
-            builder.Property(cnae => cnae.Ativo)
-                .HasColumnName("ativo")
+            builder.Property(cnae => cnae.Excluido)
+                .HasColumnName("excluido")
                 .IsRequired()
-                .HasDefaultValue(true);
-            
+                .HasDefaultValue(false);
+
             builder.Property(cnae => cnae.DataCadastro)
                 .HasColumnName("data_cadastro")
                 .IsRequired();

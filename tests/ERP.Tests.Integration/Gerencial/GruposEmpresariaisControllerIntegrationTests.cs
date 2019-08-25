@@ -222,7 +222,7 @@ namespace ERP.Tests.Integration.Gerencial
 
             response.EnsureSuccessStatusCode();
             Assert.IsType<EstabelecimentoDataResponse>(deletedEstabelecimentoDTO.data);
-            Assert.False(deletedEstabelecimentoDTO.data.ativo);
+            Assert.False(deletedEstabelecimentoDTO.data.excluido);
             Assert.NotEqual(estabelecimentoDTO.dataUltimaAtualizacao, deletedEstabelecimentoDTO.data.dataUltimaAtualizacao);
         }
 
@@ -237,7 +237,7 @@ namespace ERP.Tests.Integration.Gerencial
 
             response.EnsureSuccessStatusCode();
             Assert.IsType<CnaeDataResponse>(deletedCnaeDTO.data);
-            Assert.False(deletedCnaeDTO.data.ativo);
+            Assert.False(deletedCnaeDTO.data.excluido);
             Assert.NotEqual(cnaeDTO.dataUltimaAtualizacao, deletedCnaeDTO.data.dataUltimaAtualizacao);
         }
 
@@ -252,7 +252,7 @@ namespace ERP.Tests.Integration.Gerencial
 
             response.EnsureSuccessStatusCode();
             Assert.IsType<EmpresaDataResponse>(deletedEmpresaDTO.data);
-            Assert.False(deletedEmpresaDTO.data.ativo);
+            Assert.False(deletedEmpresaDTO.data.excluido);
             Assert.NotEqual(empresaDTO.dataUltimaAtualizacao, deletedEmpresaDTO.data.dataUltimaAtualizacao);
         }
 
@@ -267,7 +267,7 @@ namespace ERP.Tests.Integration.Gerencial
 
             response.EnsureSuccessStatusCode();
             Assert.IsType<GrupoEmpresarialDataResponse>(deletedGrupoEmpresarialDTO.data);
-            Assert.False(deletedGrupoEmpresarialDTO.data.ativo);
+            Assert.False(deletedGrupoEmpresarialDTO.data.excluido);
             Assert.NotEqual(grupoEmpresarialDTO.dataUltimaAtualizacao, deletedGrupoEmpresarialDTO.data.dataUltimaAtualizacao);
         }
     }

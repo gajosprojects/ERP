@@ -10,7 +10,7 @@ namespace ERP.Domain.Core.Models
         public Guid Id { get; protected set; }
         public DateTime DataCadastro { get; protected set; }
         public DateTime DataUltimaAtualizacao { get; protected set; }
-        public bool Ativo { get; protected set; }
+        public bool Excluido { get; protected set; }
         public Guid UsuarioId { get; protected set; }
         public ValidationResult ValidationResult { get; protected set; }
 
@@ -19,9 +19,9 @@ namespace ERP.Domain.Core.Models
             ValidationResult = new ValidationResult();
         }
 
-        public void Desativar(Guid usuarioId) 
+        public void Excluir(Guid usuarioId) 
         {
-            Ativo = false;
+            Excluido = true;
             UsuarioId = usuarioId;
             DataUltimaAtualizacao = DateTime.Now;
         }

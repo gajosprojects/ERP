@@ -28,10 +28,10 @@ namespace ERP.Infra.Data.Mappings.Gerencial
                 .HasColumnName("email")
                 .IsRequired();
 
-            builder.Property(usuario => usuario.Ativo)
-                .HasColumnName("ativo")
+            builder.Property(usuario => usuario.Excluido)
+                .HasColumnName("excluido")
                 .IsRequired()
-                .HasDefaultValue(true);
+                .HasDefaultValue(false);
 
             builder.Property(usuario => usuario.DataCadastro)
                 .HasColumnName("data_cadastro")

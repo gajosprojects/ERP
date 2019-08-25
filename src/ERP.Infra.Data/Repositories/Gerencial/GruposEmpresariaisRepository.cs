@@ -37,7 +37,7 @@ namespace ERP.Infra.Data.Repositories.Gerencial
                     GRUPOS_EMPRESARIAIS GE
                     JOIN USUARIOS U ON U.ID = GE.USUARIO_ID
                 WHERE
-                    GE.ATIVO = 1
+                    GE.EXCLUIDO = 0
                 ORDER BY 
                     GE.DESCRICAO",
                 (grupoEmpresarial, usuario) =>
@@ -58,7 +58,7 @@ namespace ERP.Infra.Data.Repositories.Gerencial
                     JOIN USUARIOS U ON U.ID = GE.USUARIO_ID
                 WHERE 
                     GE.ID = @id
-                    AND GE.ATIVO = 1",
+                    AND GE.EXCLUIDO = 0",
                 (grupoEmpresarial, usuario) =>
                 {
                     grupoEmpresarial.AtribuirUsuario(usuario);
@@ -78,7 +78,7 @@ namespace ERP.Infra.Data.Repositories.Gerencial
                     CNAES C
                     JOIN USUARIOS U ON U.ID = C.USUARIO_ID
                 WHERE
-                    C.ATIVO = 1
+                    C.EXCLUIDO = 0
                 ORDER BY 
                     C.DESCRICAO",
                 (cnae, usuario) =>
@@ -99,7 +99,7 @@ namespace ERP.Infra.Data.Repositories.Gerencial
                     JOIN USUARIOS U ON U.ID = C.USUARIO_ID
                 WHERE 
                     C.ID = @id
-                    AND C.ATIVO = 1",
+                    AND C.EXCLUIDO = 0",
                 (cnae, usuario) =>
                 {
                     cnae.AtribuirUsuario(usuario);
@@ -120,7 +120,7 @@ namespace ERP.Infra.Data.Repositories.Gerencial
                     JOIN USUARIOS U ON U.ID = E.USUARIO_ID
 					JOIN GRUPOS_EMPRESARIAIS GE ON GE.ID = E.GRUPO_EMPRESARIAL_ID
                 WHERE
-                    E.ATIVO = 1
+                    E.EXCLUIDO = 0
                 ORDER BY 
                     E.DESCRICAO",
                 (empresa, usuario, grupoEmpresarial) =>
@@ -143,7 +143,7 @@ namespace ERP.Infra.Data.Repositories.Gerencial
 					JOIN GRUPOS_EMPRESARIAIS GE ON GE.ID = E.GRUPO_EMPRESARIAL_ID
                 WHERE 
                     E.ID = @id
-                    AND E.ATIVO = 1",
+                    AND E.EXCLUIDO = 0",
                 (empresa, usuario, grupoEmpresarial) =>
                 {
                     empresa.AtribuirUsuario(usuario);
@@ -166,7 +166,7 @@ namespace ERP.Infra.Data.Repositories.Gerencial
                     JOIN CNAES C ON C.ID = E.CNAE_ID
                     JOIN EMPRESAS EM ON EM.ID = E.EMPRESA_ID
                 WHERE
-                    E.ATIVO = 1
+                    E.EXCLUIDO = 0
                 ORDER BY 
                     E.DESCRICAO",
                 (estabelecimento, usuario, cnae, empresa) =>
@@ -191,7 +191,7 @@ namespace ERP.Infra.Data.Repositories.Gerencial
                     JOIN EMPRESAS EM ON EM.ID = E.EMPRESA_ID
                 WHERE 
                     E.ID = @id
-                    AND E.ATIVO = 1",
+                    AND E.EXCLUIDO = 0",
                 (estabelecimento, usuario, cnae, empresa) =>
                 {
                     estabelecimento.AtribuirUsuario(usuario);
@@ -213,7 +213,7 @@ namespace ERP.Infra.Data.Repositories.Gerencial
 	                ESTABELECIMENTOS E
                 WHERE
 	                E.CNAE_ID = @id
-                    AND E.ATIVO = 1",
+                    AND E.EXCLUIDO = 0",
                 new { id }
             )
             .Single();
@@ -228,7 +228,7 @@ namespace ERP.Infra.Data.Repositories.Gerencial
 	                ESTABELECIMENTOS E
                 WHERE
 	                E.EMPRESA_ID = @id
-                    AND E.ATIVO = 1",
+                    AND E.EXCLUIDO = 0",
                 new { id }
             )
             .Single();
@@ -243,7 +243,7 @@ namespace ERP.Infra.Data.Repositories.Gerencial
 	                EMPRESAS E
                 WHERE
 	                E.GRUPO_EMPRESARIAL_ID = @id
-                    AND E.ATIVO = 1",
+                    AND E.EXCLUIDO = 0",
                 new { id }
             )
             .Single();

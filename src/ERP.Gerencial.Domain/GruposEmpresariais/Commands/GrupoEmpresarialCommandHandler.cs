@@ -40,7 +40,7 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais.Commands
 
                 if (Commit())
                 {
-                    _mediator.RaiseEvent(new SavedGrupoEmpresarialEvent(grupoEmpresarial.Id, grupoEmpresarial.Codigo, grupoEmpresarial.Descricao, grupoEmpresarial.DataCadastro, grupoEmpresarial.DataUltimaAtualizacao, grupoEmpresarial.Ativo, grupoEmpresarial.UsuarioId));
+                    _mediator.RaiseEvent(new SavedGrupoEmpresarialEvent(grupoEmpresarial.Id, grupoEmpresarial.Codigo, grupoEmpresarial.Descricao, grupoEmpresarial.DataCadastro, grupoEmpresarial.DataUltimaAtualizacao, grupoEmpresarial.Excluido, grupoEmpresarial.UsuarioId));
                 }
 
                 return Task.FromResult(true);
@@ -62,7 +62,7 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais.Commands
             }
             else 
             {
-                var grupoEmpresarial = GrupoEmpresarial.GrupoEmpresarialFactory.UpdateGrupoEmpresarial(grupoEmpresarialExistente.Id, request.Codigo, request.Descricao, grupoEmpresarialExistente.DataCadastro, request.DataUltimaAtualizacao, request.UsuarioId, grupoEmpresarialExistente.Ativo);
+                var grupoEmpresarial = GrupoEmpresarial.GrupoEmpresarialFactory.UpdateGrupoEmpresarial(grupoEmpresarialExistente.Id, request.Codigo, request.Descricao, grupoEmpresarialExistente.DataCadastro, request.DataUltimaAtualizacao, request.UsuarioId, grupoEmpresarialExistente.Excluido);
                 
                 if (IsValid(grupoEmpresarial))
                 {
@@ -70,7 +70,7 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais.Commands
 
                     if (Commit())
                     {
-                        _mediator.RaiseEvent(new UpdatedGrupoEmpresarialEvent(grupoEmpresarial.Id, grupoEmpresarial.Codigo, grupoEmpresarial.Descricao, grupoEmpresarial.DataCadastro, grupoEmpresarial.DataUltimaAtualizacao, grupoEmpresarial.Ativo, grupoEmpresarial.UsuarioId));
+                        _mediator.RaiseEvent(new UpdatedGrupoEmpresarialEvent(grupoEmpresarial.Id, grupoEmpresarial.Codigo, grupoEmpresarial.Descricao, grupoEmpresarial.DataCadastro, grupoEmpresarial.DataUltimaAtualizacao, grupoEmpresarial.Excluido, grupoEmpresarial.UsuarioId));
                     }
 
                     return Task.FromResult(true);
@@ -99,7 +99,7 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais.Commands
                     return Task.FromResult(false);
                 }
 
-                grupoEmpresarialExistente.Desativar(request.UsuarioId);
+                grupoEmpresarialExistente.Excluir(request.UsuarioId);
                 _grupoEmpresarialRepository.Update(grupoEmpresarialExistente);
 
                 if (Commit())
@@ -121,7 +121,7 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais.Commands
 
                 if (Commit())
                 {
-                    _mediator.RaiseEvent(new SavedCnaeEvent(cnae.Id, cnae.Ativo, cnae.UsuarioId, cnae.DataCadastro, cnae.DataUltimaAtualizacao, cnae.Codigo, cnae.Descricao, cnae.CnaePai));
+                    _mediator.RaiseEvent(new SavedCnaeEvent(cnae.Id, cnae.Excluido, cnae.UsuarioId, cnae.DataCadastro, cnae.DataUltimaAtualizacao, cnae.Codigo, cnae.Descricao, cnae.CnaePai));
                 }
 
                 return Task.FromResult(true);
@@ -143,7 +143,7 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais.Commands
             }
             else
             {
-                var cnae = Cnae.CnaeFactory.UpdateCnae(cnaeExistente.Id, request.Codigo, request.Descricao, request.CnaePai, cnaeExistente.DataCadastro, request.DataUltimaAtualizacao, request.UsuarioId, cnaeExistente.Ativo);
+                var cnae = Cnae.CnaeFactory.UpdateCnae(cnaeExistente.Id, request.Codigo, request.Descricao, request.CnaePai, cnaeExistente.DataCadastro, request.DataUltimaAtualizacao, request.UsuarioId, cnaeExistente.Excluido);
 
                 if (IsValid(cnae))
                 {
@@ -151,7 +151,7 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais.Commands
 
                     if (Commit())
                     {
-                        _mediator.RaiseEvent(new UpdatedCnaeEvent(cnae.Id, cnae.Ativo, cnae.UsuarioId, cnae.DataCadastro, cnae.DataUltimaAtualizacao, cnae.Codigo, cnae.Descricao, cnae.CnaePai));
+                        _mediator.RaiseEvent(new UpdatedCnaeEvent(cnae.Id, cnae.Excluido, cnae.UsuarioId, cnae.DataCadastro, cnae.DataUltimaAtualizacao, cnae.Codigo, cnae.Descricao, cnae.CnaePai));
                     }
 
                     return Task.FromResult(true);
@@ -180,7 +180,7 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais.Commands
                     return Task.FromResult(false);
                 }
 
-                cnaeExistente.Desativar(request.UsuarioId);
+                cnaeExistente.Excluir(request.UsuarioId);
                 _grupoEmpresarialRepository.Update(cnaeExistente);
 
                 if (Commit())
@@ -194,7 +194,7 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais.Commands
 
         public Task<bool> Handle(SaveEmpresaCommand request, CancellationToken cancellationToken)
         {
-            var empresa = Empresa.EmpresaFactory.NewEmpresa(request.Id, request.Codigo, request.Descricao, request.NomeFantasia, request.Email, request.Site, request.Bloqueada, request.DataRegistro, request.Logotipo, request.Observacao, request.DataCadastro, request.DataUltimaAtualizacao, request.Documento, request.TipoIdentificacao, request.GrupoEmpresarialId, request.UsuarioId);
+            var empresa = Empresa.EmpresaFactory.NewEmpresa(request.Id, request.Codigo, request.Descricao, request.NomeFantasia, request.Email, request.Site, request.DataRegistro, request.Logotipo, request.Observacao, request.DataCadastro, request.DataUltimaAtualizacao, request.Documento, request.TipoIdentificacao, request.GrupoEmpresarialId, request.UsuarioId);
 
             if (IsValid(empresa))
             {
@@ -202,7 +202,7 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais.Commands
 
                 if (Commit())
                 {
-                    _mediator.RaiseEvent(new SavedEmpresaEvent(empresa.Id, empresa.Ativo, empresa.UsuarioId, empresa.DataCadastro, empresa.DataUltimaAtualizacao, empresa.Codigo, empresa.Descricao, empresa.NomeFantasia, empresa.Email, empresa.Site, empresa.Bloqueada, empresa.DataRegistro, empresa.Logotipo, empresa.Observacao, empresa.Documento, empresa.TipoIdentificacao, empresa.GrupoEmpresarialId));
+                    _mediator.RaiseEvent(new SavedEmpresaEvent(empresa.Id, empresa.Excluido, empresa.UsuarioId, empresa.DataCadastro, empresa.DataUltimaAtualizacao, empresa.Codigo, empresa.Descricao, empresa.NomeFantasia, empresa.Email, empresa.Site, empresa.DataRegistro, empresa.Logotipo, empresa.Observacao, empresa.Documento, empresa.TipoIdentificacao, empresa.GrupoEmpresarialId));
                 }
 
                 return Task.FromResult(true);
@@ -224,7 +224,7 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais.Commands
             }
             else
             {
-                var empresa = Empresa.EmpresaFactory.UpdateEmpresa(empresaExistente.Id, request.Codigo, request.Descricao, request.NomeFantasia, request.Email, request.Site, request.Bloqueada, request.DataRegistro, request.Logotipo, request.Observacao, empresaExistente.DataCadastro, request.DataUltimaAtualizacao, request.Documento, request.TipoIdentificacao, request.GrupoEmpresarialId, request.UsuarioId, empresaExistente.Ativo);
+                var empresa = Empresa.EmpresaFactory.UpdateEmpresa(empresaExistente.Id, request.Codigo, request.Descricao, request.NomeFantasia, request.Email, request.Site, request.DataRegistro, request.Logotipo, request.Observacao, empresaExistente.DataCadastro, request.DataUltimaAtualizacao, request.Documento, request.TipoIdentificacao, request.GrupoEmpresarialId, request.UsuarioId, empresaExistente.Excluido);
 
                 if (IsValid(empresa))
                 {
@@ -232,7 +232,7 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais.Commands
 
                     if (Commit())
                     {
-                        _mediator.RaiseEvent(new UpdatedEmpresaEvent(empresa.Id, empresa.Ativo, empresa.UsuarioId, empresa.DataCadastro, empresa.DataUltimaAtualizacao, empresa.Codigo, empresa.Descricao, empresa.NomeFantasia, empresa.Email, empresa.Site, empresa.Bloqueada, empresa.DataRegistro, empresa.Logotipo, empresa.Observacao, empresa.Documento, empresa.TipoIdentificacao, empresa.GrupoEmpresarialId));
+                        _mediator.RaiseEvent(new UpdatedEmpresaEvent(empresa.Id, empresa.Excluido, empresa.UsuarioId, empresa.DataCadastro, empresa.DataUltimaAtualizacao, empresa.Codigo, empresa.Descricao, empresa.NomeFantasia, empresa.Email, empresa.Site, empresa.DataRegistro, empresa.Logotipo, empresa.Observacao, empresa.Documento, empresa.TipoIdentificacao, empresa.GrupoEmpresarialId));
                     }
 
                     return Task.FromResult(true);
@@ -261,7 +261,7 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais.Commands
                     return Task.FromResult(false);
                 }
 
-                empresaExistente.Desativar(request.UsuarioId);
+                empresaExistente.Excluir(request.UsuarioId);
                 _grupoEmpresarialRepository.Update(empresaExistente);
 
                 if (Commit())
@@ -275,7 +275,7 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais.Commands
 
         public Task<bool> Handle(SaveEstabelecimentoCommand request, CancellationToken cancellationToken)
         {
-            var estabelecimento = Estabelecimento.EstabelecimentoFactory.NewEstabelecimento(request.Id, request.Codigo, request.Descricao, request.NomeFantasia, request.InscricaoEstadual, request.InscricaoMunicipal, request.Email, request.Site, request.Bloqueado, request.DataRegistro, request.Logotipo, request.Matriz, request.Observacao, request.DataCadastro, request.DataUltimaAtualizacao, request.Documento, request.TipoIdentificacao, request.EmpresaId, request.CnaeId, request.UsuarioId);
+            var estabelecimento = Estabelecimento.EstabelecimentoFactory.NewEstabelecimento(request.Id, request.Codigo, request.Descricao, request.NomeFantasia, request.InscricaoEstadual, request.InscricaoMunicipal, request.Email, request.Site, request.DataRegistro, request.Logotipo, request.Matriz, request.Observacao, request.DataCadastro, request.DataUltimaAtualizacao, request.Documento, request.TipoIdentificacao, request.EmpresaId, request.CnaeId, request.UsuarioId);
 
             if (IsValid(estabelecimento))
             {
@@ -283,7 +283,7 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais.Commands
 
                 if (Commit())
                 {
-                    _mediator.RaiseEvent(new SavedEstabelecimentoEvent(estabelecimento.Id, estabelecimento.Ativo, estabelecimento.UsuarioId, estabelecimento.DataCadastro, estabelecimento.DataUltimaAtualizacao, estabelecimento.Codigo, estabelecimento.Descricao, estabelecimento.NomeFantasia, estabelecimento.InscricaoEstadual, estabelecimento.InscricaoMunicipal, estabelecimento.Email, estabelecimento.Site, estabelecimento.Bloqueado, estabelecimento.DataRegistro, estabelecimento.Logotipo, estabelecimento.Matriz, estabelecimento.Observacao, estabelecimento.Documento, estabelecimento.TipoIdentificacao, estabelecimento.EmpresaId, estabelecimento.CnaeId));
+                    _mediator.RaiseEvent(new SavedEstabelecimentoEvent(estabelecimento.Id, estabelecimento.Excluido, estabelecimento.UsuarioId, estabelecimento.DataCadastro, estabelecimento.DataUltimaAtualizacao, estabelecimento.Codigo, estabelecimento.Descricao, estabelecimento.NomeFantasia, estabelecimento.InscricaoEstadual, estabelecimento.InscricaoMunicipal, estabelecimento.Email, estabelecimento.Site, estabelecimento.DataRegistro, estabelecimento.Logotipo, estabelecimento.Matriz, estabelecimento.Observacao, estabelecimento.Documento, estabelecimento.TipoIdentificacao, estabelecimento.EmpresaId, estabelecimento.CnaeId));
                 }
 
                 return Task.FromResult(true);
@@ -305,7 +305,7 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais.Commands
             }
             else
             {
-                var estabelecimento = Estabelecimento.EstabelecimentoFactory.UpdateEstabelecimento(estabelecimentoExistente.Id, request.Codigo, request.Descricao, request.NomeFantasia, request.InscricaoEstadual, request.InscricaoMunicipal, request.Email, request.Site, request.Bloqueado, request.DataRegistro, request.Logotipo, request.Matriz, request.Observacao, estabelecimentoExistente.DataCadastro, request.DataUltimaAtualizacao, request.Documento, request.TipoIdentificacao, request.EmpresaId, request.CnaeId, request.UsuarioId, estabelecimentoExistente.Ativo);
+                var estabelecimento = Estabelecimento.EstabelecimentoFactory.UpdateEstabelecimento(estabelecimentoExistente.Id, request.Codigo, request.Descricao, request.NomeFantasia, request.InscricaoEstadual, request.InscricaoMunicipal, request.Email, request.Site, request.DataRegistro, request.Logotipo, request.Matriz, request.Observacao, estabelecimentoExistente.DataCadastro, request.DataUltimaAtualizacao, request.Documento, request.TipoIdentificacao, request.EmpresaId, request.CnaeId, request.UsuarioId, estabelecimentoExistente.Excluido);
 
                 if (IsValid(estabelecimento))
                 {
@@ -313,7 +313,7 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais.Commands
 
                     if (Commit())
                     {
-                        _mediator.RaiseEvent(new UpdatedEstabelecimentoEvent(estabelecimento.Id, estabelecimento.Ativo, estabelecimento.UsuarioId, estabelecimento.DataCadastro, estabelecimento.DataUltimaAtualizacao, estabelecimento.Codigo, estabelecimento.Descricao, estabelecimento.NomeFantasia, estabelecimento.InscricaoEstadual, estabelecimento.InscricaoMunicipal, estabelecimento.Email, estabelecimento.Site, estabelecimento.Bloqueado, estabelecimento.DataRegistro, estabelecimento.Logotipo, estabelecimento.Matriz, estabelecimento.Observacao, estabelecimento.Documento, estabelecimento.TipoIdentificacao, estabelecimento.EmpresaId, estabelecimento.CnaeId));
+                        _mediator.RaiseEvent(new UpdatedEstabelecimentoEvent(estabelecimento.Id, estabelecimento.Excluido, estabelecimento.UsuarioId, estabelecimento.DataCadastro, estabelecimento.DataUltimaAtualizacao, estabelecimento.Codigo, estabelecimento.Descricao, estabelecimento.NomeFantasia, estabelecimento.InscricaoEstadual, estabelecimento.InscricaoMunicipal, estabelecimento.Email, estabelecimento.Site, estabelecimento.DataRegistro, estabelecimento.Logotipo, estabelecimento.Matriz, estabelecimento.Observacao, estabelecimento.Documento, estabelecimento.TipoIdentificacao, estabelecimento.EmpresaId, estabelecimento.CnaeId));
                     }
 
                     return Task.FromResult(true);
@@ -336,7 +336,7 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais.Commands
             }
             else
             {
-                estabelecimentoExistente.Desativar(request.UsuarioId);
+                estabelecimentoExistente.Excluir(request.UsuarioId);
                 _grupoEmpresarialRepository.Update(estabelecimentoExistente);
 
                 if (Commit())

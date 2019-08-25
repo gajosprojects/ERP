@@ -5,10 +5,10 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais.Events.Estabelecimentos
 {
     public class SavedEstabelecimentoEvent : BaseEstabelecimentoEvent
     {
-        public SavedEstabelecimentoEvent(Guid id, bool ativo, Guid usuarioId, DateTime dataCadastro, DateTime dataUltimaAtualizacao, string codigo, string descricao, string nomeFantasia, string inscricaoEstadual, string inscricaoMunicipal, string email, string site, bool bloqueado, DateTime dataRegistro, byte[] logotipo, bool matriz, string observacao, string documento, TipoIdentificacao tipoIdentificacao, Guid empresaId, Guid cnaeId)
+        public SavedEstabelecimentoEvent(Guid id, bool excluido, Guid usuarioId, DateTime dataCadastro, DateTime dataUltimaAtualizacao, string codigo, string descricao, string nomeFantasia, string inscricaoEstadual, string inscricaoMunicipal, string email, string site, DateTime dataRegistro, byte[] logotipo, bool matriz, string observacao, string documento, TipoIdentificacao tipoIdentificacao, Guid empresaId, Guid cnaeId)
         {
             Id = id;
-            Ativo = ativo;
+            Excluido = excluido;
             UsuarioId = usuarioId;
             DataCadastro = dataCadastro;
             DataUltimaAtualizacao = dataUltimaAtualizacao;
@@ -19,7 +19,6 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais.Events.Estabelecimentos
             InscricaoMunicipal = inscricaoMunicipal;
             Email = email;
             Site = site;
-            Bloqueado = bloqueado;
             DataRegistro = dataRegistro;
             Logotipo = logotipo;
             Matriz = matriz;

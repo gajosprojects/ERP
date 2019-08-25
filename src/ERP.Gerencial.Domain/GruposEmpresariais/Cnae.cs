@@ -50,13 +50,13 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais
                     DataCadastro = dataCadastro,
                     DataUltimaAtualizacao = dataUltimaAtualizacao,
                     UsuarioId = usuarioId,
-                    Ativo = true
+                    Excluido = false
                 };
 
                 return cnae;
             }
 
-            public static Cnae UpdateCnae(Guid id, string codigo, string descricao, Guid? cnaePai, DateTime dataCadastro, DateTime dataUltimaAtualizacao, Guid usuarioId, bool ativo)
+            public static Cnae UpdateCnae(Guid id, string codigo, string descricao, Guid? cnaePai, DateTime dataCadastro, DateTime dataUltimaAtualizacao, Guid usuarioId, bool excluido)
             {
                 var cnae = new Cnae()
                 {
@@ -67,7 +67,7 @@ namespace ERP.Gerencial.Domain.GruposEmpresariais
                     DataCadastro = dataCadastro,
                     DataUltimaAtualizacao = dataUltimaAtualizacao,
                     UsuarioId = usuarioId,
-                    Ativo = ativo
+                    Excluido = excluido
                 };
 
                 return cnae;
